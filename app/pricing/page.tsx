@@ -141,7 +141,13 @@ export default function PricingPage() {
       <section className="py-16 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-2xl p-8 text-center">
-            <div className="text-4xl mb-4">🛡️</div>
+            <div className="flex justify-center mb-4">
+              <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+            </div>
             <h2 className="text-2xl font-bold text-white mb-3">60-Day Satisfaction Guarantee</h2>
             <p className="text-slate-300 leading-relaxed">
               If LunarLogic doesn&apos;t measurably reduce your DSO or invoice processing time within the first 60 days,
