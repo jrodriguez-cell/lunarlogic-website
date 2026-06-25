@@ -39,7 +39,13 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-10 text-center">
-        <div className="text-5xl mb-4">✅</div>
+        <div className="flex justify-center mb-4">
+          <div className="w-14 h-14 bg-green-500/10 border border-green-500/20 rounded-2xl flex items-center justify-center">
+            <svg className="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
         <h2 className="text-xl font-bold text-white mb-2">Request Received</h2>
         <p className="text-slate-400">
           Thanks, {formData.name}! Jonathan will be in touch within one business day to schedule your demo.
