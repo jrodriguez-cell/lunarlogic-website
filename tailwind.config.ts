@@ -19,7 +19,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Space Grotesk", "system-ui", "sans-serif"],
+        sans: ["DM Sans", "system-ui", "sans-serif"],
+        display: ["Fraunces", "Georgia", "serif"],
       },
     },
   },
