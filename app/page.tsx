@@ -5,6 +5,7 @@ import FeatureCard from "@/components/FeatureCard";
 import PricingCard from "@/components/PricingCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import FeatureShowcase from "@/components/FeatureShowcase";
 
 export const metadata: Metadata = {
   title: "LunarLogic — We turn what you have already earned into cash in your bank account.",
@@ -118,29 +119,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-24 bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal animation="fade-up">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-                Every piece of your AR cycle. Fully automated.
-              </h2>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                From the moment a sales order comes in to the moment cash clears your account — LunarLogic handles it,
-                without a dedicated AR team and without ongoing consulting involvement.
-              </p>
-            </div>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <ScrollReveal key={f.title} animation="fade-up" delay={i * 70}>
-                <FeatureCard {...f} />
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Feature Showcase — sticky scroll */}
+      <FeatureShowcase />
 
       {/* Problem / Why It Matters */}
       <section className="py-24 bg-slate-900">
