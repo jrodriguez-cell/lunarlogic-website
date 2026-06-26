@@ -227,7 +227,7 @@ export default function DemoDashboard() {
   };
 
   const markPaid = (id: string) => {
-    setPaidIds((prev) => new Set([...prev, id]));
+    setPaidIds((prev) => new Set(Array.from(prev).concat(id)));
     showToast("Invoice marked as paid. QuickBooks updated automatically.");
   };
 
