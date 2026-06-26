@@ -30,10 +30,19 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate submission delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error("submission failed");
+      setSubmitted(true);
+    } catch {
+      alert("Something went wrong. Please email us at support@lunarlogic.ai.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -48,7 +57,7 @@ export default function ContactForm() {
         </div>
         <h2 className="text-xl font-bold text-white mb-2">Request Received</h2>
         <p className="text-slate-400">
-          Thanks, {formData.name}! Jonathan will be in touch within one business day to schedule your demo.
+          Thanks, {formData.name}! Our team will be in touch within one business day to schedule your demo.
         </p>
       </div>
     );
