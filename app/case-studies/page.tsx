@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CTASection from "@/components/CTASection";
+import CaseStudyShowcase from "@/components/CaseStudyShowcase";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -14,264 +16,55 @@ export default function CaseStudiesPage() {
       {/* Header */}
       <section className="bg-slate-950 py-20 border-b border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Client Results</p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
-            Real numbers. Real firms.
-          </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            LunarLogic clients are not cutting days off their DSO in theory — these results are live in production.
-          </p>
-        </div>
-      </section>
-
-      {/* Kaptain Clean — Featured */}
-      <section className="py-20 bg-slate-950">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700 rounded-3xl overflow-hidden">
-            <div className="bg-blue-600 px-6 py-2 text-xs font-bold text-white uppercase tracking-widest w-max">
-              Featured Client
-            </div>
-
-            <div className="p-8 sm:p-12">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center">
-                  <span className="text-blue-400 font-bold text-lg">KC</span>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white">Kaptain Clean LLC</h2>
-                  <p className="text-slate-400 text-sm">Commercial Cleaning · QuickBooks Online · Slack</p>
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-10">
-                <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
-                  <p className="text-4xl font-extrabold text-blue-400 mb-1">19</p>
-                  <p className="text-sm text-slate-300 font-medium">Days DSO Reduced</p>
-                  <p className="text-xs text-slate-500 mt-1">from 52 days to 33</p>
-                </div>
-                <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
-                  <p className="text-4xl font-extrabold text-blue-400 mb-1">84%</p>
-                  <p className="text-sm text-slate-300 font-medium">Faster Invoicing</p>
-                  <p className="text-xs text-slate-500 mt-1">19 min to 3 min per invoice</p>
-                </div>
-                <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
-                  <p className="text-4xl font-extrabold text-blue-400 mb-1">$65K</p>
-                  <p className="text-sm text-slate-300 font-medium">Working Capital Unlocked</p>
-                  <p className="text-xs text-slate-500 mt-1">permanently freed from AR</p>
-                </div>
-                <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
-                  <p className="text-4xl font-extrabold text-blue-400 mb-1">0</p>
-                  <p className="text-sm text-slate-300 font-medium">Manual Reminder Calls</p>
-                  <p className="text-xs text-slate-500 mt-1">fully automated follow-up</p>
-                </div>
-              </div>
-
-              {/* Story */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">The Challenge</h3>
-                  <p className="text-slate-400 leading-relaxed text-sm">
-                    Kaptain Clean is a growing commercial cleaning firm with a high volume of recurring service invoices.
-                    Every invoice required manual data entry, followed by email or phone follow-ups on overdue payments.
-                    The AR function was consuming multiple staff hours per week, and DSO was creeping upward as the client
-                    base expanded.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">The Solution</h3>
-                  <p className="text-slate-400 leading-relaxed text-sm">
-                    LunarLogic deployed the full AR Automation Suite — automated invoice creation, a systematic
-                    multi-touch reminder sequence, AI-powered cash application, and a real-time AR dashboard. Sales
-                    orders now arrive via Slack, are validated against their accounting system, and are routed for
-                    one-click approval. Reminders run every weekday automatically.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">The Results</h3>
-                  <p className="text-slate-400 leading-relaxed text-sm">
-                    Within 60 days of go-live, invoice processing time dropped 84%. DSO fell by 19 days — a cash flow
-                    improvement that compounded every billing cycle. Staff time previously spent on invoicing and collections
-                    was redirected to billable work.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">AR Suite Capabilities Deployed</h3>
-                  <ul className="space-y-2">
-                    {[
-                      "Automated invoice creation from sales orders",
-                      "Multi-touch payment reminder sequences",
-                      "AI-powered cash application",
-                      "Real-time AR aging dashboard",
-                    ].map((item) => (
-                      <li key={item} className="flex items-center gap-2.5 text-sm text-slate-300">
-                        <svg className="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Quote */}
-              <blockquote className="mt-10 border-l-4 border-blue-500 pl-6">
-                <p className="text-lg text-slate-300 italic leading-relaxed mb-4">
-                  &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
-                </p>
-                <p className="text-sm text-slate-400 leading-relaxed mb-3">
-                  Before LunarLogic, invoicing was a full afternoon of manual work. Cash flow was unpredictable.
-                  Collections meant awkward personal calls. Six weeks after go-live, DSO had dropped 19 days and
-                  $65,000 in working capital was permanently freed — not from new revenue, but from money already earned.
-                </p>
-                <footer className="mt-3 text-sm text-slate-400">— Kaptain Clean LLC</footer>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Secondary Case Studies */}
-      <section className="py-12 bg-slate-900 space-y-8">
-        {/* Meridian Field Services */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 sm:p-10">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                <span className="text-emerald-400 font-bold text-sm">MF</span>
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-white">Meridian Field Services</h2>
-                <p className="text-slate-400 text-sm">Environmental Consulting · NetSuite · Microsoft Teams</p>
-              </div>
-              <span className="ml-auto text-xs font-semibold bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-1 rounded-full">
-                Active
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div className="bg-slate-700/30 rounded-xl p-4 text-center border border-slate-600">
-                <p className="text-3xl font-extrabold text-emerald-400 mb-1">24</p>
-                <p className="text-sm text-slate-300 font-medium">Days DSO Reduced</p>
-                <p className="text-xs text-slate-500 mt-1">from 61 days to 37</p>
-              </div>
-              <div className="bg-slate-700/30 rounded-xl p-4 text-center border border-slate-600">
-                <p className="text-3xl font-extrabold text-emerald-400 mb-1">$112K</p>
-                <p className="text-sm text-slate-300 font-medium">Working Capital Freed</p>
-                <p className="text-xs text-slate-500 mt-1">from AR backlog</p>
-              </div>
-              <div className="bg-slate-700/30 rounded-xl p-4 text-center border border-slate-600">
-                <p className="text-3xl font-extrabold text-emerald-400 mb-1">91%</p>
-                <p className="text-sm text-slate-300 font-medium">Invoices Auto-Applied</p>
-                <p className="text-xs text-slate-500 mt-1">no manual cash matching</p>
-              </div>
-            </div>
-
-            <p className="text-slate-400 leading-relaxed mb-4 text-sm">
-              Meridian Field Services ran a project-based billing model with complex multi-line invoices tied to
-              environmental field reports. Collections were inconsistent — project managers handled their own
-              follow-up, which meant high-revenue clients sometimes went 90 days without a reminder. LunarLogic
-              integrated with their NetSuite environment, standardized the reminder cadence across all projects,
-              and automated cash application against open purchase orders. DSO dropped 24 days in the first two
-              billing cycles.
+          <ScrollReveal animation="fade-up">
+            <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Client Results</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+              Real numbers. Real firms.
+            </h1>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              LunarLogic clients are not cutting days off their DSO in theory — these results are live in production.
             </p>
+          </ScrollReveal>
 
-            <blockquote className="border-l-4 border-emerald-500 pl-5 mb-6">
-              <p className="text-sm text-slate-300 italic">
-                &ldquo;Our project managers were spending Friday afternoons chasing invoices instead of closing new work.
-                That stopped the week we went live.&rdquo;
-              </p>
-              <footer className="mt-2 text-xs text-slate-500">— Operations Director, Meridian Field Services</footer>
-            </blockquote>
-
-            <div className="flex flex-wrap gap-2">
-              {["NetSuite Integration", "Automated Reminders", "AI Cash Application", "Project-Based Billing"].map((tag) => (
-                <span key={tag} className="text-xs bg-slate-700 text-slate-300 border border-slate-600 px-3 py-1 rounded-full">
-                  {tag}
-                </span>
+          {/* Summary stats strip */}
+          <ScrollReveal animation="zoom-in" delay={100}>
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {[
+                { value: "19 days", label: "Best DSO reduction" },
+                { value: "$112K", label: "Most working capital freed" },
+                { value: "84%", label: "Fastest invoice processing" },
+                { value: "$0", label: "Bad debt (Halloran)" },
+              ].map((s) => (
+                <div key={s.label} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                  <p className="text-xl font-extrabold text-blue-400">{s.value}</p>
+                  <p className="text-xs text-slate-400 mt-1">{s.label}</p>
+                </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Halloran Consulting Group */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 sm:p-10">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center">
-                <span className="text-violet-400 font-bold text-sm">HC</span>
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-white">Halloran Consulting Group</h2>
-                <p className="text-slate-400 text-sm">HR & Compliance Consulting · Sage Intacct · Slack</p>
-              </div>
-              <span className="ml-auto text-xs font-semibold bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-1 rounded-full">
-                Active
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div className="bg-slate-700/30 rounded-xl p-4 text-center border border-slate-600">
-                <p className="text-3xl font-extrabold text-violet-400 mb-1">16</p>
-                <p className="text-sm text-slate-300 font-medium">Days DSO Reduced</p>
-                <p className="text-xs text-slate-500 mt-1">from 48 days to 32</p>
-              </div>
-              <div className="bg-slate-700/30 rounded-xl p-4 text-center border border-slate-600">
-                <p className="text-3xl font-extrabold text-violet-400 mb-1">78%</p>
-                <p className="text-sm text-slate-300 font-medium">Faster Invoice Turnaround</p>
-                <p className="text-xs text-slate-500 mt-1">same-day vs. 4-day average</p>
-              </div>
-              <div className="bg-slate-700/30 rounded-xl p-4 text-center border border-slate-600">
-                <p className="text-3xl font-extrabold text-violet-400 mb-1">$0</p>
-                <p className="text-sm text-slate-300 font-medium">Bad Debt Written Off</p>
-                <p className="text-xs text-slate-500 mt-1">since go-live (prev. $18K/yr)</p>
-              </div>
-            </div>
-
-            <p className="text-slate-400 leading-relaxed mb-4 text-sm">
-              Halloran Consulting Group billed retainer and project clients across a mix of billing schedules.
-              Invoices were created manually by a part-time bookkeeper, often days after work was delivered.
-              LunarLogic connected to their Sage Intacct environment and automated the full invoice-to-cash cycle.
-              Invoices now go out the same day engagement milestones are logged, reminders run on a tiered
-              schedule by client tier, and the finance team receives a daily AR summary in Slack without opening
-              a single report.
-            </p>
-
-            <blockquote className="border-l-4 border-violet-500 pl-5 mb-6">
-              <p className="text-sm text-slate-300 italic">
-                &ldquo;We had $18,000 written off last year that just shouldn&apos;t have happened. This year we haven&apos;t
-                written off a dollar. The reminders just work.&rdquo;
-              </p>
-              <footer className="mt-2 text-xs text-slate-500">— Managing Partner, Halloran Consulting Group</footer>
-            </blockquote>
-
-            <div className="flex flex-wrap gap-2">
-              {["Sage Intacct Integration", "Tiered Reminder Sequences", "Daily Slack AR Summary", "Retainer Billing"].map((tag) => (
-                <span key={tag} className="text-xs bg-slate-700 text-slate-300 border border-slate-600 px-3 py-1 rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
+
+      {/* Case Study Showcase — sticky scroll on desktop, cards on mobile */}
+      <CaseStudyShowcase />
 
       {/* Your Firm Next */}
       <section className="py-16 bg-slate-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your firm could be next</h2>
-          <p className="text-slate-400 mb-8">
-            Professional services firms with 8–20 employees and a recurring invoice model are the right fit —
-            regardless of which accounting platform you run. We can estimate your DSO improvement before we ever
-            charge you a dollar.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3.5 rounded-xl font-semibold transition-all hover:scale-105"
-          >
-            Get a DSO Estimate
-          </Link>
+          <ScrollReveal animation="fade-up">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your firm could be next</h2>
+            <p className="text-slate-400 mb-8">
+              Professional services firms with 8–20 employees and a recurring invoice model are the right fit —
+              regardless of which accounting platform you run. We can estimate your DSO improvement before we ever
+              charge you a dollar.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3.5 rounded-xl font-semibold transition-all hover:scale-105"
+            >
+              Get a DSO Estimate
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
