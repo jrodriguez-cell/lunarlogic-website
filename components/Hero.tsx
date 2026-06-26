@@ -50,7 +50,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-8">
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-sm text-blue-300 font-medium">AI-Powered Accounting Automation</span>
+          <span className="text-sm text-blue-300 font-medium">Accounting while you sleep</span>
         </div>
 
         {/* Headline */}
