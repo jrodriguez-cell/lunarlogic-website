@@ -22,14 +22,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span
-              className="font-logo font-700 text-xl tracking-wide lowercase"
-              style={{
-                color: "#60c8ff",
-                textShadow: "0 0 8px rgba(56,189,248,0.7), 0 0 20px rgba(56,189,248,0.35)",
-                letterSpacing: "0.04em",
-              }}
-            >
+            <span className="font-logo text-xl font-bold tracking-wide text-blue-400 lowercase">
               lunarlogic
             </span>
           </Link>
