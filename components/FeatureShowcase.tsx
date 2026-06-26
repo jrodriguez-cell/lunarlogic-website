@@ -325,9 +325,31 @@ const chapters = [
   },
 ];
 
-// ── Main Component ────────────────────────────────────────────────────────────
+// ── Mobile card ───────────────────────────────────────────────────────────────
 
-export default function FeatureShowcase() {
+function MobileChapterCard({ chapter }: { chapter: typeof chapters[number] }) {
+  return (
+    <div className="bg-slate-800/40 border border-slate-700 rounded-2xl p-6">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Step {chapter.step}</span>
+        <span className="text-xs font-semibold text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2.5 py-0.5 rounded-full">
+          {chapter.label}
+        </span>
+      </div>
+      <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{chapter.title}</h3>
+      <p className="text-sm text-slate-400 leading-relaxed mb-5">{chapter.body}</p>
+      <div className="mb-5">{chapter.mockup}</div>
+      <div className="inline-flex items-baseline gap-2 bg-blue-500/5 border border-blue-500/15 rounded-xl px-4 py-3">
+        <span className="text-2xl font-extrabold text-blue-400">{chapter.stat.value}</span>
+        <span className="text-sm text-slate-400">{chapter.stat.label}</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Desktop sticky scroll ─────────────────────────────────────────────────────
+
+function DesktopShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
@@ -336,13 +358,11 @@ export default function FeatureShowcase() {
     const handleScroll = () => {
       const container = containerRef.current;
       if (!container) return;
-
       const rect = container.getBoundingClientRect();
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
       const newChapter = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
-
       setActiveChapter(prev => {
         if (prev !== newChapter) {
           setTransitioning(true);
@@ -351,7 +371,6 @@ export default function FeatureShowcase() {
         return newChapter;
       });
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -361,23 +380,15 @@ export default function FeatureShowcase() {
   return (
     <div ref={containerRef} style={{ height: `${chapters.length * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
-
-        {/* Header label */}
-        <div className="flex-shrink-0 pt-12 pb-6 text-center">
+        <div className="flex-shrink-0 pt-10 pb-4 text-center">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
         </div>
 
-        {/* Main content */}
-        <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-0">
-
-          {/* Left — text */}
-          <div className="flex flex-col justify-center lg:pr-8">
+        <div className="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 gap-12 items-center min-h-0">
+          <div className="flex flex-col justify-center pr-8">
             <div
-              className="transition-all duration-400 ease-out"
-              style={{
-                opacity: transitioning ? 0 : 1,
-                transform: transitioning ? "translateY(16px)" : "translateY(0)",
-              }}
+              className="transition-all duration-300 ease-out"
+              style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? "translateY(16px)" : "translateY(0)" }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Step {chapter.step}</span>
@@ -385,15 +396,8 @@ export default function FeatureShowcase() {
                   {chapter.label}
                 </span>
               </div>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5">
-                {chapter.title}
-              </h2>
-
-              <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-lg">
-                {chapter.body}
-              </p>
-
+              <h2 className="text-4xl xl:text-5xl font-extrabold text-white leading-tight mb-5">{chapter.title}</h2>
+              <p className="text-lg text-slate-400 leading-relaxed mb-8 max-w-lg">{chapter.body}</p>
               <div className="inline-flex items-baseline gap-2 bg-blue-500/5 border border-blue-500/15 rounded-2xl px-5 py-4">
                 <span className="text-3xl font-extrabold text-blue-400">{chapter.stat.value}</span>
                 <span className="text-sm text-slate-400">{chapter.stat.label}</span>
@@ -401,30 +405,24 @@ export default function FeatureShowcase() {
             </div>
           </div>
 
-          {/* Right — mockup */}
           <div className="flex items-center justify-center">
             <div
-              className="w-full transition-all duration-400 ease-out"
-              style={{
-                opacity: transitioning ? 0 : 1,
-                transform: transitioning ? "scale(0.97)" : "scale(1)",
-              }}
+              className="w-full transition-all duration-300 ease-out"
+              style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? "scale(0.97)" : "scale(1)" }}
             >
               {chapter.mockup}
             </div>
           </div>
         </div>
 
-        {/* Bottom — chapter progress dots */}
-        <div className="flex-shrink-0 pb-8 flex items-center justify-center gap-6">
+        <div className="flex-shrink-0 pb-6 flex items-center justify-center gap-4 sm:gap-6">
           {chapters.map((c, i) => (
             <button
               key={i}
               onClick={() => {
                 const container = containerRef.current;
                 if (!container) return;
-                const chapterFraction = i / chapters.length;
-                const scrollTarget = container.offsetTop + chapterFraction * (container.offsetHeight - window.innerHeight) + 10;
+                const scrollTarget = container.offsetTop + (i / chapters.length) * (container.offsetHeight - window.innerHeight) + 10;
                 window.scrollTo({ top: scrollTarget, behavior: "smooth" });
               }}
               className="flex flex-col items-center gap-1.5 group"
@@ -438,5 +436,28 @@ export default function FeatureShowcase() {
         </div>
       </div>
     </div>
+  );
+}
+
+// ── Main export ───────────────────────────────────────────────────────────────
+
+export default function FeatureShowcase() {
+  return (
+    <>
+      {/* Mobile: stacked cards */}
+      <div className="lg:hidden bg-slate-950 py-16 px-4 sm:px-6 space-y-6">
+        <div className="text-center mb-8">
+          <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
+        </div>
+        {chapters.map((chapter) => (
+          <MobileChapterCard key={chapter.step} chapter={chapter} />
+        ))}
+      </div>
+
+      {/* Desktop: sticky scroll */}
+      <div className="hidden lg:block">
+        <DesktopShowcase />
+      </div>
+    </>
   );
 }
