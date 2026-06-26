@@ -37,16 +37,12 @@ export default function ContactPage() {
                 <h3 className="text-white font-semibold mb-4">Direct Contact</h3>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Founder</p>
-                    <p className="text-white text-sm font-medium">Jonathan Rodriguez</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Sales</p>
                     <a
-                      href="mailto:jrodriguez@lunarlogic.ai"
+                      href="mailto:support@lunarlogic.ai"
                       className="text-blue-400 hover:text-blue-300 text-sm transition-colors"
                     >
-                      jrodriguez@lunarlogic.ai
+                      support@lunarlogic.ai
                     </a>
                   </div>
                 </div>
