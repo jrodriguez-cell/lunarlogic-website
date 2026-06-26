@@ -330,7 +330,6 @@ const chapters = [
 export default function FeatureShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState(0);
-  const [prevChapter, setPrevChapter] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
@@ -346,7 +345,6 @@ export default function FeatureShowcase() {
 
       setActiveChapter(prev => {
         if (prev !== newChapter) {
-          setPrevChapter(prev);
           setTransitioning(true);
           setTimeout(() => setTransitioning(false), 400);
         }
