@@ -21,9 +21,27 @@ export default function Navigation() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-logo text-xl font-bold tracking-wide text-blue-400 lowercase">
-              lunarlogic
+          <Link href="/" className="flex items-center gap-2 group">
+            {/* Crescent moon mark */}
+            <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+                fill="url(#moonGrad)"
+              />
+              <defs>
+                <linearGradient id="moonGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#60A5FA" />
+                  <stop offset="100%" stopColor="#818CF8" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="font-logo text-lg font-bold tracking-wide">
+              <span
+                className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent"
+              >
+                lunarlogic
+              </span>
+              <span className="text-white/70 font-semibold">.ai</span>
             </span>
           </Link>
 
