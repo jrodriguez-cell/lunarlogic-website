@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 // ── Mockup: Invoice Creation ──────────────────────────────────────────────────
 
@@ -439,20 +440,69 @@ function DesktopShowcase() {
   );
 }
 
+// ── Mobile showcase with scroll animations ────────────────────────────────────
+
+function MobileShowcase() {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const observers = cardRefs.current.map((card, i) => {
+      if (!card) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveStep(i); },
+        { threshold: 0.4 }
+      );
+      obs.observe(card);
+      return obs;
+    });
+    return () => observers.forEach((o) => o?.disconnect());
+  }, []);
+
+  return (
+    <div className="lg:hidden bg-slate-950 py-16 px-4 sm:px-6">
+      <div className="text-center mb-10">
+        <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
+      </div>
+
+      {/* Sticky step-progress pill */}
+      <div className="sticky top-[64px] z-10 flex justify-center mb-8 pointer-events-none">
+        <div className="flex items-center gap-3 bg-slate-900/90 backdrop-blur-md border border-slate-700/60 rounded-full px-5 py-2.5 shadow-xl">
+          {chapters.map((c, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <div
+                className={`rounded-full transition-all duration-300 ${
+                  i === activeStep ? "w-6 h-1.5 bg-blue-400" : "w-1.5 h-1.5 bg-slate-600"
+                }`}
+              />
+              {i === activeStep && (
+                <span className="text-xs text-blue-400 font-semibold whitespace-nowrap">{c.label}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-8">
+        {chapters.map((chapter, i) => (
+          <div key={chapter.step} ref={(el) => { cardRefs.current[i] = el; }}>
+            <ScrollReveal animation={i % 2 === 0 ? "slide-left" : "slide-right"}>
+              <MobileChapterCard chapter={chapter} />
+            </ScrollReveal>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export default function FeatureShowcase() {
   return (
     <>
-      {/* Mobile: stacked cards */}
-      <div className="lg:hidden bg-slate-950 py-16 px-4 sm:px-6 space-y-6">
-        <div className="text-center mb-8">
-          <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
-        </div>
-        {chapters.map((chapter) => (
-          <MobileChapterCard key={chapter.step} chapter={chapter} />
-        ))}
-      </div>
+      {/* Mobile: scroll-animated cards */}
+      <MobileShowcase />
 
       {/* Desktop: sticky scroll */}
       <div className="hidden lg:block">
