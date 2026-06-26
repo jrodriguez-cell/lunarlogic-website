@@ -79,8 +79,8 @@ export default function ContactPage() {
               <ScrollReveal animation="slide-right" delay={240}>
                 <div className="bg-blue-600/10 border border-blue-500/30 rounded-2xl p-6">
                   <p className="text-sm text-blue-300">
-                    <span className="font-semibold text-blue-400">60-day guarantee.</span> If LunarLogic does not
-                    measurably reduce your DSO within 60 days, you get a full refund.
+                    <span className="font-semibold text-blue-400">No lock-in.</span> Month-to-month contracts available.
+                    Annual commitments waive the implementation fee.
                   </p>
                 </div>
               </ScrollReveal>
