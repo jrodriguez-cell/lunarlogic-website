@@ -4,7 +4,7 @@ import CTASection from "@/components/CTASection";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "LunarLogic automates the full accounting cycle for owner-operated service businesses — module by module, starting with AR. See what is live, what is next, and where we are building.",
+    "LunarLogic automates the full accounting cycle for owner-operated service businesses — module by module, starting with AR. Platform-agnostic. Works with the tools you already use.",
 };
 
 const suites = [
@@ -15,11 +15,11 @@ const suites = [
     name: "AR Automation Suite",
     tagline: "The complete invoice-to-cash cycle. Running automatically.",
     description:
-      "LunarLogic's AR suite covers every step from sales order intake to cash collected — deployed, configured, and run on your behalf inside the QuickBooks infrastructure you already have. No migration, no new platform, no AR clerk required.",
+      "LunarLogic's AR suite covers every step from sales order intake to cash collected — deployed, configured, and run on your behalf inside the accounting infrastructure you already use. No migration, no new platform, no AR clerk required.",
     outcomes: [
       {
         title: "Invoices created and sent automatically",
-        body: "Sales orders arrive via Slack or email. AI validates the customer, extracts line items, and dispatches the invoice to QuickBooks — with a human approval checkpoint before anything goes out.",
+        body: "Sales orders arrive via your team's existing communication channel. AI validates the customer, extracts line items, and dispatches the invoice to your accounting system — with a human approval checkpoint before anything goes out.",
       },
       {
         title: "Systematic payment reminders that never stop",
@@ -27,11 +27,11 @@ const suites = [
       },
       {
         title: "Incoming payments matched and applied",
-        body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence it is applied automatically. Below that threshold, you get a one-click Slack prompt. Phantom AR is eliminated.",
+        body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence it is applied automatically. Below that threshold, you get a one-click prompt. Phantom AR is eliminated.",
       },
       {
         title: "Real-time AR visibility — not a monthly report",
-        body: "A live dashboard shows your DSO trend, aging buckets, and customer payment behavior. You see where every dollar is, updated continuously from QuickBooks — not at month-end when it is too late to act.",
+        body: "A live dashboard shows your DSO trend, aging buckets, and customer payment behavior. You see where every dollar is, updated continuously — not at month-end when it is too late to act.",
       },
     ],
     metrics: [
@@ -40,7 +40,6 @@ const suites = [
       { value: "70%", label: "Bad debt improvement" },
       { value: "500+", label: "Hours saved annually" },
     ],
-    integrations: ["QuickBooks Online", "Slack", "Outlook", "Stripe", "Google Sheets"],
   },
   {
     phase: "02",
@@ -57,7 +56,7 @@ const suites = [
       },
       {
         title: "Structured approval workflows",
-        body: "Bills are routed to the right approver based on amount, vendor, and category. Approvals happen in Slack. Nothing is paid without the right sign-off.",
+        body: "Bills are routed to the right approver based on amount, vendor, and category. Approvals happen with a single click. Nothing is paid without the right sign-off.",
       },
       {
         title: "Payment scheduling with timing control",
@@ -69,7 +68,6 @@ const suites = [
       },
     ],
     metrics: [],
-    integrations: ["QuickBooks Online", "Slack", "ACH / Bill Pay"],
   },
   {
     phase: "03",
@@ -98,7 +96,6 @@ const suites = [
       },
     ],
     metrics: [],
-    integrations: ["QuickBooks Online", "Gusto", "ADP", "Custom API"],
   },
 ];
 
@@ -107,6 +104,52 @@ const statusBadge: Record<string, string> = {
   yellow: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
   slate: "bg-slate-500/10 text-slate-400 border-slate-500/20",
 };
+
+const integrationCategories = [
+  {
+    category: "Accounting & ERP",
+    items: [
+      { name: "QuickBooks Online", note: "Live" },
+      { name: "QuickBooks Desktop", note: "" },
+      { name: "Sage Intacct", note: "Live" },
+      { name: "NetSuite", note: "Live" },
+      { name: "Xero", note: "" },
+      { name: "Microsoft Dynamics 365", note: "" },
+      { name: "Acumatica", note: "" },
+      { name: "Sage 50", note: "" },
+    ],
+  },
+  {
+    category: "Communication & Approval",
+    items: [
+      { name: "Slack", note: "Live" },
+      { name: "Microsoft Teams", note: "Live" },
+      { name: "Outlook / Microsoft 365", note: "Live" },
+      { name: "Gmail / Google Workspace", note: "" },
+    ],
+  },
+  {
+    category: "Payments & Banking",
+    items: [
+      { name: "Stripe", note: "Live" },
+      { name: "Plaid", note: "Live" },
+      { name: "ACH / Bank Transfer", note: "" },
+      { name: "Bill.com", note: "" },
+      { name: "Square", note: "" },
+    ],
+  },
+  {
+    category: "Productivity & Data",
+    items: [
+      { name: "Google Sheets", note: "Live" },
+      { name: "Airtable", note: "" },
+      { name: "Salesforce", note: "" },
+      { name: "HubSpot CRM", note: "" },
+      { name: "Gusto Payroll", note: "" },
+      { name: "ADP", note: "" },
+    ],
+  },
+];
 
 export default function HowItWorksPage() {
   return (
@@ -121,7 +164,7 @@ export default function HowItWorksPage() {
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             LunarLogic modernizes the accounting infrastructure of owner-operated service businesses — one suite at a
             time — until the entire financial operating layer runs automatically, without manual intervention, and
-            without a consultant.
+            without a consultant. Works with the platforms you already use.
           </p>
         </div>
       </section>
@@ -164,7 +207,6 @@ export default function HowItWorksPage() {
                     ))}
                   </div>
 
-                  {/* Metrics — only for live suite */}
                   {suite.metrics.length > 0 && (
                     <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
                       {suite.metrics.map((m) => (
@@ -175,23 +217,6 @@ export default function HowItWorksPage() {
                       ))}
                     </div>
                   )}
-
-                  {/* Integrations */}
-                  {suite.integrations.length > 0 && (
-                    <div className="mt-6 pt-5 border-t border-slate-700">
-                      <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">Integrations</p>
-                      <div className="flex flex-wrap gap-2">
-                        {suite.integrations.map((integration) => (
-                          <span
-                            key={integration}
-                            className="text-xs bg-slate-700/50 text-slate-300 border border-slate-600 px-3 py-1 rounded-full"
-                          >
-                            {integration}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -199,8 +224,49 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
+      {/* Integrations */}
+      <section className="py-20 bg-slate-900 border-y border-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Platform Agnostic</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Works with the tools you already use
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              LunarLogic is not tied to any single accounting platform. We connect to your existing ERP or accounting
+              software and build the automation layer on top — no migration, no rip-and-replace, no retraining.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {integrationCategories.map((cat) => (
+              <div key={cat.category} className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">{cat.category}</h3>
+                <ul className="space-y-2.5">
+                  {cat.items.map((item) => (
+                    <li key={item.name} className="flex items-center justify-between gap-2">
+                      <span className="text-sm text-slate-300">{item.name}</span>
+                      {item.note === "Live" && (
+                        <span className="text-xs font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full flex-shrink-0">
+                          Live
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-slate-500 text-sm mt-8">
+            Don&apos;t see your platform? We connect to any system with an API.{" "}
+            <a href="/contact" className="text-blue-400 hover:text-blue-300 transition-colors">Ask us about your stack.</a>
+          </p>
+        </div>
+      </section>
+
       {/* Why AR First */}
-      <section className="py-16 bg-slate-900 border-y border-slate-800">
+      <section className="py-16 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-4">Why AR First</p>
           <p className="text-lg text-slate-300 leading-relaxed mb-4">
