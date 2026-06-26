@@ -27,23 +27,22 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-8">
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-sm text-blue-300 font-medium">AR Automation for Professional Services</span>
+          <span className="text-sm text-blue-300 font-medium">AI-Powered Accounting Automation</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight text-balance">
-          Cut Your DSO.{" "}
+          We turn what you have{" "}
           <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            Get Paid Faster.
+            already earned
           </span>
-          <br />
-          Automate Your AR.
+          {" "}into cash in your bank account.
         </h1>
 
         {/* Subheadline */}
         <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          LunarLogic automates your entire Order-to-Cash cycle — invoice creation, payment reminders, and cash
-          application — so your team gets paid faster with zero manual chasing.
+          The money is already there — legally owed, sitting in your aging report. LunarLogic moves it from
+          outstanding to collected, faster and more consistently, without you personally chasing anyone.
         </p>
 
         {/* CTAs */}
