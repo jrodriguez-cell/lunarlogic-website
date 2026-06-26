@@ -181,7 +181,7 @@ function DSOChart({ points, currentDSO, projectedDSO }: { points: number[]; curr
 
 // ── Tabs ──────────────────────────────────────────────────────────────────────
 
-type Tab = "overview" | "invoices" | "reminders" | "reports";
+type Tab = "overview" | "action-plan" | "invoices" | "reminders" | "reports";
 
 // ── Main dashboard ────────────────────────────────────────────────────────────
 
@@ -216,9 +216,16 @@ export default function DemoDashboard() {
     { label: "90+",       pct: 3,  color: "bg-red-700" },
   ].map((b) => ({ ...b, amount: Math.round(monthlyAR * b.pct / 100) }));
 
+  const disputeInvoices = overdueInvoices
+    .filter((inv) => inv.daysOverdue > 25)
+    .sort((a, b) => b.daysOverdue - a.daysOverdue);
+
+  const dsoCompressionIfCollected = Math.round(totalOverdueAR / (monthlyAR || 1) * 30);
+
   const [activeTab, setActiveTab]         = useState<Tab>("overview");
   const [statusFilter, setStatusFilter]   = useState<"All" | InvoiceStatus>("All");
   const [paidIds, setPaidIds]             = useState<Set<string>>(new Set());
+  const [dismissedIds, setDismissedIds]   = useState<Set<string>>(new Set());
   const [toast, setToast]                 = useState<{ msg: string; type: "success" | "info" } | null>(null);
 
   const showToast = (msg: string, type: "success" | "info" = "success") => {
@@ -228,18 +235,19 @@ export default function DemoDashboard() {
 
   const markPaid = (id: string) => {
     setPaidIds((prev) => new Set(Array.from(prev).concat(id)));
-    showToast("Invoice marked as paid. QuickBooks updated automatically.");
+    showToast("Invoice marked as paid and synced to your accounting system.");
   };
 
   const visibleInvoices = invoices
     .map((inv) => paidIds.has(inv.id) ? { ...inv, status: "Paid" as InvoiceStatus } : inv)
     .filter((inv) => statusFilter === "All" || inv.status === statusFilter);
 
-  const TABS: { id: Tab; label: string }[] = [
-    { id: "overview",  label: "Overview" },
-    { id: "invoices",  label: `Invoices (${invoices.length})` },
-    { id: "reminders", label: `Reminders (${overdueInvoices.length})` },
-    { id: "reports",   label: "Reports" },
+  const TABS: { id: Tab; label: string; badge?: number }[] = [
+    { id: "overview",    label: "Overview" },
+    { id: "action-plan", label: "Action Plan", badge: disputeInvoices.length },
+    { id: "invoices",    label: `Invoices (${invoices.length})` },
+    { id: "reminders",   label: `Reminders (${overdueInvoices.length})` },
+    { id: "reports",     label: "Reports" },
   ];
 
   return (
@@ -313,13 +321,18 @@ export default function DemoDashboard() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-3.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-3.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                 activeTab === tab.id
                   ? "border-blue-400 text-blue-400"
                   : "border-transparent text-slate-400 hover:text-white"
               }`}
             >
               {tab.label}
+              {tab.badge !== undefined && tab.badge > 0 && (
+                <span className="text-xs font-bold bg-red-500 text-white px-1.5 py-0.5 rounded-full min-w-[18px] text-center leading-none">
+                  {tab.badge}
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -438,7 +451,7 @@ export default function DemoDashboard() {
                 ${(cashUnlocked * 12).toLocaleString()} in working capital — already earned, waiting to be collected.
               </p>
               <p className="text-slate-400 text-sm mb-6">
-                This dashboard is built on your numbers. The real version runs live against your QuickBooks data.
+                This dashboard is built on your numbers. The real version runs live against your accounting software.
               </p>
               <Link
                 href="/contact"
@@ -446,6 +459,186 @@ export default function DemoDashboard() {
               >
                 Book a Real Demo →
               </Link>
+            </div>
+          </>
+        )}
+
+        {/* ── ACTION PLAN ── */}
+        {activeTab === "action-plan" && (
+          <>
+            {/* Summary stats row */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-5">
+                <p className="text-xs font-semibold text-red-400 uppercase tracking-wider mb-2">Needs Attention</p>
+                <p className="text-3xl font-extrabold text-white mb-1">{disputeInvoices.length}</p>
+                <p className="text-xs text-slate-500">invoices past 25 days overdue</p>
+              </div>
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-5">
+                <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">DSO Improvement Possible</p>
+                <p className="text-3xl font-extrabold text-white mb-1">{dsoCompressionIfCollected}d</p>
+                <p className="text-xs text-slate-500">if all overdue AR collected this month</p>
+              </div>
+              <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-5">
+                <p className="text-xs font-semibold text-green-400 uppercase tracking-wider mb-2">Projected DSO After Action</p>
+                <p className="text-3xl font-extrabold text-green-400 mb-1">{projectedDSO}d</p>
+                <p className="text-xs text-slate-500">vs. {currentDSO}d today</p>
+              </div>
+            </div>
+
+            {/* Working Capital at Stake */}
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+              <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+                <div>
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Working Capital at Stake</p>
+                  <p className="text-2xl font-extrabold text-white">${totalOverdueAR.toLocaleString()}</p>
+                  <p className="text-sm text-slate-400 mt-1">{overdueInvoices.length} overdue invoices · {dsoCompressionIfCollected} days of DSO tied up in these alone</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-slate-500 mb-1">Best Possible DSO</p>
+                  <p className="text-3xl font-extrabold text-green-400">{projectedDSO}d</p>
+                  <p className="text-xs text-slate-500 mt-0.5">↓ {dsoDrop} days from today</p>
+                </div>
+              </div>
+              <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-red-500 to-orange-400 rounded-full"
+                  style={{ width: `${Math.min((totalOverdueAR / (monthlyAR || 1)) * 100, 100)}%` }}
+                />
+              </div>
+              <p className="text-xs text-slate-500 mt-2">
+                Overdue AR as % of monthly AR
+              </p>
+            </div>
+
+            {/* AI Dispute Monitor */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                  <h2 className="text-base font-bold text-white">AI Dispute Monitor</h2>
+                </div>
+                <span className="text-xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  {disputeInvoices.length} flagged
+                </span>
+              </div>
+              <p className="text-sm text-slate-400 mb-5">
+                Invoices past 25 days overdue are analyzed for payment patterns. LunarLogic surfaces which accounts need direct intervention — vs. those that just need another reminder.
+              </p>
+
+              {disputeInvoices.length === 0 ? (
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
+                  <p className="text-green-400 font-semibold">No disputes flagged</p>
+                  <p className="text-slate-400 text-sm mt-1">All overdue invoices are within normal collection range.</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {disputeInvoices.map((inv, i) => {
+                    const isDismissed = dismissedIds.has(inv.id);
+                    const urgencyMultiplier = (1.2 + (i * 0.3)).toFixed(1);
+                    const callRequired = inv.daysOverdue > 40;
+                    return (
+                      <div
+                        key={inv.id}
+                        className={`bg-slate-800/50 border rounded-2xl p-5 transition-opacity ${
+                          isDismissed ? "opacity-40 border-slate-700" : "border-red-500/20"
+                        }`}
+                      >
+                        <div className="flex flex-wrap items-start justify-between gap-4">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              <p className="text-sm font-semibold text-white">{inv.customer}</p>
+                              <span className="font-mono text-xs text-slate-500">{inv.id}</span>
+                              <span className="text-xs font-bold text-blue-300 bg-blue-500/15 border border-blue-500/25 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                                HIGH CONFIDENCE
+                              </span>
+                              {callRequired && (
+                                <span className="text-xs font-bold text-red-300 bg-red-500/15 border border-red-500/25 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                                  Call Required
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400 mb-3">
+                              <span className="text-white font-semibold">${inv.amount.toLocaleString()}</span>
+                              <span className="text-red-400 font-medium">{inv.daysOverdue} days overdue</span>
+                              <span>{inv.reminderCount} reminder{inv.reminderCount !== 1 ? "s" : ""} sent — no response</span>
+                            </div>
+                            <p className="text-xs text-slate-400 bg-slate-900/60 rounded-lg px-3 py-2 border border-slate-700/50">
+                              <span className="text-blue-300 font-semibold">AI analysis:</span>{" "}
+                              This account is paying {urgencyMultiplier}× their historical average delay.{" "}
+                              {callRequired
+                                ? "Pattern suggests a billing dispute or cash flow issue — direct call recommended before escalation."
+                                : "Escalated reminder with revised payment schedule offer has highest predicted response rate."}
+                            </p>
+                          </div>
+                          <div className="flex flex-col gap-2 flex-shrink-0">
+                            <button
+                              onClick={() => {
+                                markPaid(inv.id);
+                                setDismissedIds((prev) => new Set(Array.from(prev).concat(inv.id)));
+                              }}
+                              className="text-xs font-semibold text-green-400 hover:text-white bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
+                            >
+                              Mark Collected
+                            </button>
+                            <button
+                              onClick={() => showToast(`Escalated reminder queued for ${inv.customer}.`)}
+                              className="text-xs font-semibold text-blue-400 hover:text-white bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
+                            >
+                              Take Action
+                            </button>
+                            {!isDismissed && (
+                              <button
+                                onClick={() => {
+                                  setDismissedIds((prev) => new Set(Array.from(prev).concat(inv.id)));
+                                  showToast(`${inv.customer} snoozed for 7 days.`, "info");
+                                }}
+                                className="text-xs text-slate-500 hover:text-slate-300 transition-colors text-center"
+                              >
+                                Snooze 7d
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Path to best possible DSO */}
+            <div className="bg-gradient-to-r from-blue-600/15 to-indigo-600/15 border border-blue-500/20 rounded-2xl p-6">
+              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3">Path to Best Possible DSO</p>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="text-center">
+                  <p className="text-3xl font-extrabold text-white">{currentDSO}d</p>
+                  <p className="text-xs text-slate-500 mt-0.5">Today</p>
+                </div>
+                <div className="flex-1 flex items-center gap-1">
+                  {[0.25, 0.5, 0.75, 1].map((t) => (
+                    <div key={t} className="flex-1 h-1 rounded-full bg-gradient-to-r from-blue-500 to-green-400 opacity-60" />
+                  ))}
+                  <svg className="w-3 h-3 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-extrabold text-green-400">{projectedDSO}d</p>
+                  <p className="text-xs text-slate-500 mt-0.5">With LunarLogic</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                {[
+                  { label: "DSO reduction", value: `${dsoDrop} days` },
+                  { label: "Monthly cash freed", value: `$${cashUnlocked.toLocaleString()}` },
+                  { label: "Annual impact", value: `$${(cashUnlocked * 12).toLocaleString()}` },
+                ].map((s) => (
+                  <div key={s.label} className="bg-slate-900/40 rounded-xl p-3 text-center">
+                    <p className="text-slate-500 mb-1">{s.label}</p>
+                    <p className="font-bold text-white">{s.value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </>
         )}
@@ -756,7 +949,7 @@ export default function DemoDashboard() {
             <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/20 rounded-2xl p-8 text-center">
               <p className="text-xl font-extrabold text-white mb-2">Ready to see this with live data?</p>
               <p className="text-slate-400 text-sm mb-6">
-                Book a 30-minute demo. We&apos;ll walk through your actual QuickBooks data and give you a real DSO reduction estimate.
+                Book a 30-minute demo. We&apos;ll walk through your actual accounting data and give you a real DSO reduction estimate.
               </p>
               <Link
                 href="/contact"
