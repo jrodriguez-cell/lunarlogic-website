@@ -1,10 +1,33 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!bgRef.current) return;
+      const scrollY = window.scrollY;
+      const scale = 1 + scrollY * 0.0003;
+      const opacity = Math.max(0, 1 - scrollY * 0.002);
+      bgRef.current.style.transform = `scale(${scale})`;
+      bgRef.current.style.opacity = String(opacity);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-slate-950 pt-20 pb-24 sm:pt-28 sm:pb-32">
-      {/* Background gradient */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Background gradient — parallax zoom on scroll */}
+      <div
+        ref={bgRef}
+        className="absolute inset-0 pointer-events-none transition-none"
+        style={{ transformOrigin: "center top", willChange: "transform, opacity" }}
+      >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
         <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-3xl" />
         {/* Watermark logo */}
