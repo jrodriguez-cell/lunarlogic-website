@@ -21,6 +21,7 @@ const config: Config = {
       fontFamily: {
         sans: ["DM Sans", "system-ui", "sans-serif"],
         display: ["Fraunces", "Georgia", "serif"],
+        logo: ["Nunito", "system-ui", "sans-serif"],
       },
     },
   },
