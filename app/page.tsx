@@ -197,7 +197,7 @@ export default function HomePage() {
               <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Pricing</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Simple, predictable pricing</h2>
               <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                No setup fees for annual commitments. $5/invoice overage. 60-day satisfaction guarantee.
+                No setup fees for annual commitments. $5/invoice overage. No lock-in.
               </p>
             </div>
           </ScrollReveal>
