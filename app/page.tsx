@@ -6,47 +6,47 @@ import PricingCard from "@/components/PricingCard";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "LunarLogic — Cut Your DSO. Get Paid Faster. Automate Your AR.",
+  title: "LunarLogic — We turn what you have already earned into cash in your bank account.",
   description:
-    "LunarLogic automates the full Order-to-Cash cycle for professional services firms. Proven 19-day DSO improvement with Kaptain Clean LLC.",
+    "LunarLogic automates the full Order-to-Cash cycle for owner-operated service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
 };
 
 const features = [
   {
     iconPath: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-    title: "Instant Invoice Creation",
+    title: "Invoices Out in 90 Seconds",
     description:
-      "Drop a PDF or send a Slack message — LunarLogic parses it with AI, validates the customer in QuickBooks, and creates a draft invoice in seconds.",
+      "The moment a job is approved, an invoice is created and sent — automatically. No manual entry, no delay. The clock starts while the work is still fresh in your client's mind.",
   },
   {
     iconPath: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-    title: "Automated Payment Reminders",
+    title: "Reminders That Run Without You",
     description:
-      "Scheduled daily reminders sent via Outlook to the right customers at the right time. VIP clients are automatically exempt.",
+      "A systematic multi-touch reminder sequence fires automatically based on invoice age — professional, consistent, and calibrated to your client relationships. No awkward calls.",
   },
   {
     iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
-    title: "Live AR Aging Dashboard",
+    title: "Your DSO. Live. Always.",
     description:
-      "Real-time visibility into your AR aging buckets, DSO trend, and customer payment behavior — all in one bookmarkable URL.",
+      "Real-time visibility into AR aging, DSO trend, and which clients are trending late. A monthly QuickBooks report is a rearview mirror. LunarLogic is a windshield.",
   },
   {
     iconPath: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1",
-    title: "QuickBooks Native Integration",
+    title: "Built Around QuickBooks",
     description:
-      "Reads and writes directly to QuickBooks Online. Your books stay accurate without double-entry or manual reconciliation.",
+      "No migration. No new platform. No retraining your bookkeeper. LunarLogic connects to what you already have and automates what QuickBooks should be doing but is not.",
   },
   {
     iconPath: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
-    title: "Slack-Powered Approvals",
+    title: "Human Approval, Zero Friction",
     description:
-      "Human-in-the-loop approvals happen inside Slack. Approve invoices, new customers, and large transactions without leaving your workflow.",
+      "Every critical decision stays with you — approvals happen inside Slack with a single click. The system handles everything else so you focus on clients, not paperwork.",
   },
   {
     iconPath: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z",
-    title: "Automated Cash Application",
+    title: "Payments Applied Automatically",
     description:
-      "Plaid webhook catches incoming payments, fuzzy-matches them to open invoices, and applies them automatically above 90% confidence.",
+      "Incoming payments are matched to open invoices by AI. Above 90% confidence they are applied instantly. Below that threshold, you get a one-click prompt. Phantom AR is eliminated.",
   },
 ];
 
@@ -103,10 +103,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "19 days", label: "Avg DSO Reduction" },
+              { value: "40%", label: "Average DSO Reduction" },
               { value: "84%", label: "Faster Invoice Processing" },
-              { value: "60-day", label: "Satisfaction Guarantee" },
-              { value: "$0", label: "Implementation Fee (annual)" },
+              { value: "500+ hrs", label: "Saved Annually Per Firm" },
+              { value: "70%", label: "Bad Debt Improvement" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-2xl sm:text-3xl font-extrabold text-blue-400">{stat.value}</p>
@@ -122,10 +122,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-              Everything AR. Fully Automated.
+              Every piece of your AR cycle. Fully automated.
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              From the moment a sales order comes in to the moment cash hits your bank — LunarLogic handles it.
+              From the moment a sales order comes in to the moment cash clears your account — LunarLogic handles it,
+              without a dedicated AR team and without ongoing consulting involvement.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -136,24 +137,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How It Works Teaser */}
+      {/* Problem / Why It Matters */}
       <section className="py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Workflow</p>
+              <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                Order-to-Cash on autopilot
+                Revenue is a promise. Cash is the reality.
               </h2>
+              <p className="text-lg text-slate-400 mb-6">
+                82% of small business failures are caused by cash flow problems — not lack of revenue. The money is
+                already earned. It is legally owed. It is sitting in your aging report instead of your bank account.
+              </p>
               <p className="text-lg text-slate-400 mb-8">
-                Your team sends a PDF or types a Slack command. LunarLogic takes it from there — parsing, validating,
-                creating, and sending — with Slack-based human approval checkpoints at every critical step.
+                The AR problem is not a technology problem. The tools have existed for years. What has not existed
+                is a partner willing to go into a service business and deploy that technology permanently — without
+                ongoing consulting involvement.
               </p>
               <Link
                 href="/how-it-works"
                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors"
               >
-                See the full workflow
+                See how LunarLogic closes the gap
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -161,16 +167,28 @@ export default function HomePage() {
             </div>
             <div className="space-y-4">
               {[
-                { step: "01", title: "Receive sales order via Slack", sub: "PDF upload or text command" },
-                { step: "02", title: "AI parses and validates", sub: "Claude extracts data, QuickBooks confirms customer" },
-                { step: "03", title: "Approval in Slack", sub: "One-click approve or flag for review" },
-                { step: "04", title: "Invoice created and sent", sub: "QuickBooks invoice dispatched instantly" },
+                {
+                  title: "No dedicated AR staff",
+                  body: "At the $1M–$10M level, nobody owns collections. Invoices go out when someone has time. Follow-up happens when someone remembers.",
+                },
+                {
+                  title: "Billing disconnected from delivery",
+                  body: "Every day between job completion and invoice delivery is a day added to your DSO before the clock even starts.",
+                },
+                {
+                  title: "No systematic follow-up",
+                  body: "Businesses without consistent, escalating follow-up always get paid last — regardless of relationship or invoice size.",
+                },
+                {
+                  title: "No real-time visibility",
+                  body: "You discover a cash flow problem when payroll is due. By then the 60-day AR has been sitting there for six weeks.",
+                },
               ].map((item) => (
-                <div key={item.step} className="flex items-start gap-4 bg-slate-800/50 border border-slate-700 rounded-xl p-4">
-                  <span className="text-blue-400 font-bold text-sm shrink-0">{item.step}</span>
+                <div key={item.title} className="flex items-start gap-4 bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                  <div className="w-2 h-2 mt-2 rounded-full bg-blue-400 flex-shrink-0" />
                   <div>
-                    <p className="text-white font-medium text-sm">{item.title}</p>
-                    <p className="text-slate-400 text-xs mt-0.5">{item.sub}</p>
+                    <p className="text-white font-semibold text-sm">{item.title}</p>
+                    <p className="text-slate-400 text-xs mt-0.5 leading-relaxed">{item.body}</p>
                   </div>
                 </div>
               ))}
@@ -188,9 +206,11 @@ export default function HomePage() {
           </h2>
           <blockquote className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 text-left mb-8">
             <p className="text-lg text-slate-300 leading-relaxed mb-4">
-              &ldquo;Before LunarLogic, invoicing was a full afternoon of manual work. Now our sales orders go straight from
-              Slack to QuickBooks in minutes. We&apos;re collecting faster, our books are cleaner, and I can see exactly
-              where every dollar is at a glance.&rdquo;
+              &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
+            </p>
+            <p className="text-sm text-slate-400 leading-relaxed mb-6">
+              DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in working capital permanently
+              unlocked — not from new revenue, but from money that was already earned and sitting uncollected.
             </p>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -198,7 +218,7 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-white font-semibold text-sm">Kaptain Clean LLC</p>
-                <p className="text-slate-400 text-xs">Professional Services Client</p>
+                <p className="text-slate-400 text-xs">Commercial Cleaning — Charlotte, NC</p>
               </div>
             </div>
           </blockquote>
