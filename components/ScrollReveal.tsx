@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
-  delay?: number; // ms
+  delay?: number;
   animation?: "fade-up" | "fade-in" | "zoom-in" | "slide-left" | "slide-right";
 }
 
@@ -24,10 +24,9 @@ export default function ScrollReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.classList.add("reveal-visible");
-          }, delay);
-          observer.unobserve(el);
+          setTimeout(() => el.classList.add("reveal-visible"), delay);
+        } else {
+          el.classList.remove("reveal-visible");
         }
       },
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
