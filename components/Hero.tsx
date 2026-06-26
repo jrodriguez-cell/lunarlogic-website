@@ -68,6 +68,11 @@ export default function Hero() {
           outstanding to collected, faster and more consistently, without you personally chasing anyone.
         </p>
 
+        {/* Tagline */}
+        <p className="mt-4 text-base text-slate-500 italic max-w-xl mx-auto">
+          So you can rest assured — your accounting is working while you sleep.
+        </p>
+
         {/* CTAs */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
