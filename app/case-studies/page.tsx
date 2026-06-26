@@ -45,16 +45,21 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-10">
                 <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
                   <p className="text-4xl font-extrabold text-blue-400 mb-1">19</p>
                   <p className="text-sm text-slate-300 font-medium">Days DSO Reduced</p>
-                  <p className="text-xs text-slate-500 mt-1">vs. pre-LunarLogic baseline</p>
+                  <p className="text-xs text-slate-500 mt-1">from 52 days to 33</p>
                 </div>
                 <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
                   <p className="text-4xl font-extrabold text-blue-400 mb-1">84%</p>
-                  <p className="text-sm text-slate-300 font-medium">Faster Invoice Processing</p>
-                  <p className="text-xs text-slate-500 mt-1">from sales order to sent invoice</p>
+                  <p className="text-sm text-slate-300 font-medium">Faster Invoicing</p>
+                  <p className="text-xs text-slate-500 mt-1">19 min to 3 min per invoice</p>
+                </div>
+                <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
+                  <p className="text-4xl font-extrabold text-blue-400 mb-1">$65K</p>
+                  <p className="text-sm text-slate-300 font-medium">Working Capital Unlocked</p>
+                  <p className="text-xs text-slate-500 mt-1">permanently freed from AR</p>
                 </div>
                 <div className="bg-slate-700/30 rounded-2xl p-6 text-center border border-slate-600">
                   <p className="text-4xl font-extrabold text-blue-400 mb-1">0</p>
@@ -77,10 +82,10 @@ export default function CaseStudiesPage() {
                 <div>
                   <h3 className="text-lg font-bold text-white mb-3">The Solution</h3>
                   <p className="text-slate-400 leading-relaxed text-sm">
-                    LunarLogic deployed Workflow 1A/1B for invoice creation and Workflow 2 for automated payment reminders.
-                    Sales orders now arrive via Slack (PDF or text), are parsed by Claude AI, validated against QuickBooks,
-                    and routed for one-click approval — all in Slack. Overdue reminders are sent automatically via Outlook
-                    every weekday morning.
+                    LunarLogic deployed the full AR Automation Suite — automated invoice creation, a systematic
+                    multi-touch reminder sequence, AI-powered cash application, and a real-time AR dashboard. Sales
+                    orders now arrive via Slack, are validated against QuickBooks, and are routed for one-click approval.
+                    Reminders run every weekday automatically.
                   </p>
                 </div>
                 <div>
@@ -92,18 +97,19 @@ export default function CaseStudiesPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">Workflows Deployed</h3>
+                  <h3 className="text-lg font-bold text-white mb-3">AR Suite Capabilities Deployed</h3>
                   <ul className="space-y-2">
                     {[
-                      "WF1A/1B — Sales Order & Invoice Creation",
-                      "WF2 — Proactive Payment Reminders",
-                      "WF4 — AR Aging Dashboard (in progress)",
-                    ].map((wf) => (
-                      <li key={wf} className="flex items-center gap-2.5 text-sm text-slate-300">
+                      "Automated invoice creation from sales orders",
+                      "Multi-touch payment reminder sequences",
+                      "AI-powered cash application",
+                      "Real-time AR aging dashboard",
+                    ].map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-sm text-slate-300">
                         <svg className="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        {wf}
+                        {item}
                       </li>
                     ))}
                   </ul>
@@ -112,10 +118,13 @@ export default function CaseStudiesPage() {
 
               {/* Quote */}
               <blockquote className="mt-10 border-l-4 border-blue-500 pl-6">
-                <p className="text-lg text-slate-300 italic leading-relaxed">
-                  &ldquo;Before LunarLogic, invoicing was a full afternoon of manual work. Now our sales orders go straight
-                  from Slack to QuickBooks in minutes. We&apos;re collecting faster, our books are cleaner, and I can see
-                  exactly where every dollar is at a glance.&rdquo;
+                <p className="text-lg text-slate-300 italic leading-relaxed mb-4">
+                  &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
+                </p>
+                <p className="text-sm text-slate-400 leading-relaxed mb-3">
+                  Before LunarLogic, invoicing was a full afternoon of manual work. Cash flow was unpredictable.
+                  Collections meant awkward personal calls. Six weeks after go-live, DSO had dropped 19 days and
+                  $65,000 in working capital was permanently freed — not from new revenue, but from money already earned.
                 </p>
                 <footer className="mt-3 text-sm text-slate-400">— Kaptain Clean LLC</footer>
               </blockquote>
@@ -134,16 +143,16 @@ export default function CaseStudiesPage() {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-white">Gualapack</h2>
-                <p className="text-slate-400 text-sm">Live on WF2 — Proactive Payment Reminders</p>
+                <p className="text-slate-400 text-sm">AR Automation Suite — Payment Reminders</p>
               </div>
               <span className="ml-auto text-xs font-semibold bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-1 rounded-full">
                 Active
               </span>
             </div>
             <p className="text-slate-400 leading-relaxed mb-6">
-              Gualapack deployed Workflow 2 for automated payment reminders sent via Outlook. Daily AR aging summaries
-              are posted to their Slack channel every weekday morning, giving the finance team full visibility without
-              manual reporting.
+              Gualapack deployed LunarLogic&apos;s automated payment reminder suite. Systematic reminders go out via
+              Outlook every weekday and a live AR aging summary is posted to their Slack channel each morning — giving
+              the finance team full visibility without manual reporting.
             </p>
             <div className="flex flex-wrap gap-2">
               {["Automated Payment Reminders", "Outlook / Graph API", "Daily Slack AR Summary"].map((tag) => (
