@@ -91,7 +91,7 @@ export default function CalculatePage() {
           currentDSO,
         }),
       });
-    } catch (_) {
+    } catch {
       // Don't block the demo if email fails
     }
 
@@ -145,7 +145,7 @@ export default function CalculatePage() {
           {step === 1 && (
             <div>
               <h1 className="text-3xl font-extrabold text-white mb-2">Tell us about your business</h1>
-              <p className="text-slate-400 mb-8">We'll use this to personalize your dashboard.</p>
+              <p className="text-slate-400 mb-8">We&apos;ll use this to personalize your dashboard.</p>
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Company name</label>
@@ -183,7 +183,7 @@ export default function CalculatePage() {
           {step === 2 && (
             <div>
               <h1 className="text-3xl font-extrabold text-white mb-2">Your invoice volume</h1>
-              <p className="text-slate-400 mb-8">Estimates are fine — we'll use these to size your dashboard.</p>
+              <p className="text-slate-400 mb-8">Estimates are fine — we&apos;ll use these to size your dashboard.</p>
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Invoices sent per month</label>
@@ -271,7 +271,7 @@ export default function CalculatePage() {
           {step === 4 && (
             <div>
               <h1 className="text-3xl font-extrabold text-white mb-2">Where should we send your results?</h1>
-              <p className="text-slate-400 mb-8">Your dashboard generates instantly. We'll also send you a copy of your figures.</p>
+              <p className="text-slate-400 mb-8">Your dashboard generates instantly. We&apos;ll also send you a copy of your figures.</p>
               <div className="space-y-5 mb-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Your name</label>

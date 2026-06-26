@@ -301,7 +301,7 @@ export default function DemoDashboard() {
       {/* Welcome */}
       <div className="bg-slate-900/50 border-b border-slate-800 px-4 sm:px-6 py-4">
         <p className="text-sm text-slate-300">
-          Hey {firstName} — here's what LunarLogic would look like for{" "}
+          Hey {firstName} — here&apos;s what LunarLogic would look like for{" "}
           <span className="text-white font-semibold">{company}</span> based on your numbers.
         </p>
       </div>
@@ -601,7 +601,7 @@ export default function DemoDashboard() {
             </div>
 
             <div className="space-y-3">
-              {overdueInvoices.map((inv, i) => {
+              {overdueInvoices.map((inv) => {
                 const stages = [
                   { label: "Day 3 — Friendly nudge",    nextLabel: "Day 7 follow-up",    days: 3 },
                   { label: "Day 7 — Follow-up",          nextLabel: "Day 14 escalation",  days: 7 },
@@ -756,7 +756,7 @@ export default function DemoDashboard() {
             <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/20 rounded-2xl p-8 text-center">
               <p className="text-xl font-extrabold text-white mb-2">Ready to see this with live data?</p>
               <p className="text-slate-400 text-sm mb-6">
-                Book a 30-minute demo. We'll walk through your actual QuickBooks data and give you a real DSO reduction estimate.
+                Book a 30-minute demo. We&apos;ll walk through your actual QuickBooks data and give you a real DSO reduction estimate.
               </p>
               <Link
                 href="/contact"
