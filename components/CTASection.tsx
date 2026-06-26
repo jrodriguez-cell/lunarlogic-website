@@ -28,7 +28,7 @@ export default function CTASection({
         >
           {ctaText}
         </Link>
-        <p className="mt-4 text-sm text-blue-200">60-day satisfaction guarantee. No lock-in.</p>
+        <p className="mt-4 text-sm text-blue-200">No long-term lock-in required.</p>
       </div>
     </section>
   );
