@@ -19,6 +19,28 @@ h1, h2 {
   font-family: 'Fraunces', Georgia, serif;
 }
 
+/* ── Scroll reveal animations ── */
+.reveal-fade-up,
+.reveal-fade-in,
+.reveal-zoom-in,
+.reveal-slide-left,
+.reveal-slide-right {
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up    { opacity: 0; transform: translateY(32px); }
+.reveal-fade-in    { opacity: 0; transform: translateY(0); }
+.reveal-zoom-in    { opacity: 0; transform: scale(0.94); }
+.reveal-slide-left { opacity: 0; transform: translateX(-32px); }
+.reveal-slide-right{ opacity: 0; transform: translateX(32px); }
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) translateX(0) scale(1) !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
