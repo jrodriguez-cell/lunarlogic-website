@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import FeatureCard from "@/components/FeatureCard";
 import PricingCard from "@/components/PricingCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -12,45 +11,6 @@ export const metadata: Metadata = {
   description:
     "LunarLogic automates the full Order-to-Cash cycle for owner-operated service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
 };
-
-const features = [
-  {
-    iconPath: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-    title: "Invoices Out in 90 Seconds",
-    description:
-      "The moment a job is approved, an invoice is created and sent — automatically. No manual entry, no delay. The clock starts while the work is still fresh in your client's mind.",
-  },
-  {
-    iconPath: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-    title: "Reminders That Run Without You",
-    description:
-      "A systematic multi-touch reminder sequence fires automatically based on invoice age — professional, consistent, and calibrated to your client relationships. No awkward calls.",
-  },
-  {
-    iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
-    title: "Your DSO. Live. Always.",
-    description:
-      "Real-time visibility into AR aging, DSO trend, and which clients are trending late. A monthly report is a rearview mirror. LunarLogic is a windshield.",
-  },
-  {
-    iconPath: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1",
-    title: "Platform Agnostic",
-    description:
-      "No migration. No new platform. No retraining your bookkeeper. LunarLogic connects to the accounting system you already use and automates what it should be doing but isn't.",
-  },
-  {
-    iconPath: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
-    title: "Human Approval, Zero Friction",
-    description:
-      "Every critical decision stays with you — approvals happen with a single click. The system handles everything else so you focus on clients, not paperwork.",
-  },
-  {
-    iconPath: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z",
-    title: "Payments Applied Automatically",
-    description:
-      "Incoming payments are matched to open invoices by AI. Above 90% confidence they are applied instantly. Below that threshold, you get a one-click prompt. Phantom AR is eliminated.",
-  },
-];
 
 const pricingTiers = [
   {
