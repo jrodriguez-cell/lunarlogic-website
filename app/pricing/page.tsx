@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "LunarLogic AR automation pricing. Essentials $697/mo, Professional $1,497/mo, Business $2,497/mo. 60-day satisfaction guarantee.",
+    "LunarLogic AR automation pricing. Essentials $697/mo, Professional $1,497/mo, Business $2,497/mo. No setup fees for annual commitments.",
 };
 
 const tiers = [
@@ -64,23 +64,23 @@ const faqs = [
   },
   {
     q: "What happens if I exceed my invoice limit?",
-    a: "Overage invoices are billed at $5 per invoice. We'll notify you when you're approaching your limit so there are no surprises.",
-  },
-  {
-    q: "What does the 60-day guarantee cover?",
-    a: "If LunarLogic doesn't measurably reduce your DSO or invoice processing time within 60 days, we'll refund your subscription fees in full — no questions asked.",
+    a: "Overage invoices are billed at $5 per invoice. We'll notify you before you hit your limit so there are no surprises at billing.",
   },
   {
     q: "Do I need to change my accounting software?",
-    a: "No. LunarLogic integrates with the accounting system you already use — QuickBooks, NetSuite, Sage Intacct, Xero, and others. Your existing data stays exactly where it is.",
+    a: "No. LunarLogic connects to the accounting system you already use — QuickBooks, NetSuite, Sage Intacct, Xero, and others. Your existing customers, chart of accounts, and historical data stay exactly where they are.",
   },
   {
     q: "How does the approval workflow work?",
-    a: "Your team uses Slack or Microsoft Teams as the input device. Approvals happen with a single button click inside your existing communication tool. No new tools to learn.",
+    a: "Your team uses Slack or Microsoft Teams as the input device. Sales orders come in, LunarLogic validates the customer and line items, then routes the invoice to you for one-click approval. Nothing goes to a client without your sign-off.",
+  },
+  {
+    q: "How long does onboarding take?",
+    a: "Most clients are fully live within 2–3 weeks. We handle the integration setup, configure your reminder sequences, and train your team on the approval workflow. You don't need to involve IT.",
   },
   {
     q: "Is there a referral program?",
-    a: "Yes. LunarLogic pays 20% recurring MRR for every client you refer, for as long as they remain a customer.",
+    a: "Yes. LunarLogic pays 20% recurring MRR for every client you refer, for as long as they remain a customer. Referral fees are paid monthly.",
   },
 ];
 
@@ -203,28 +203,6 @@ export default function PricingPage() {
               </ScrollReveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Guarantee */}
-      <section className="py-16 bg-slate-950">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal animation="zoom-in">
-            <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-2xl p-8 text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                  </svg>
-                </div>
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-3">60-Day Satisfaction Guarantee</h2>
-              <p className="text-slate-300 leading-relaxed">
-                If LunarLogic doesn&apos;t measurably reduce your DSO or invoice processing time within the first 60 days,
-                we&apos;ll refund your subscription in full. No questions asked, no lock-in.
-              </p>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
