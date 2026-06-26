@@ -15,9 +15,25 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <Link href="/" className="text-xl font-bold">
-              <span className="text-blue-400">Lunar</span>
-              <span className="text-white">Logic</span>
+            <Link href="/" className="flex items-center gap-2">
+              <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+                  fill="url(#footerMoonGrad)"
+                />
+                <defs>
+                  <linearGradient id="footerMoonGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#60A5FA" />
+                    <stop offset="100%" stopColor="#818CF8" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span className="font-logo text-lg font-bold tracking-wide">
+                <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                  lunarlogic
+                </span>
+                <span className="text-white/70 font-semibold">.ai</span>
+              </span>
             </Link>
             <p className="mt-3 text-sm text-slate-400 max-w-xs">
               AR automation for professional services firms. Cut your DSO and get paid faster.
