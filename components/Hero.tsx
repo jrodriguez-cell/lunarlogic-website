@@ -68,10 +68,10 @@ export default function Hero() {
             Get a Demo
           </Link>
           <Link
-            href="/how-it-works"
-            className="w-full sm:w-auto border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-8 py-3.5 rounded-xl text-base font-semibold transition-all"
+            href="/calculate"
+            className="w-full sm:w-auto border border-blue-500/40 hover:border-blue-400 text-blue-300 hover:text-blue-200 px-8 py-3.5 rounded-xl text-base font-semibold transition-all"
           >
-            See How It Works
+            Calculate My DSO →
           </Link>
         </div>
 

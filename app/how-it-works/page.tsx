@@ -143,9 +143,10 @@ export default function HowItWorksPage() {
       </section>
 
       <CTASection
-        heading="See the AR suite running live"
-        subheading="Book a 30-minute demo. We will walk through the full platform with your actual data and estimate your DSO reduction potential."
-        ctaText="Book a Demo"
+        heading="See exactly what LunarLogic would do for your numbers"
+        subheading="Answer 4 quick questions and get a personalized AR dashboard built around your invoice volume, payment terms, and DSO — generated instantly."
+        ctaText="Calculate My DSO →"
+        ctaHref="/calculate"
       />
     </>
   );
