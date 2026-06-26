@@ -41,12 +41,12 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Contact</h3>
-            <p className="text-sm text-slate-400">Jonathan Rodriguez</p>
+            <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Sales</p>
             <a
-              href="mailto:jrodriguez@lunarlogic.ai"
+              href="mailto:support@lunarlogic.ai"
               className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
             >
-              jrodriguez@lunarlogic.ai
+              support@lunarlogic.ai
             </a>
             <div className="mt-4">
               <Link

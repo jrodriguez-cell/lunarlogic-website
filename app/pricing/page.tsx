@@ -114,6 +114,67 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Feature Comparison Table */}
+      <section className="py-16 bg-slate-900 border-t border-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white text-center mb-10">Full Feature Comparison</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-slate-700">
+                  <th className="text-left text-slate-400 font-medium pb-4 pr-6 w-1/2">Feature</th>
+                  <th className="text-center text-slate-300 font-semibold pb-4 px-4">Essentials</th>
+                  <th className="text-center text-blue-400 font-semibold pb-4 px-4">Professional</th>
+                  <th className="text-center text-slate-300 font-semibold pb-4 px-4">Business</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {[
+                  { feature: "Monthly invoice limit", essentials: "150", professional: "250", business: "400" },
+                  { feature: "QuickBooks Online integration", essentials: true, professional: true, business: true },
+                  { feature: "Slack-based invoice approvals", essentials: true, professional: true, business: true },
+                  { feature: "Automated payment reminders", essentials: true, professional: true, business: true },
+                  { feature: "AR aging dashboard", essentials: true, professional: true, business: true },
+                  { feature: "Google Sheets logging", essentials: true, professional: true, business: true },
+                  { feature: "Automated cash application (Plaid)", essentials: false, professional: true, business: true },
+                  { feature: "VIP customer exemption list", essentials: false, professional: true, business: true },
+                  { feature: "Custom reminder schedules", essentials: false, professional: true, business: true },
+                  { feature: "Multi-path invoice workflows", essentials: false, professional: true, business: true },
+                  { feature: "Multiple Slack workspaces", essentials: false, professional: false, business: true },
+                  { feature: "Custom workflow nodes", essentials: false, professional: false, business: true },
+                  { feature: "Dedicated onboarding specialist", essentials: false, professional: false, business: true },
+                  { feature: "SLA-backed support", essentials: false, professional: false, business: true },
+                  { feature: "Quarterly business reviews", essentials: false, professional: false, business: true },
+                  { feature: "Support level", essentials: "Email", professional: "Priority", business: "SLA-backed" },
+                ].map((row) => (
+                  <tr key={row.feature} className="hover:bg-slate-800/30 transition-colors">
+                    <td className="py-3.5 pr-6 text-slate-300">{row.feature}</td>
+                    {(["essentials", "professional", "business"] as const).map((tier) => {
+                      const val = row[tier];
+                      return (
+                        <td key={tier} className="py-3.5 px-4 text-center">
+                          {typeof val === "boolean" ? (
+                            val ? (
+                              <svg className="w-5 h-5 text-blue-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            ) : (
+                              <span className="text-slate-600">—</span>
+                            )
+                          ) : (
+                            <span className={tier === "professional" ? "text-blue-400 font-medium" : "text-slate-300"}>{val}</span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* Overage & Implementation */}
       <section className="py-16 bg-slate-900 border-y border-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
