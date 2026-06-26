@@ -8,9 +8,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.resend_lunarlogic_website;
   if (!apiKey) {
-    console.error("RESEND_API_KEY not configured");
+    console.error("resend_lunarlogic_website not configured");
     return NextResponse.json({ error: "Email service not configured" }, { status: 500 });
   }
 
