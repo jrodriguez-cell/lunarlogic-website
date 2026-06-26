@@ -7,6 +7,20 @@ export default function Hero() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
         <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-3xl" />
+        {/* Watermark logo */}
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+          <span
+            className="select-none whitespace-nowrap font-display font-black leading-none tracking-tighter"
+            style={{
+              fontSize: "clamp(72px, 17vw, 210px)",
+              color: "transparent",
+              WebkitTextStroke: "1px rgba(56,189,248,0.12)",
+              filter: "drop-shadow(0 0 48px rgba(56,189,248,0.07))",
+            }}
+          >
+            lunarlogic
+          </span>
+        </div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
