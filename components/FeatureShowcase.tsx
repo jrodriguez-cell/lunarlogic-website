@@ -295,8 +295,8 @@ const chapters = [
   {
     step: "01",
     label: "Invoice Creation",
-    title: "Sales orders to invoices in seconds.",
-    body: "A job is approved. AI reads the details, validates the customer, and sends a formatted invoice — all before you've looked up from your desk. Processing time drops from 19 minutes to under 3.",
+    title: "Job complete. Invoice out. No one touched it.",
+    body: "The moment a job is marked complete, LunarLogic generates the invoice, pulls the correct client details, and sends it — automatically. No manual entry, no delay, no billing that slips through the cracks because someone was busy.",
     stat: { value: "84%", label: "faster invoice processing" },
     mockup: <InvoiceMockup />,
   },
