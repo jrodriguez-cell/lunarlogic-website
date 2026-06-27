@@ -360,8 +360,14 @@ function shortLabel(problem: string): string {
 
 // ── Desktop sticky suite ───────────────────────────────────────────────────────
 
-function DesktopSuite({ suite }: { suite: Suite }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+function DesktopSuite({
+  suite,
+  sectionRef,
+}: {
+  suite: Suite;
+  sectionRef: (el: HTMLDivElement | null) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [visible, setVisible] = useState(true);
   const currentIdxRef = useRef(0);
@@ -395,16 +401,25 @@ function DesktopSuite({ suite }: { suite: Suite }) {
   const scrollToUseCase = (idx: number) => {
     const container = containerRef.current;
     if (!container) return;
+    const containerTop = container.getBoundingClientRect().top + window.scrollY;
     const scrollTarget =
-      container.offsetTop +
+      containerTop +
       (idx / suite.useCases.length) * (container.offsetHeight - window.innerHeight) +
       10;
     window.scrollTo({ top: scrollTarget, behavior: "smooth" });
   };
 
   return (
-    <div ref={containerRef} id={suite.id} style={{ height: `${suite.useCases.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen bg-slate-950 flex flex-col overflow-hidden">
+    <div
+      ref={(el) => { containerRef.current = el; sectionRef(el); }}
+      id={suite.id}
+      style={{ height: `${suite.useCases.length * 100}vh` }}
+    >
+      {/* sticky panel sits below nav (64px) + suite tab bar (~48px) */}
+      <div
+        className="sticky bg-slate-950 flex flex-col overflow-hidden"
+        style={{ top: "112px", height: "calc(100vh - 112px)" }}
+      >
 
         {/* Suite header strip */}
         <div className="flex-shrink-0 border-b border-slate-800 px-6 lg:px-10 py-3 flex items-center gap-3">
@@ -721,6 +736,69 @@ function MobileShowcase() {
   );
 }
 
+// ── Desktop showcase with sticky suite tabs ───────────────────────────────────
+
+function DesktopShowcase() {
+  const [activeTab, setActiveTab] = useState(SUITES[0].id);
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollMid = window.scrollY + window.innerHeight * 0.35;
+      let current = SUITES[0].id;
+      for (const suite of SUITES) {
+        const el = sectionRefs.current[suite.id];
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= scrollMid) current = suite.id;
+        }
+      }
+      setActiveTab(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSuite = (id: string) => {
+    const el = sectionRefs.current[id];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  return (
+    <div>
+      {/* Sticky suite tab bar */}
+      <div className="sticky top-16 z-40 bg-slate-950/95 backdrop-blur border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center gap-2 py-2">
+          {SUITES.map((suite) => (
+            <button
+              key={suite.id}
+              onClick={() => scrollToSuite(suite.id)}
+              className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-colors whitespace-nowrap ${
+                activeTab === suite.id
+                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                  : "text-slate-500 border border-transparent hover:text-slate-300"
+              }`}
+            >
+              {suite.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Suite sections */}
+      {SUITES.map((suite) => (
+        <DesktopSuite
+          key={suite.id}
+          suite={suite}
+          sectionRef={(el) => { sectionRefs.current[suite.id] = el; }}
+        />
+      ))}
+    </div>
+  );
+}
+
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export default function UseCaseShowcase() {
@@ -733,9 +811,7 @@ export default function UseCaseShowcase() {
 
       {/* Desktop */}
       <div className="hidden lg:block">
-        {SUITES.map((suite) => (
-          <DesktopSuite key={suite.id} suite={suite} />
-        ))}
+        <DesktopShowcase />
       </div>
     </>
   );
