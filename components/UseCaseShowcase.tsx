@@ -544,10 +544,8 @@ function MobileSuite({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
   const [direction, setDirection] = useState<1 | -1>(1); // 1 = forward, -1 = backward
   const currentIdxRef = useRef(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -573,13 +571,8 @@ function MobileSuite({
       const dir: 1 | -1 = newIdx > currentIdxRef.current ? 1 : -1;
       currentIdxRef.current = newIdx;
       setDirection(dir);
-      setVisible(false);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        setActiveIdx(newIdx);
-        if (progressBarRef.current) progressBarRef.current.style.width = "0%";
-        setVisible(true);
-      }, 160);
+      setActiveIdx(newIdx);
+      if (progressBarRef.current) progressBarRef.current.style.width = "0%";
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -622,18 +615,11 @@ function MobileSuite({
           <div ref={progressBarRef} className="h-full bg-blue-400/70" style={{ width: "0%" }} />
         </div>
 
-        {/* Use case content — slides in the direction of scroll */}
+        {/* Use case content — CSS keyframe animation on each transition */}
         <div className="flex-1 px-4 sm:px-6 py-5 flex flex-col min-h-0 overflow-hidden">
           <div
-            className="transition-all duration-[160ms] ease-out"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible
-                ? "translateY(0)"
-                : direction === 1
-                ? "translateY(-16px)"
-                : "translateY(16px)",
-            }}
+            key={activeIdx}
+            className={direction === 1 ? "uc-slide-up" : "uc-slide-down"}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
