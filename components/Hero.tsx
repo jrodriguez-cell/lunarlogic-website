@@ -74,30 +74,6 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Social Proof Bar */}
-        <div className="mt-16 inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-8 bg-slate-800/60 border border-slate-700 rounded-2xl px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
-              <span className="text-blue-400 text-sm font-bold">KC</span>
-            </div>
-            <div className="text-left">
-              <p className="text-xs text-slate-400">Kaptain Clean LLC</p>
-              <p className="text-sm font-semibold text-white">19-day DSO improvement</p>
-            </div>
-          </div>
-          <div className="hidden sm:block w-px h-8 bg-slate-700" />
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center">
-              <svg className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <div className="text-left">
-              <p className="text-xs text-slate-400">Invoice Processing</p>
-              <p className="text-sm font-semibold text-white">84% faster processing</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
