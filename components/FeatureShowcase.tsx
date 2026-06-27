@@ -295,7 +295,7 @@ const chapters = [
   {
     step: "01",
     label: "Invoice Creation",
-    title: "Job complete. Invoice out. No one touched it.",
+    title: "Job complete. Invoice out.",
     body: "The moment a job is marked complete, LunarLogic generates the invoice, pulls the correct client details, and sends it — automatically. No manual entry, no delay, no billing that slips through the cracks because someone was busy.",
     stat: { value: "84%", label: "faster invoice processing" },
     mockup: <InvoiceMockup />,
