@@ -68,7 +68,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 space-y-5">
-      <h2 className="text-lg font-semibold text-white mb-6">Tell us about your firm</h2>
+      <h2 className="text-lg font-semibold text-white mb-6">Tell us about your business</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
