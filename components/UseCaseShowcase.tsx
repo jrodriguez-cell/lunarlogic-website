@@ -357,6 +357,24 @@ function shortLabel(problem: string): string {
   return problem.split("—")[0].split(".")[0].split(",")[0].trim().split(" ").slice(0, 3).join(" ");
 }
 
+function useReveal(threshold = 0.1) {
+  const ref = useRef<HTMLElement>(null);
+  const [revealed, setRevealed] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) { setRevealed(true); observer.disconnect(); }
+      },
+      { threshold, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, revealed };
+}
+
 // ── Desktop sticky suite ───────────────────────────────────────────────────────
 
 function DesktopSuite({ suite }: { suite: Suite }) {
@@ -516,33 +534,72 @@ function DesktopSuite({ suite }: { suite: Suite }) {
   );
 }
 
-// ── Mobile suite ───────────────────────────────────────────────────────────────
+// ── Mobile use case card ───────────────────────────────────────────────────────
 
-function MobileSuite({ suite }: { suite: Suite }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState(0);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const handleScroll = () => {
-      const idx = Math.round(el.scrollLeft / el.offsetWidth);
-      setActiveStep(idx);
-    };
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToCard = (idx: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollTo({ left: idx * el.offsetWidth, behavior: "smooth" });
-  };
-
+function MobileUseCase({ uc, colors }: { uc: UseCase; colors: typeof ACCENTS[string] }) {
+  const { ref, revealed } = useReveal(0.08);
   return (
-    <div id={`${suite.id}-mobile`} className="border-b border-slate-800">
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className="transition-all duration-500 ease-out"
+      style={{ opacity: revealed ? 1 : 0, transform: revealed ? "translateY(0)" : "translateY(28px)" }}
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
+          {uc.icon}
+        </div>
+        <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
+          Use Case {uc.number}
+        </span>
+      </div>
+      <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
+      <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
+      <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">How LunarLogic addresses it</p>
+      <ul className="space-y-2.5 mb-5">
+        {uc.fix.slice(0, 3).map((item, fi) => (
+          <li key={fi} className="flex items-start gap-3">
+            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
+            <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+      <div className={`bg-slate-900/60 border rounded-xl p-4 ${colors.border}`}>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">The outcome</p>
+        <div className="grid grid-cols-3 gap-3">
+          {uc.outcomes.map((outcome, oi) => (
+            <div key={oi} className="text-center">
+              <p className={`text-lg font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
+              <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Mobile suite section ───────────────────────────────────────────────────────
+
+function MobileSuite({
+  suite,
+  sectionRef,
+}: {
+  suite: Suite;
+  sectionRef: (el: HTMLElement | null) => void;
+}) {
+  const { ref: headerRef, revealed: headerRevealed } = useReveal(0.1);
+  return (
+    <section
+      id={`${suite.id}-mobile`}
+      ref={sectionRef}
+      className="border-b border-slate-800 px-4 sm:px-6 py-10"
+    >
       {/* Suite header */}
-      <div className="px-4 sm:px-6 pt-10 pb-6 bg-slate-900/60 border-b border-slate-800">
+      <div
+        ref={headerRef as React.RefObject<HTMLDivElement>}
+        className="mb-8 transition-all duration-500 ease-out"
+        style={{ opacity: headerRevealed ? 1 : 0, transform: headerRevealed ? "translateY(0)" : "translateY(20px)" }}
+      >
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {suite.phase}</span>
           <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${suite.statusColor}`}>
@@ -554,83 +611,76 @@ function MobileSuite({ suite }: { suite: Suite }) {
         <p className="text-slate-400 text-sm leading-relaxed">{suite.description}</p>
       </div>
 
-      {/* Horizontal snap carousel */}
-      <div
-        ref={scrollRef}
-        className="flex overflow-x-auto snap-x snap-mandatory bg-slate-950"
-        style={{ scrollbarWidth: "none" }}
-      >
-        {suite.useCases.map((uc) => {
-          const colors = ACCENTS[uc.accent];
-          return (
-            <div
-              key={uc.number}
-              className="flex-none w-full snap-start px-4 sm:px-6 pt-6 pb-8"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
-                  {uc.icon}
-                </div>
-                <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
-                  Use Case {uc.number}
-                </span>
-              </div>
-
-              <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
-
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-                How LunarLogic addresses it
-              </p>
-              <ul className="space-y-2.5 mb-5">
-                {uc.fix.slice(0, 3).map((item, fi) => (
-                  <li key={fi} className="flex items-start gap-3">
-                    <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
-                    <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className={`bg-slate-900/60 border rounded-xl p-4 ${colors.border}`}>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">The outcome</p>
-                <div className="grid grid-cols-3 gap-3">
-                  {uc.outcomes.map((outcome, oi) => (
-                    <div key={oi} className="text-center">
-                      <p className={`text-lg font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
-                      <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Dot navigation */}
-      <div className="flex items-center justify-center gap-4 py-4 bg-slate-950 border-t border-slate-800/60">
-        {suite.useCases.map((u, i) => (
-          <button
-            key={i}
-            onClick={() => scrollToCard(i)}
-            aria-label={`Go to use case ${i + 1}: ${u.problem}`}
-            className="flex flex-col items-center gap-1.5 py-1"
-          >
-            <div
-              className={`rounded-full transition-all duration-300 ${
-                i === activeStep ? "w-6 h-1.5 bg-blue-400" : "w-2 h-2 bg-slate-700"
-              }`}
-            />
-            <span
-              className={`text-xs transition-colors ${
-                i === activeStep ? "text-blue-400 font-semibold" : "text-slate-600"
-              }`}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          </button>
+      {/* Use case cards — scroll-reveal animation */}
+      <div className="space-y-10">
+        {suite.useCases.map((uc) => (
+          <MobileUseCase key={uc.number} uc={uc} colors={ACCENTS[uc.accent]} />
         ))}
       </div>
+    </section>
+  );
+}
+
+// ── Mobile showcase with sticky suite tabs ─────────────────────────────────────
+
+function MobileShowcase() {
+  const [activeTab, setActiveTab] = useState(SUITES[0].id);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollMid = window.scrollY + window.innerHeight * 0.35;
+      let current = SUITES[0].id;
+      for (const suite of SUITES) {
+        const el = sectionRefs.current[suite.id];
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= scrollMid) current = suite.id;
+        }
+      }
+      setActiveTab(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSuite = (id: string) => {
+    const el = sectionRefs.current[id];
+    if (!el) return;
+    // 64px nav + ~48px tab bar
+    const top = el.getBoundingClientRect().top + window.scrollY - 112;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  return (
+    <div>
+      {/* Sticky suite tab selector */}
+      <div className="sticky top-16 z-40 bg-slate-950/95 backdrop-blur border-b border-slate-800">
+        <div className="flex gap-1.5 px-4 sm:px-6 py-3 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+          {SUITES.map((suite) => (
+            <button
+              key={suite.id}
+              onClick={() => scrollToSuite(suite.id)}
+              className={`flex-none px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
+                activeTab === suite.id
+                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                  : "text-slate-500 border border-transparent hover:text-slate-300"
+              }`}
+            >
+              {suite.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Suite sections */}
+      {SUITES.map((suite) => (
+        <MobileSuite
+          key={suite.id}
+          suite={suite}
+          sectionRef={(el) => { sectionRefs.current[suite.id] = el; }}
+        />
+      ))}
     </div>
   );
 }
@@ -642,9 +692,7 @@ export default function UseCaseShowcase() {
     <>
       {/* Mobile */}
       <div className="lg:hidden">
-        {SUITES.map((suite) => (
-          <MobileSuite key={suite.id} suite={suite} />
-        ))}
+        <MobileShowcase />
       </div>
 
       {/* Desktop */}
