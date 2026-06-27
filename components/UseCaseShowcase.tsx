@@ -532,7 +532,7 @@ function DesktopSuite({
   );
 }
 
-// ── Mobile suite (sticky-scroll, one use case at a time) ──────────────────────
+// ── Mobile suite (scroll-linked sliding stack) ────────────────────────────────
 
 function MobileSuite({
   suite,
@@ -542,15 +542,35 @@ function MobileSuite({
   sectionRef: (el: HTMLDivElement | null) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
+  const contentAreaRef = useRef<HTMLDivElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [direction, setDirection] = useState<1 | -1>(1); // 1 = forward, -1 = backward
   const currentIdxRef = useRef(0);
+
+  // Keep each card's height equal to the visible content area
+  useEffect(() => {
+    const syncHeights = () => {
+      const area = contentAreaRef.current;
+      const stack = stackRef.current;
+      if (!area || !stack) return;
+      const h = area.offsetHeight;
+      if (h === 0) return;
+      Array.from(stack.children).forEach((child) => {
+        (child as HTMLElement).style.height = `${h}px`;
+      });
+    };
+    const raf = requestAnimationFrame(syncHeights);
+    window.addEventListener("resize", syncHeights);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", syncHeights); };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current;
-      if (!container) return;
+      const stack = stackRef.current;
+      const area = contentAreaRef.current;
+      if (!container || !stack || !area) return;
+
       const rect = container.getBoundingClientRect();
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
@@ -558,28 +578,20 @@ function MobileSuite({
 
       const n = suite.useCases.length;
       const exactPos = progress * n;
+
+      // Slide the entire stack — directly tied to scroll, no threshold
+      stack.style.transform = `translateY(-${exactPos * area.offsetHeight}px)`;
+
+      // Update dot indicator
       const newIdx = Math.min(n - 1, Math.floor(exactPos));
-      const stepProg = exactPos - newIdx;
-
-      // Update progress bar directly — no re-render needed
-      if (progressBarRef.current) {
-        progressBarRef.current.style.width = `${stepProg * 100}%`;
+      if (newIdx !== currentIdxRef.current) {
+        currentIdxRef.current = newIdx;
+        setActiveIdx(newIdx);
       }
-
-      if (newIdx === currentIdxRef.current) return;
-
-      const dir: 1 | -1 = newIdx > currentIdxRef.current ? 1 : -1;
-      currentIdxRef.current = newIdx;
-      setDirection(dir);
-      setActiveIdx(newIdx);
-      if (progressBarRef.current) progressBarRef.current.style.width = "0%";
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [suite.useCases.length]);
-
-  const uc = suite.useCases[activeIdx];
-  const colors = ACCENTS[uc.accent];
 
   const scrollToUseCase = (idx: number) => {
     const container = containerRef.current;
@@ -595,7 +607,6 @@ function MobileSuite({
       id={`${suite.id}-mobile`}
       style={{ height: `${suite.useCases.length * 100}vh` }}
     >
-      {/* sticky panel sits below the nav (64px) + tab bar (~48px) */}
       <div
         className="sticky bg-slate-950 flex flex-col overflow-hidden"
         style={{ top: "112px", height: "calc(100vh - 112px)" }}
@@ -610,52 +621,48 @@ function MobileSuite({
           <span className="ml-auto text-xs text-slate-500 flex-shrink-0">{activeIdx + 1} / {suite.useCases.length}</span>
         </div>
 
-        {/* Scroll progress bar — fills as you scroll toward the next use case */}
-        <div className="flex-shrink-0 h-0.5 bg-slate-800/60">
-          <div ref={progressBarRef} className="h-full bg-blue-400/70" style={{ width: "0%" }} />
-        </div>
-
-        {/* Use case content — CSS keyframe animation on each transition */}
-        <div className="flex-1 px-4 sm:px-6 py-5 flex flex-col min-h-0 overflow-hidden">
-          <div
-            key={activeIdx}
-            className={direction === 1 ? "uc-slide-up" : "uc-slide-down"}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
-                {uc.icon}
-              </div>
-              <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
-                Use Case {uc.number}
-              </span>
-            </div>
-
-            <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
-
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
-              How LunarLogic addresses it
-            </p>
-            <ul className="space-y-2 mb-4">
-              {uc.fix.slice(0, 2).map((item, fi) => (
-                <li key={fi} className="flex items-start gap-2.5">
-                  <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
-                  <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className={`bg-slate-900/60 border rounded-xl p-3.5 ${colors.border}`}>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">The outcome</p>
-              <div className="grid grid-cols-3 gap-2">
-                {uc.outcomes.map((outcome, oi) => (
-                  <div key={oi} className="text-center">
-                    <p className={`text-base font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
+        {/* Sliding window — overflow hidden clips to one card at a time */}
+        <div ref={contentAreaRef} className="flex-1 relative overflow-hidden min-h-0">
+          <div ref={stackRef} className="absolute inset-x-0 top-0" style={{ willChange: "transform" }}>
+            {suite.useCases.map((uc) => {
+              const colors = ACCENTS[uc.accent];
+              return (
+                <div key={uc.number} className="overflow-hidden px-4 sm:px-6 py-5 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
+                      {uc.icon}
+                    </div>
+                    <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
+                      Use Case {uc.number}
+                    </span>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+                    How LunarLogic addresses it
+                  </p>
+                  <ul className="space-y-2 mb-4">
+                    {uc.fix.slice(0, 2).map((item, fi) => (
+                      <li key={fi} className="flex items-start gap-2.5">
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
+                        <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className={`bg-slate-900/60 border rounded-xl p-3.5 ${colors.border}`}>
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">The outcome</p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {uc.outcomes.map((outcome, oi) => (
+                        <div key={oi} className="text-center">
+                          <p className={`text-base font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
+                          <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
