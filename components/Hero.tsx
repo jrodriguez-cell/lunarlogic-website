@@ -41,7 +41,7 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight text-balance">
-          We turn what you have{" "}
+          Turn what you have{" "}
           <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
             already earned
           </span>
@@ -50,8 +50,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          The money is already there — legally owed, sitting in your aging report. LunarLogic moves it from
-          outstanding to collected, faster and more consistently, without you personally chasing anyone.
+          The money is already there — legally owed, sitting in your aging report. LunarLogic collects it. No manual follow-up. No chasing.
         </p>
 
         {/* Tagline */}
