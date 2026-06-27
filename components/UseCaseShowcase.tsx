@@ -532,7 +532,7 @@ function DesktopSuite({
   );
 }
 
-// ── Mobile suite (scroll-linked sliding stack) ────────────────────────────────
+// ── Mobile suite ──────────────────────────────────────────────────────────────
 
 function MobileSuite({
   suite,
@@ -542,56 +542,35 @@ function MobileSuite({
   sectionRef: (el: HTMLDivElement | null) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const contentAreaRef = useRef<HTMLDivElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [visible, setVisible] = useState(true);
   const currentIdxRef = useRef(0);
-
-  // Keep each card's height equal to the visible content area
-  useEffect(() => {
-    const syncHeights = () => {
-      const area = contentAreaRef.current;
-      const stack = stackRef.current;
-      if (!area || !stack) return;
-      const h = area.offsetHeight;
-      if (h === 0) return;
-      Array.from(stack.children).forEach((child) => {
-        (child as HTMLElement).style.height = `${h}px`;
-      });
-    };
-    const raf = requestAnimationFrame(syncHeights);
-    window.addEventListener("resize", syncHeights);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", syncHeights); };
-  }, []);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current;
-      const stack = stackRef.current;
-      const area = contentAreaRef.current;
-      if (!container || !stack || !area) return;
-
+      if (!container) return;
       const rect = container.getBoundingClientRect();
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-
-      const n = suite.useCases.length;
-      const exactPos = progress * n;
-
-      // Slide the entire stack — directly tied to scroll, no threshold
-      stack.style.transform = `translateY(-${exactPos * area.offsetHeight}px)`;
-
-      // Update dot indicator
-      const newIdx = Math.min(n - 1, Math.floor(exactPos));
-      if (newIdx !== currentIdxRef.current) {
-        currentIdxRef.current = newIdx;
+      const newIdx = Math.min(suite.useCases.length - 1, Math.floor(progress * suite.useCases.length));
+      if (newIdx === currentIdxRef.current) return;
+      currentIdxRef.current = newIdx;
+      setVisible(false);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
         setActiveIdx(newIdx);
-      }
+        setVisible(true);
+      }, 160);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [suite.useCases.length]);
+
+  const uc = suite.useCases[activeIdx];
+  const colors = ACCENTS[uc.accent];
 
   const scrollToUseCase = (idx: number) => {
     const container = containerRef.current;
@@ -621,48 +600,48 @@ function MobileSuite({
           <span className="ml-auto text-xs text-slate-500 flex-shrink-0">{activeIdx + 1} / {suite.useCases.length}</span>
         </div>
 
-        {/* Sliding window — overflow hidden clips to one card at a time */}
-        <div ref={contentAreaRef} className="flex-1 relative overflow-hidden min-h-0">
-          <div ref={stackRef} className="absolute inset-x-0 top-0" style={{ willChange: "transform" }}>
-            {suite.useCases.map((uc) => {
-              const colors = ACCENTS[uc.accent];
-              return (
-                <div key={uc.number} className="overflow-hidden px-4 sm:px-6 py-5 flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
-                      {uc.icon}
-                    </div>
-                    <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
-                      Use Case {uc.number}
-                    </span>
+        {/* Content — same fade+slide as desktop */}
+        <div className="flex-1 overflow-y-auto min-h-0">
+          <div
+            className="px-4 sm:px-6 py-5 flex flex-col"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(12px)",
+              transition: "opacity 160ms ease-out, transform 160ms ease-out",
+            }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
+                {uc.icon}
+              </div>
+              <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
+                Use Case {uc.number}
+              </span>
+            </div>
+            <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
+              How LunarLogic addresses it
+            </p>
+            <ul className="space-y-2 mb-4">
+              {uc.fix.slice(0, 2).map((item, fi) => (
+                <li key={fi} className="flex items-start gap-2.5">
+                  <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
+                  <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className={`bg-slate-900/60 border rounded-xl p-3.5 ${colors.border}`}>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">The outcome</p>
+              <div className="grid grid-cols-3 gap-2">
+                {uc.outcomes.map((outcome, oi) => (
+                  <div key={oi} className="text-center">
+                    <p className={`text-base font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
+                    <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
                   </div>
-                  <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
-                    How LunarLogic addresses it
-                  </p>
-                  <ul className="space-y-2 mb-4">
-                    {uc.fix.slice(0, 2).map((item, fi) => (
-                      <li key={fi} className="flex items-start gap-2.5">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
-                        <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className={`bg-slate-900/60 border rounded-xl p-3.5 ${colors.border}`}>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">The outcome</p>
-                    <div className="grid grid-cols-3 gap-2">
-                      {uc.outcomes.map((outcome, oi) => (
-                        <div key={oi} className="text-center">
-                          <p className={`text-base font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
-                          <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
