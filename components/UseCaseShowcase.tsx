@@ -708,19 +708,24 @@ function MobileShowcase() {
       {/* Sticky suite tab selector */}
       <div className="sticky top-16 z-40 bg-slate-950/95 backdrop-blur border-b border-slate-800">
         <div className="flex gap-1.5 px-4 sm:px-6 py-3 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
-          {SUITES.map((suite) => (
-            <button
-              key={suite.id}
-              onClick={() => scrollToSuite(suite.id)}
-              className={`flex-none px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
-                activeTab === suite.id
-                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                  : "text-slate-500 border border-transparent hover:text-slate-300"
-              }`}
-            >
-              {suite.name}
-            </button>
-          ))}
+          {SUITES.map((suite) => {
+            const label = suite.id === "full"
+              ? "Full Accounting"
+              : suite.name.replace(" Automation", "");
+            return (
+              <button
+                key={suite.id}
+                onClick={() => scrollToSuite(suite.id)}
+                className={`flex-none px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
+                  activeTab === suite.id
+                    ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    : "text-slate-500 border border-transparent hover:text-slate-300"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
