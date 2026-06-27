@@ -519,114 +519,117 @@ function DesktopSuite({ suite }: { suite: Suite }) {
 // ── Mobile suite ───────────────────────────────────────────────────────────────
 
 function MobileSuite({ suite }: { suite: Suite }) {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
-    const observers = cardRefs.current.map((card, i) => {
-      if (!card) return null;
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveStep(i); },
-        { threshold: 0.35 }
-      );
-      obs.observe(card);
-      return obs;
-    });
-    return () => observers.forEach((o) => o?.disconnect());
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const idx = Math.round(el.scrollLeft / el.offsetWidth);
+      setActiveStep(idx);
+    };
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToCard = (idx: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: idx * el.offsetWidth, behavior: "smooth" });
+  };
 
   return (
     <div id={`${suite.id}-mobile`} className="border-b border-slate-800">
       {/* Suite header */}
-      <div className="px-4 sm:px-6 pt-12 pb-8 bg-slate-900/60 border-b border-slate-800">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+      <div className="px-4 sm:px-6 pt-10 pb-6 bg-slate-900/60 border-b border-slate-800">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {suite.phase}</span>
           <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${suite.statusColor}`}>
             {suite.status}
           </span>
         </div>
         <h2 className="text-2xl font-extrabold text-white mb-1">{suite.name}</h2>
-        <p className="text-blue-400 font-semibold text-sm mb-3">{suite.tagline}</p>
+        <p className="text-blue-400 font-semibold text-sm mb-2">{suite.tagline}</p>
         <p className="text-slate-400 text-sm leading-relaxed">{suite.description}</p>
       </div>
 
-      {/* Sticky progress pill */}
-      <div className="sticky top-[64px] z-10 flex justify-center py-3 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/60 pointer-events-none">
-        <div className="flex items-center gap-2.5">
-          {suite.useCases.map((u, i) => (
-            <div key={i} className="flex items-center gap-1.5">
-              <div
-                className={`rounded-full transition-all duration-300 ${
-                  i === activeStep ? "w-6 h-1.5 bg-blue-400" : "w-1.5 h-1.5 bg-slate-600"
-                }`}
-              />
-              {i === activeStep && (
-                <span className="text-xs text-blue-400 font-semibold whitespace-nowrap">
-                  {shortLabel(u.problem)}…
-                </span>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Cards */}
-      <div className="px-4 sm:px-6 py-8 space-y-6 bg-slate-950">
-        {suite.useCases.map((uc, i) => {
+      {/* Horizontal snap carousel */}
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-auto snap-x snap-mandatory bg-slate-950"
+        style={{ scrollbarWidth: "none" }}
+      >
+        {suite.useCases.map((uc) => {
           const colors = ACCENTS[uc.accent];
           return (
-            <div key={uc.number} ref={(el) => { cardRefs.current[i] = el; }}>
-              <div
-                className="bg-slate-800/40 border border-slate-700 rounded-2xl p-6 transition-all duration-300"
-                style={{
-                  opacity: Math.abs(activeStep - i) > 1 ? 0.6 : 1,
-                }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
-                    {uc.icon}
-                  </div>
-                  <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
-                    Use Case {uc.number}
-                  </span>
+            <div
+              key={uc.number}
+              className="flex-none w-full snap-start px-4 sm:px-6 pt-6 pb-8"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
+                  {uc.icon}
                 </div>
+                <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
+                  Use Case {uc.number}
+                </span>
+              </div>
 
-                <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed mb-3">{uc.situation}</p>
+              <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
+              <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
 
-                {uc.context && (
-                  <div className="border-l-2 border-blue-500/40 pl-4 py-1 mb-5 rounded-r-lg">
-                    <p className="text-xs text-slate-400 italic leading-relaxed">{uc.context}</p>
-                  </div>
-                )}
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
+                How LunarLogic addresses it
+              </p>
+              <ul className="space-y-2.5 mb-5">
+                {uc.fix.slice(0, 3).map((item, fi) => (
+                  <li key={fi} className="flex items-start gap-3">
+                    <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
+                    <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
 
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-                  How LunarLogic addresses it
-                </p>
-                <ul className="space-y-2.5 mb-6">
-                  {uc.fix.map((item, fi) => (
-                    <li key={fi} className="flex items-start gap-3">
-                      <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
-                      <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
-                    </li>
+              <div className={`bg-slate-900/60 border rounded-xl p-4 ${colors.border}`}>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">The outcome</p>
+                <div className="grid grid-cols-3 gap-3">
+                  {uc.outcomes.map((outcome, oi) => (
+                    <div key={oi} className="text-center">
+                      <p className={`text-lg font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
+                      <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
+                    </div>
                   ))}
-                </ul>
-
-                <div className={`bg-slate-900/60 border rounded-xl p-4 ${colors.border}`}>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">The outcome</p>
-                  <div className="grid grid-cols-3 gap-3">
-                    {uc.outcomes.map((outcome, oi) => (
-                      <div key={oi} className="text-center">
-                        <p className={`text-lg font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
-                        <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
           );
         })}
+      </div>
+
+      {/* Dot navigation */}
+      <div className="flex items-center justify-center gap-4 py-4 bg-slate-950 border-t border-slate-800/60">
+        {suite.useCases.map((u, i) => (
+          <button
+            key={i}
+            onClick={() => scrollToCard(i)}
+            aria-label={`Go to use case ${i + 1}: ${u.problem}`}
+            className="flex flex-col items-center gap-1.5 py-1"
+          >
+            <div
+              className={`rounded-full transition-all duration-300 ${
+                i === activeStep ? "w-6 h-1.5 bg-blue-400" : "w-2 h-2 bg-slate-700"
+              }`}
+            />
+            <span
+              className={`text-xs transition-colors ${
+                i === activeStep ? "text-blue-400 font-semibold" : "text-slate-600"
+              }`}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );
