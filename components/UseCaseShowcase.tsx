@@ -542,8 +542,10 @@ function MobileSuite({
   sectionRef: (el: HTMLDivElement | null) => void;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [direction, setDirection] = useState<1 | -1>(1); // 1 = forward, -1 = backward
   const currentIdxRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -555,13 +557,27 @@ function MobileSuite({
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-      const newIdx = Math.min(suite.useCases.length - 1, Math.floor(progress * suite.useCases.length));
+
+      const n = suite.useCases.length;
+      const exactPos = progress * n;
+      const newIdx = Math.min(n - 1, Math.floor(exactPos));
+      const stepProg = exactPos - newIdx;
+
+      // Update progress bar directly — no re-render needed
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${stepProg * 100}%`;
+      }
+
       if (newIdx === currentIdxRef.current) return;
+
+      const dir: 1 | -1 = newIdx > currentIdxRef.current ? 1 : -1;
       currentIdxRef.current = newIdx;
+      setDirection(dir);
       setVisible(false);
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
         setActiveIdx(newIdx);
+        if (progressBarRef.current) progressBarRef.current.style.width = "0%";
         setVisible(true);
       }, 160);
     };
@@ -601,13 +617,22 @@ function MobileSuite({
           <span className="ml-auto text-xs text-slate-500 flex-shrink-0">{activeIdx + 1} / {suite.useCases.length}</span>
         </div>
 
-        {/* Use case content — zooms in on each transition */}
+        {/* Scroll progress bar — fills as you scroll toward the next use case */}
+        <div className="flex-shrink-0 h-0.5 bg-slate-800/60">
+          <div ref={progressBarRef} className="h-full bg-blue-400/70" style={{ width: "0%" }} />
+        </div>
+
+        {/* Use case content — slides in the direction of scroll */}
         <div className="flex-1 px-4 sm:px-6 py-5 flex flex-col min-h-0 overflow-hidden">
           <div
             className="transition-all duration-[160ms] ease-out"
             style={{
               opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(12px)",
+              transform: visible
+                ? "translateY(0)"
+                : direction === 1
+                ? "translateY(-16px)"
+                : "translateY(16px)",
             }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -707,7 +732,7 @@ function MobileShowcase() {
     <div>
       {/* Sticky suite tab selector */}
       <div className="sticky top-16 z-40 bg-slate-950/95 backdrop-blur border-b border-slate-800">
-        <div className="flex gap-1.5 px-4 sm:px-6 py-3 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+        <div className="flex justify-center gap-1.5 px-4 sm:px-6 py-3 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
           {SUITES.map((suite) => {
             const label = suite.id === "full"
               ? "Full Accounting"
