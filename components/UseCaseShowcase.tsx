@@ -362,7 +362,9 @@ function shortLabel(problem: string): string {
 function DesktopSuite({ suite }: { suite: Suite }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const currentIdxRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -373,13 +375,14 @@ function DesktopSuite({ suite }: { suite: Suite }) {
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
       const newIdx = Math.min(suite.useCases.length - 1, Math.floor(progress * suite.useCases.length));
-      setActiveIdx((prev) => {
-        if (prev !== newIdx) {
-          setTransitioning(true);
-          setTimeout(() => setTransitioning(false), 300);
-        }
-        return newIdx;
-      });
+      if (newIdx === currentIdxRef.current) return;
+      currentIdxRef.current = newIdx;
+      setVisible(false);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        setActiveIdx(newIdx);
+        setVisible(true);
+      }, 160);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -420,10 +423,10 @@ function DesktopSuite({ suite }: { suite: Suite }) {
           {/* Left: problem + fix */}
           <div className="col-span-3 flex flex-col justify-center">
             <div
-              className="transition-all duration-300 ease-out"
+              className="transition-all duration-[160ms] ease-out"
               style={{
-                opacity: transitioning ? 0 : 1,
-                transform: transitioning ? "translateY(14px)" : "translateY(0)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(12px)",
               }}
             >
               <div className="flex items-center gap-3 mb-4">
@@ -459,10 +462,10 @@ function DesktopSuite({ suite }: { suite: Suite }) {
           {/* Right: outcome card */}
           <div className="col-span-2 flex items-center justify-center">
             <div
-              className="w-full transition-all duration-300 ease-out"
+              className="w-full transition-all duration-[160ms] ease-out"
               style={{
-                opacity: transitioning ? 0 : 1,
-                transform: transitioning ? "scale(0.97)" : "scale(1)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "scale(1)" : "scale(0.97)",
               }}
             >
               <div className={`bg-slate-800/50 border rounded-2xl p-6 ${colors.border}`}>
