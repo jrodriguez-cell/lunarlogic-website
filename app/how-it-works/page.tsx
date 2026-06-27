@@ -130,13 +130,13 @@ export default function HowItWorksPage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-4">Why AR First</p>
             <p className="text-lg text-slate-300 leading-relaxed mb-4">
-              AR is not an arbitrary starting point. The pain is immediate and personal to the owner, the ROI is
-              visible within weeks not months, and the trust established by delivering measurable working capital
-              release in the first 90 days removes every barrier to expanding into AP and beyond.
+              AR is where the money is closest to the surface. You&apos;ve already done the work. The invoices exist.
+              The cash is legally owed. The only thing standing between you and a faster bank balance is a consistent
+              system for collecting it — and that&apos;s exactly what LunarLogic builds first.
             </p>
             <p className="text-slate-400 leading-relaxed">
-              A client whose DSO has compressed from 50 to 22 days and whose cash flow is now predictable does not
-              ask whether LunarLogic can handle their AP workflow. They already know the answer.
+              Most owners see meaningful DSO compression within 60 days. Once cash flow is predictable and collections
+              run automatically, expanding into AP and beyond is a natural next step — not a leap of faith.
             </p>
           </ScrollReveal>
         </div>
