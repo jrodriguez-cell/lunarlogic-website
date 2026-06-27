@@ -604,10 +604,10 @@ function MobileSuite({
         {/* Use case content — zooms in on each transition */}
         <div className="flex-1 px-4 sm:px-6 py-5 flex flex-col min-h-0 overflow-hidden">
           <div
-            className="transition-all duration-200 ease-out"
+            className="transition-all duration-[160ms] ease-out"
             style={{
               opacity: visible ? 1 : 0,
-              transform: visible ? "scale(1) translateY(0)" : "scale(0.93) translateY(16px)",
+              transform: visible ? "translateY(0)" : "translateY(12px)",
             }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -770,7 +770,7 @@ function DesktopShowcase() {
     <div>
       {/* Sticky suite tab bar */}
       <div className="sticky top-16 z-40 bg-slate-950/95 backdrop-blur border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center gap-2 py-2">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-center gap-3 py-2">
           {SUITES.map((suite) => (
             <button
               key={suite.id}
