@@ -418,84 +418,81 @@ function DesktopShowcase() {
   );
 }
 
-// ── Mobile showcase — swipe left/right, vertical scroll passes through ────────
+// ── Mobile showcase — mirrors Use Cases mobile pattern ────────────────────────
 
 function MobileShowcase() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeChapter, setActiveChapter] = useState(0);
   const [visible, setVisible] = useState(true);
   const currentRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
 
-  const goToChapter = (idx: number) => {
-    if (idx < 0 || idx >= chapters.length || idx === currentRef.current) return;
-    currentRef.current = idx;
-    setVisible(false);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      setActiveChapter(idx);
-      setVisible(true);
-    }, 160);
-  };
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null || touchStartY.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    const dy = e.changedTouches[0].clientY - touchStartY.current;
-    touchStartX.current = null;
-    touchStartY.current = null;
-    // Only fire on predominantly horizontal swipes
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
-      goToChapter(dx < 0 ? currentRef.current + 1 : currentRef.current - 1);
-    }
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      const scrollableHeight = container.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+      const newChapter = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
+      if (newChapter === currentRef.current) return;
+      currentRef.current = newChapter;
+      setVisible(false);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        setActiveChapter(newChapter);
+        setVisible(true);
+      }, 160);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const chapter = chapters[activeChapter];
 
+  const scrollToChapter = (idx: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+    const containerTop = container.getBoundingClientRect().top + window.scrollY;
+    const target = containerTop + (idx / chapters.length) * (container.offsetHeight - window.innerHeight) + 10;
+    window.scrollTo({ top: target, behavior: "smooth" });
+  };
+
   return (
-    // Single-viewport section — vertical scroll continues past it normally
-    <div className="lg:hidden" style={{ height: "calc(100vh - 64px)" }}>
+    <div
+      ref={containerRef}
+      style={{ height: `${chapters.length * 100}vh` }}
+      className="lg:hidden"
+    >
       <div
         className="sticky bg-slate-950 flex flex-col overflow-hidden"
-        style={{ top: "64px", height: "calc(100vh - 64px)", touchAction: "pan-y" }}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
+        style={{ top: "64px", height: "calc(100vh - 64px)" }}
       >
-        {/* Header */}
-        <div className="flex-shrink-0 pt-5 pb-1 text-center">
+        {/* Header strip */}
+        <div className="flex-shrink-0 border-b border-slate-800 px-4 sm:px-6 py-2.5 flex items-center gap-2">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
+          <span className="ml-auto text-xs text-slate-500">{activeChapter + 1} / {chapters.length}</span>
         </div>
 
-        {/* Swipe hint */}
-        <div className="flex-shrink-0 flex justify-center pb-2">
-          <p className="text-xs text-slate-600">← swipe to navigate →</p>
-        </div>
-
-        {/* Animated content — slides in from right on chapter change */}
-        <div className="flex-1 overflow-y-auto min-h-0 px-5 sm:px-6">
+        {/* Content — same fade+slide as Use Cases mobile */}
+        <div className="flex-1 min-h-0 px-5 sm:px-6 flex flex-col justify-center">
           <div
             style={{
               opacity: visible ? 1 : 0,
-              transform: visible ? "translateX(0)" : "translateX(28px)",
+              transform: visible ? "translateY(0)" : "translateY(12px)",
               transition: "opacity 160ms ease-out, transform 160ms ease-out",
             }}
           >
-            <div className="flex items-center gap-3 mb-4 mt-1">
+            <div className="flex items-center gap-3 mb-5">
               <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Step {chapter.step}</span>
               <span className="text-xs font-semibold text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2.5 py-0.5 rounded-full">
                 {chapter.label}
               </span>
             </div>
-            <h3 className="text-2xl font-extrabold text-white leading-tight mb-3">{chapter.title}</h3>
-            <p className="text-sm text-slate-400 leading-relaxed mb-5">{chapter.body}</p>
-            <div className="mb-5">{chapter.mockup}</div>
-            <div className="inline-flex items-baseline gap-2 bg-blue-500/5 border border-blue-500/15 rounded-xl px-4 py-3 mb-6">
+            <h3 className="text-2xl font-extrabold text-white leading-tight mb-4">{chapter.title}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed mb-6">{chapter.body}</p>
+            <div className="inline-flex items-baseline gap-2 bg-blue-500/5 border border-blue-500/15 rounded-xl px-4 py-3">
               <span className="text-2xl font-extrabold text-blue-400">{chapter.stat.value}</span>
               <span className="text-sm text-slate-400">{chapter.stat.label}</span>
             </div>
@@ -507,7 +504,7 @@ function MobileShowcase() {
           {chapters.map((c, i) => (
             <button
               key={i}
-              onClick={() => goToChapter(i)}
+              onClick={() => scrollToChapter(i)}
               className="flex flex-col items-center gap-1.5 group"
             >
               <div className={`h-0.5 rounded-full transition-all duration-300 ${
