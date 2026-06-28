@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: "How does the approval workflow work?",
-    a: "Your team uses Slack or Microsoft Teams as the input device. Sales orders come in, LunarLogic validates the customer and line items, then routes the invoice to you for one-click approval. Nothing goes to a client without your sign-off.",
+    a: "Your team uses Slack or Microsoft Teams as the input device. When a job is marked complete, LunarLogic generates the invoice, validates the client and line items, then routes it to you for one-click approval. Nothing goes to a client without your sign-off.",
   },
   {
     q: "How long does onboarding take?",

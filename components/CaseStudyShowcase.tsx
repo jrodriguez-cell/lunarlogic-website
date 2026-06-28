@@ -85,7 +85,7 @@ function KaptainCleanMockup() {
       <div className="grid grid-cols-2 gap-3">
         {[
           { value: "84%", label: "faster invoicing" },
-          { value: "$65K", label: "working capital freed" },
+          { value: "$65K", label: "cash freed from AR" },
         ].map((m) => (
           <div key={m.label} className="bg-slate-800/60 border border-slate-700 rounded-xl p-4 text-center">
             <p className="text-2xl font-extrabold text-blue-400">{m.value}</p>
@@ -200,7 +200,7 @@ const chapters = [
     label: "Kaptain Clean LLC",
     industry: "Commercial Cleaning",
     title: "19 days of DSO. Gone in 60 days.",
-    body: "Manual invoicing, no systematic follow-up, growing client base. DSO crept to 52 days. LunarLogic deployed the full AR suite and within two billing cycles, $65,000 in working capital was permanently unlocked — not from new revenue, from money already owed.",
+    body: "Manual invoicing, no systematic follow-up, growing client base. DSO crept to 52 days. LunarLogic deployed the full AR suite and within two billing cycles, $65,000 in cash was permanently freed from outstanding receivables — not from new revenue, from money already owed.",
     stat: { value: "19 days", label: "DSO reduction" },
     mockup: <KaptainCleanMockup />,
   },

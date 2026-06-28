@@ -47,7 +47,7 @@ export default function HomePage() {
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                  Revenue is a promise. Cash is the reality.
+                  Revenue is recognized. Cash is the reality.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
                   82% of small business failures are caused by cash flow problems — not lack of revenue. The money is
@@ -118,8 +118,8 @@ export default function HomePage() {
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in working capital permanently
-                unlocked — not from new revenue, but from money that was already earned and sitting uncollected.
+                DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in cash freed from outstanding
+                receivables — not from new revenue, but from money that was already earned and sitting uncollected.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">

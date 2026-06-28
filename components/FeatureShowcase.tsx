@@ -27,7 +27,7 @@ function InvoiceMockup() {
           </div>
         </div>
 
-        <p className="text-white font-semibold text-sm mb-1">New Sales Order — Acme Corp</p>
+        <p className="text-white font-semibold text-sm mb-1">Job Complete — Acme Corp</p>
         <div className="border-l-2 border-blue-500/40 pl-3 mb-4 space-y-1">
           <div className="flex justify-between text-xs">
             <span className="text-slate-400">Monthly service</span>
@@ -311,7 +311,7 @@ const chapters = [
     step: "03",
     label: "Cash Application",
     title: "Payments matched and applied by AI.",
-    body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence — applied automatically, your accounting system updated, done. Below that threshold, you get a one-click prompt. Phantom AR is eliminated.",
+    body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence — applied automatically, your accounting system updated, done. Below that threshold, you get a one-click prompt. Unapplied cash doesn't age in the system unclaimed.",
     stat: { value: "91%", label: "of payments auto-applied" },
     mockup: <CashMockup />,
   },

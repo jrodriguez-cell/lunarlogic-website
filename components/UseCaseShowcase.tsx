@@ -102,7 +102,7 @@ const SUITES: Suite[] = [
         problem: "Bad debt written off as a cost of doing business",
         snapshot: "Every year, a few invoices get written off — $10K, $15K, $20K. It becomes normalized. But bad debt is what happens when at-risk accounts are caught too late, not an industry constant.",
         situation:
-          "Every year, some AR gets written off. The amount becomes a line on the P&L and it becomes accepted — $10K, $15K, $20K is just the cost of doing business. It is not. It is what happens when at-risk accounts are caught too late, after the window for easy collection has closed. The difference between a collectible invoice and a write-off is almost always timing.",
+          "Every year, some AR gets written off. The amount becomes a line on the P&L and it becomes accepted — $10K, $15K, $20K is just the cost of doing business. It doesn't have to be. It is what happens when at-risk accounts are caught too late, after the window for easy collection has closed. The difference between a collectible invoice and a write-off is almost always timing.",
         context: "Accounts caught at 30 days overdue pay. Accounts caught at 90 days often don't. The system needs to surface the risk at 30 days — not after the owner notices at quarter-end.",
         fix: [
           "AI Dispute Monitor analyzes each account's payment pattern against their own history — flagging accounts paying materially outside their norm",
@@ -170,7 +170,7 @@ const SUITES: Suite[] = [
         fix: [
           "Consistent reminder cadence compresses DSO into a predictable, repeatable range — clients pay within a consistent window because they're always reminded within a consistent window",
           "DSO trend tracking makes month-to-month cash arrival projectable for the first time",
-          "Working capital trapped in aging AR released on a reliable schedule — cash already earned starts arriving when expected",
+          "Cash tied up in aging AR released on a reliable schedule — cash already earned starts arriving when expected",
           "AR dashboard surfaces projected cash inflow from outstanding invoices — a forward-looking view, not just historical",
         ],
         outcomes: [
@@ -239,7 +239,7 @@ const SUITES: Suite[] = [
         problem: "Paying late — or early — with no payment schedule",
         snapshot: "Without a payment schedule tied to cash position, bills get paid when someone gets to them. Early-payment discounts go uncaptured. Occasionally something goes late, and the penalty follows.",
         situation:
-          "Without a payment schedule tied to cash position and due dates, bills get paid when someone gets to them. Sometimes that means paying early and losing the use of cash unnecessarily. Sometimes it means paying late and incurring penalties or damaging vendor relationships. Early-payment discounts — often 1–2% for paying within 10 days — go uncaptured. For a business with $50K/month in payables, that's $10,000–$20,000 in annual cash impact.",
+          "Without a payment schedule tied to cash position and due dates, bills get paid when someone gets to them. Sometimes that means paying early and losing the use of cash unnecessarily. Sometimes it means paying late and incurring penalties or damaging vendor relationships. Early-payment discounts — often 1–2% for paying within 10 days — go uncaptured. For a business with $50K/month in payables, that's $6,000–$12,000 in annual cash left on the table.",
         fix: [
           "Payment scheduling optimized against due dates, available cash, and early-payment discount windows — the system recommends the most cash-efficient payment timing",
           "Early-payment discount opportunities flagged automatically when the discount exceeds the cost of paying early",
@@ -301,7 +301,7 @@ const SUITES: Suite[] = [
         ],
         outcomes: [
           { value: "3 days", label: "month-end close (vs. 14-day manual)" },
-          { value: "Real-time", label: "P&L, not month-old snapshots" },
+          { value: "Current data", label: "transactions recorded as they occur" },
           { value: "Zero", label: "manual reconciliation required" },
         ],
         accent: "blue",
@@ -314,7 +314,7 @@ const SUITES: Suite[] = [
         situation:
           "Projecting next month's cash position means combining what you remember about outstanding invoices with what you think you owe vendors, adjusted for payroll timing, with a rough estimate of what the month's revenue will look like. The output is a number that might be right to within $20,000. Planning for equipment, hiring, or growth on that basis is inherently risky. A business with automated AR and AP is already generating the data required for an accurate forecast — the forecast builds itself from data that already exists.",
         fix: [
-          "90-day rolling cash flow forecast built from actual AR pipeline, AP payment schedule, and bank balance — not estimates",
+          "90-day rolling cash flow forecast built from actual AR pipeline, AP payment schedule, and bank balance — not spreadsheet guesswork",
           "Expected receipts projected based on historical payment patterns and outstanding invoice ages",
           "Scheduled AP payments pulled directly from the payment queue — no manual input required",
           "Sensitivity scenarios modeled automatically: what the cash position looks like if 10% of outstanding AR pays 30 days late",
@@ -334,13 +334,13 @@ const SUITES: Suite[] = [
         situation:
           "Reports reach the owner a week after month-end, built from exported data that was already stale when it was pulled. The process involves manual adjustments, restatements, and corrections that introduce their own errors. By the time a decision is made, two more weeks have passed. Owners of service businesses typically spend fewer than 2 hours per month reviewing financial data — not because they don't care, but because access to current, reliable financial information requires too much friction. Remove the friction and the data gets used.",
         fix: [
-          "Real-time P&L, cash flow, and AR/AP dashboards built from live transaction data — no export, no manual adjustment, no lag",
+          "Live AR/AP dashboards and transaction-level reporting built from live data — fully reviewed financial statements ready in days, not weeks",
           "Owner-facing summary pushed daily alongside the AR digest — key financial metrics in a 30-second read",
           "Custom report templates for the business's specific needs: margin by client, revenue by service line, cost by project",
-          "Accountant access to the same real-time data — eliminating the year-end data-gathering exercise before tax preparation",
+          "Accountant access to the same real-time data — significantly reducing the year-end data-gathering burden before tax preparation",
         ],
         outcomes: [
-          { value: "Real-time", label: "financials, not month-old snapshots" },
+          { value: "Days, not weeks", label: "to fully adjusted financial statements" },
           { value: "Daily", label: "financial digest alongside AR summary" },
           { value: "Zero", label: "manual report preparation required" },
         ],
