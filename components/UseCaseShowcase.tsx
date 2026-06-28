@@ -369,10 +369,10 @@ function DesktopSuite({
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [cardProgress, setCardProgress] = useState(1);
+  const [visible, setVisible] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const currentIdxRef = useRef(0);
-  const cardStartScrollRef = useRef(-Infinity);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -384,13 +384,14 @@ function DesktopSuite({
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
       setScrollProgress(progress);
       const newIdx = Math.min(suite.useCases.length - 1, Math.floor(progress * suite.useCases.length));
-      if (newIdx !== currentIdxRef.current) {
-        cardStartScrollRef.current = scrolled;
-        currentIdxRef.current = newIdx;
+      if (newIdx === currentIdxRef.current) return;
+      currentIdxRef.current = newIdx;
+      setVisible(false);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
         setActiveIdx(newIdx);
-      }
-      const enterZone = (scrollableHeight / suite.useCases.length) * 0.4;
-      setCardProgress(Math.min(1, Math.max(0, (scrolled - cardStartScrollRef.current) / enterZone)));
+        setVisible(true);
+      }, 160);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -414,7 +415,7 @@ function DesktopSuite({
     <div
       ref={(el) => { containerRef.current = el; sectionRef(el); }}
       id={suite.id}
-      style={{ height: `${suite.useCases.length * 50}vh` }}
+      style={{ height: `${suite.useCases.length * 70}vh` }}
     >
       {/* sticky panel sits below nav (64px) + suite tab bar (~48px) */}
       <div
@@ -440,9 +441,10 @@ function DesktopSuite({
           {/* Left: problem + fix */}
           <div className="col-span-3 flex flex-col justify-center">
             <div
+              className="transition-all duration-[160ms] ease-out"
               style={{
-                opacity: cardProgress,
-                transform: `translateY(${20 * (1 - cardProgress)}px)`,
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(12px)",
               }}
             >
               <div className="flex items-center gap-3 mb-4">
@@ -478,10 +480,10 @@ function DesktopSuite({
           {/* Right: outcome card */}
           <div className="col-span-2 flex items-center justify-center">
             <div
-              className="w-full"
+              className="w-full transition-all duration-[160ms] ease-out"
               style={{
-                opacity: cardProgress,
-                transform: `scale(${0.96 + 0.04 * cardProgress})`,
+                opacity: visible ? 1 : 0,
+                transform: visible ? "scale(1)" : "scale(0.97)",
               }}
             >
               <div className={`bg-slate-800/50 border rounded-2xl p-6 ${colors.border}`}>
