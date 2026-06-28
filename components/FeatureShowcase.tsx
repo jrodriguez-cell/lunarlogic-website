@@ -476,7 +476,7 @@ function MobileShowcase() {
         </div>
 
         {/* Content — same fade+slide as Use Cases mobile */}
-        <div className="flex-1 min-h-0 px-5 sm:px-6 flex flex-col justify-center">
+        <div className="flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 py-4">
           <div
             style={{
               opacity: visible ? 1 : 0,
@@ -484,16 +484,17 @@ function MobileShowcase() {
               transition: "opacity 160ms ease-out, transform 160ms ease-out",
             }}
           >
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-2 mb-3">
               <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Step {chapter.step}</span>
               <span className="text-xs font-semibold text-blue-400 bg-blue-400/10 border border-blue-400/20 px-2.5 py-0.5 rounded-full">
                 {chapter.label}
               </span>
             </div>
-            <h3 className="text-2xl font-extrabold text-white leading-tight mb-4">{chapter.title}</h3>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">{chapter.body}</p>
-            <div className="inline-flex items-baseline gap-2 bg-blue-500/5 border border-blue-500/15 rounded-xl px-4 py-3">
-              <span className="text-2xl font-extrabold text-blue-400">{chapter.stat.value}</span>
+            <h3 className="text-xl font-extrabold text-white leading-tight mb-2">{chapter.title}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed mb-4">{chapter.body}</p>
+            <div className="mb-4">{chapter.mockup}</div>
+            <div className="inline-flex items-baseline gap-2 bg-blue-500/5 border border-blue-500/15 rounded-xl px-4 py-3 mb-2">
+              <span className="text-xl font-extrabold text-blue-400">{chapter.stat.value}</span>
               <span className="text-sm text-slate-400">{chapter.stat.label}</span>
             </div>
           </div>
