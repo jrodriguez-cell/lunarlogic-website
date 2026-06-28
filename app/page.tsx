@@ -8,7 +8,7 @@ import FeatureShowcase from "@/components/FeatureShowcase";
 export const metadata: Metadata = {
   title: "LunarLogic: We turn what you have already earned into cash in your bank account.",
   description:
-    "LunarLogic automates the full Order-to-Cash cycle for owner-operated service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
+    "LunarLogic automates the full Order-to-Cash cycle for service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
 };
 
 
@@ -36,9 +36,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature Showcase — sticky scroll */}
-      <FeatureShowcase />
-
       {/* Problem / Why It Matters */}
       <section className="py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,22 +44,26 @@ export default function HomePage() {
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                  Revenue is recognized. Cash is the reality.
+                  Revenue is recognized. Cash is a separate problem.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  82% of small business failures are caused by cash flow problems, not lack of revenue. The money is
-                  already earned. It is legally owed. It is sitting in your aging report instead of your bank account.
+                  Under US GAAP, revenue is recognized when performance obligations are satisfied, not when cash is
+                  received. The resulting accounts receivable balance is money legally earned that sits on your balance
+                  sheet instead of your operating account. Days Sales Outstanding (DSO) measures how long it takes to
+                  close that gap. The longer the DSO, the more working capital is tied up in uncollected receivables at
+                  any given time.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
-                  The AR problem is not a technology problem. The tools have existed for years. What has not existed
-                  is a partner willing to go into a service business and deploy that technology permanently, without
-                  ongoing consulting involvement.
+                  Payroll, vendor obligations, and overhead run on fixed cycles. Collections do not. When the
+                  receivables cycle lags, even profitable service businesses face recurring cash shortfalls that
+                  constrain capacity and growth, not because revenue is insufficient, but because the collection
+                  cycle is unmanaged.
                 </p>
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors"
                 >
-                  See how LunarLogic closes the gap
+                  See how LunarLogic compresses the collection cycle
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -72,20 +73,20 @@ export default function HomePage() {
             <div className="space-y-4">
               {[
                 {
-                  title: "No dedicated AR staff",
-                  body: "At the $1M–$10M level, nobody owns collections. Invoices go out when someone has time. Follow-up happens when someone remembers.",
+                  title: "Billing lag extends DSO before collection starts",
+                  body: "Every day between service delivery and invoice issuance adds to DSO before the collection clock even begins. Billing latency compounds the receivables gap.",
                 },
                 {
-                  title: "Billing disconnected from delivery",
-                  body: "Every day between job completion and invoice delivery is a day added to your DSO before the clock even starts.",
+                  title: "No structured collection workflow",
+                  body: "Without a defined, escalating follow-up sequence, receivables age in silence. Outreach happens reactively, which means your invoices get paid after the ones with a system behind them.",
                 },
                 {
-                  title: "No systematic follow-up",
-                  body: "Businesses without consistent, escalating follow-up always get paid last, regardless of relationship or invoice size.",
+                  title: "Receivables aging is invisible until it becomes a crisis",
+                  body: "By the time a cash shortfall surfaces, the underlying receivable has often been aging 45-60 days. Real-time visibility converts a crisis into a managed workflow.",
                 },
                 {
-                  title: "No real-time visibility",
-                  body: "You discover a cash flow problem when payroll is due. By then the 60-day AR has been sitting there for six weeks.",
+                  title: "High DSO locks working capital in the receivables cycle",
+                  body: "Capital tied up in slow-paying AR cannot fund operations, payroll, or growth. The constraint is not revenue: it is the velocity of cash conversion.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} animation="slide-right" delay={i * 90}>
@@ -102,6 +103,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Feature Showcase — sticky scroll */}
+      <FeatureShowcase />
 
       {/* Kaptain Clean Case Study Teaser */}
       <section className="py-24 bg-slate-950">
