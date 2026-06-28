@@ -418,60 +418,63 @@ function DesktopShowcase() {
   );
 }
 
-// ── Mobile showcase — sticky scroll, matches desktop pattern ─────────────────
+// ── Mobile showcase — swipe left/right, vertical scroll passes through ────────
 
 function MobileShowcase() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeChapter, setActiveChapter] = useState(0);
   const [visible, setVisible] = useState(true);
   const currentRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const container = containerRef.current;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      const scrollableHeight = container.offsetHeight - window.innerHeight;
-      const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-      const newChapter = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
-      if (newChapter === currentRef.current) return;
-      currentRef.current = newChapter;
-      setVisible(false);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        setActiveChapter(newChapter);
-        setVisible(true);
-      }, 160);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const goToChapter = (idx: number) => {
+    if (idx < 0 || idx >= chapters.length || idx === currentRef.current) return;
+    currentRef.current = idx;
+    setVisible(false);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setActiveChapter(idx);
+      setVisible(true);
+    }, 160);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    touchStartX.current = null;
+    touchStartY.current = null;
+    // Only fire on predominantly horizontal swipes
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+      goToChapter(dx < 0 ? currentRef.current + 1 : currentRef.current - 1);
+    }
+  };
 
   const chapter = chapters[activeChapter];
 
-  const scrollToChapter = (idx: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const containerTop = container.getBoundingClientRect().top + window.scrollY;
-    const target = containerTop + (idx / chapters.length) * (container.offsetHeight - window.innerHeight) + 10;
-    window.scrollTo({ top: target, behavior: "smooth" });
-  };
-
   return (
-    <div
-      ref={containerRef}
-      style={{ height: `${chapters.length * 100}vh` }}
-      className="lg:hidden"
-    >
+    // Single-viewport section — vertical scroll continues past it normally
+    <div className="lg:hidden" style={{ height: "calc(100vh - 64px)" }}>
       <div
         className="sticky bg-slate-950 flex flex-col overflow-hidden"
-        style={{ top: "64px", height: "calc(100vh - 64px)" }}
+        style={{ top: "64px", height: "calc(100vh - 64px)", touchAction: "pan-y" }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
       >
         {/* Header */}
-        <div className="flex-shrink-0 pt-5 pb-3 text-center">
+        <div className="flex-shrink-0 pt-5 pb-1 text-center">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
+        </div>
+
+        {/* Swipe hint */}
+        <div className="flex-shrink-0 flex justify-center pb-2">
+          <p className="text-xs text-slate-600">← swipe to navigate →</p>
         </div>
 
         {/* Animated content — slides in from right on chapter change */}
@@ -499,12 +502,12 @@ function MobileShowcase() {
           </div>
         </div>
 
-        {/* Dot navigation — identical to desktop */}
+        {/* Dot navigation */}
         <div className="flex-shrink-0 pb-5 pt-2 flex items-center justify-center gap-6">
           {chapters.map((c, i) => (
             <button
               key={i}
-              onClick={() => scrollToChapter(i)}
+              onClick={() => goToChapter(i)}
               className="flex flex-col items-center gap-1.5 group"
             >
               <div className={`h-0.5 rounded-full transition-all duration-300 ${

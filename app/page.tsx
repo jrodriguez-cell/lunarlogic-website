@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import PricingCard from "@/components/PricingCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import FeatureShowcase from "@/components/FeatureShowcase";
@@ -12,48 +11,6 @@ export const metadata: Metadata = {
     "LunarLogic automates the full Order-to-Cash cycle for owner-operated service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
 };
 
-const pricingTiers = [
-  {
-    name: "Essentials",
-    price: 697,
-    invoiceLimit: 150,
-    features: [
-      "150 invoices/month",
-      "Accounting system integration",
-      "Slack-based approvals",
-      "Automated payment reminders",
-      "AR aging dashboard",
-      "Email support",
-    ],
-  },
-  {
-    name: "Professional",
-    price: 1497,
-    invoiceLimit: 250,
-    features: [
-      "250 invoices/month",
-      "Everything in Essentials",
-      "Automated cash application",
-      "VIP customer exemptions",
-      "Custom reminder schedules",
-      "Priority support",
-    ],
-    highlighted: true,
-  },
-  {
-    name: "Business",
-    price: 2497,
-    invoiceLimit: 400,
-    features: [
-      "400 invoices/month",
-      "Everything in Professional",
-      "Multiple workspaces",
-      "Custom workflow nodes",
-      "Dedicated onboarding",
-      "SLA-backed support",
-    ],
-  },
-];
 
 export default function HomePage() {
   return (
@@ -185,36 +142,6 @@ export default function HomePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Pricing Preview */}
-      <section className="py-24 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal animation="fade-up">
-            <div className="text-center mb-16">
-              <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Pricing</p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Simple, predictable pricing</h2>
-              <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                No setup fees for annual commitments. $5/invoice overage. No lock-in.
-              </p>
-            </div>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingTiers.map((tier, i) => (
-              <ScrollReveal key={tier.name} animation="fade-up" delay={i * 100}>
-                <PricingCard {...tier} ctaText="Get Started" />
-              </ScrollReveal>
-            ))}
-          </div>
-          <ScrollReveal animation="fade-in" delay={200}>
-            <p className="text-center text-slate-400 text-sm mt-8">
-              Annual commitment waives the $2,500 implementation fee.{" "}
-              <Link href="/pricing" className="text-blue-400 hover:text-blue-300">
-                See full pricing details
-              </Link>
-            </p>
           </ScrollReveal>
         </div>
       </section>
