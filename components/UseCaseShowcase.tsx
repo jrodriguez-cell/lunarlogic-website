@@ -538,7 +538,7 @@ function DesktopSuite({
   );
 }
 
-// ── Mobile suite ──────────────────────────────────────────────────────────────
+// ── Mobile suite — accordion ──────────────────────────────────────────────────
 
 function MobileSuite({
   suite,
@@ -547,140 +547,94 @@ function MobileSuite({
   suite: Suite;
   sectionRef: (el: HTMLDivElement | null) => void;
 }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const currentIdxRef = useRef(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const container = containerRef.current;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      const vh = document.documentElement.clientHeight;
-      const scrollableHeight = container.offsetHeight - vh;
-      const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-      const N = suite.useCases.length;
-      const current = currentIdxRef.current;
-      const forwardThreshold = (current + 1.15) / N;
-      const backwardThreshold = current / N;
-      let newIdx = current;
-      if (progress >= forwardThreshold && current < N - 1) {
-        newIdx = current + 1;
-      } else if (progress < backwardThreshold && current > 0) {
-        newIdx = current - 1;
-      }
-      if (newIdx === current) return;
-      currentIdxRef.current = newIdx;
-      setVisible(false);
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        setActiveIdx(newIdx);
-        setVisible(true);
-      }, 160);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [suite.useCases.length]);
-
-  const uc = suite.useCases[activeIdx];
-  const colors = ACCENTS[uc.accent];
-
-  const scrollToUseCase = (idx: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const containerTop = container.getBoundingClientRect().top + window.scrollY;
-    const target = containerTop + (idx / suite.useCases.length) * (container.offsetHeight - window.innerHeight) + 10;
-    window.scrollTo({ top: target, behavior: "smooth" });
-  };
+  const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <div
-      ref={(el) => { containerRef.current = el; sectionRef(el); }}
-      id={`${suite.id}-mobile`}
-      style={{ height: `${suite.useCases.length * 100}vh` }}
-    >
-      <div
-        className="sticky bg-slate-950 flex flex-col overflow-hidden"
-        style={{ top: "112px", height: "calc(100vh - 112px)" }}
-      >
-        {/* Suite header strip */}
-        <div className="flex-shrink-0 border-b border-slate-800 px-4 sm:px-6 py-2.5 flex items-center gap-2">
+    <div ref={sectionRef} id={`${suite.id}-mobile`} className="bg-slate-950">
+      {/* Suite header */}
+      <div className="px-4 pt-8 pb-4">
+        <div className="flex items-center gap-2 mb-2">
           <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {suite.phase}</span>
           <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${suite.statusColor}`}>
             {suite.status}
           </span>
-          <span className="text-xs font-semibold text-white ml-1 truncate">{suite.name}</span>
-          <span className="ml-auto text-xs text-slate-500 flex-shrink-0">{activeIdx + 1} / {suite.useCases.length}</span>
         </div>
+        <h2 className="text-lg font-extrabold text-white">{suite.name}</h2>
+        <p className="text-xs text-slate-400 mt-1 leading-relaxed">{suite.tagline}</p>
+      </div>
 
-        {/* Content — same fade+slide as desktop */}
-        <div className="flex-1 overflow-y-auto min-h-0">
-          <div
-            className="px-4 sm:px-6 py-5 flex flex-col"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(12px)",
-              transition: "opacity 160ms ease-out, transform 160ms ease-out",
-            }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
-                {uc.icon}
-              </div>
-              <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors.badge}`}>
-                Use Case {uc.number}
-              </span>
-            </div>
-            <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{uc.problem}</h3>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">{uc.snapshot}</p>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">
-              How LunarLogic addresses it
-            </p>
-            <ul className="space-y-2 mb-4">
-              {uc.fix.slice(0, 2).map((item, fi) => (
-                <li key={fi} className="flex items-start gap-2.5">
-                  <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
-                  <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className={`bg-slate-900/60 border rounded-xl p-3.5 ${colors.border}`}>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">The outcome</p>
-              <div className="grid grid-cols-3 gap-2">
-                {uc.outcomes.map((outcome, oi) => (
-                  <div key={oi} className="text-center">
-                    <p className={`text-base font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dot navigation */}
-        <div className="flex-shrink-0 pb-4 pt-1 flex items-center justify-center gap-5">
-          {suite.useCases.map((u, i) => (
-            <button
-              key={i}
-              onClick={() => scrollToUseCase(i)}
-              aria-label={`Use case ${i + 1}: ${u.problem}`}
-              className="flex flex-col items-center gap-1 py-1"
+      {/* Use case accordions */}
+      <div className="space-y-2 pb-6">
+        {suite.useCases.map((uc, i) => {
+          const colors = ACCENTS[uc.accent];
+          const isOpen = openIdx === i;
+          return (
+            <div
+              key={uc.number}
+              className={`border rounded-2xl overflow-hidden transition-colors duration-200 ${
+                isOpen ? "border-blue-500/30 bg-blue-500/5" : "border-slate-700 bg-slate-800/40"
+              }`}
             >
-              <div className={`h-1 rounded-full transition-all duration-300 ${
-                i === activeIdx ? "w-6 bg-blue-400" : "w-3 bg-slate-700"
-              }`} />
-              <span className={`text-xs transition-colors ${
-                i === activeIdx ? "text-blue-400 font-semibold" : "text-slate-600"
-              }`}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </button>
-          ))}
-        </div>
+              {/* Header */}
+              <button
+                onClick={() => setOpenIdx(isOpen ? -1 : i)}
+                className="w-full flex items-center gap-3 px-4 py-4 text-left"
+              >
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
+                  {uc.icon}
+                </div>
+                <span className={`text-sm font-semibold flex-1 leading-snug ${isOpen ? "text-white" : "text-slate-300"}`}>
+                  {uc.problem}
+                </span>
+                <svg
+                  className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-blue-400" : "text-slate-500"}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Smooth expand */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  transition: "grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1)",
+                }}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-4 pb-5 space-y-3">
+                    <p className="text-sm text-slate-400 leading-relaxed">{uc.snapshot}</p>
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
+                        How LunarLogic addresses it
+                      </p>
+                      <ul className="space-y-2">
+                        {uc.fix.slice(0, 3).map((item, fi) => (
+                          <li key={fi} className="flex items-start gap-2.5">
+                            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
+                            <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className={`bg-slate-900/60 border rounded-xl p-3.5 ${colors.border}`}>
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5">The outcome</p>
+                      <div className="grid grid-cols-3 gap-2">
+                        {uc.outcomes.map((outcome, oi) => (
+                          <div key={oi} className="text-center">
+                            <p className={`text-sm font-extrabold leading-tight ${colors.metric}`}>{outcome.value}</p>
+                            <p className="text-xs text-slate-500 mt-0.5 leading-tight">{outcome.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
