@@ -331,8 +331,10 @@ const chapters = [
 function DesktopShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
+  const [cardProgress, setCardProgress] = useState(1);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const activeChapterRef = useRef(0);
+  const chapterStartScrollRef = useRef(-Infinity);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -344,13 +346,13 @@ function DesktopShowcase() {
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
       setScrollProgress(progress);
       const newChapter = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
-      setActiveChapter(prev => {
-        if (prev !== newChapter) {
-          setTransitioning(true);
-          setTimeout(() => setTransitioning(false), 400);
-        }
-        return newChapter;
-      });
+      if (newChapter !== activeChapterRef.current) {
+        chapterStartScrollRef.current = scrolled;
+        activeChapterRef.current = newChapter;
+        setActiveChapter(newChapter);
+      }
+      const enterZone = (scrollableHeight / chapters.length) * 0.4;
+      setCardProgress(Math.min(1, Math.max(0, (scrolled - chapterStartScrollRef.current) / enterZone)));
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -359,7 +361,7 @@ function DesktopShowcase() {
   const chapter = chapters[activeChapter];
 
   return (
-    <div ref={containerRef} style={{ height: `${chapters.length * 70}vh` }}>
+    <div ref={containerRef} style={{ height: `${chapters.length * 50}vh` }}>
       <div className="relative sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
         <div className="flex-shrink-0 pt-10 pb-4 text-center">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
@@ -368,8 +370,7 @@ function DesktopShowcase() {
         <div className="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 gap-12 items-center min-h-0">
           <div className="flex flex-col justify-center pr-8">
             <div
-              className="transition-all duration-300 ease-out"
-              style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? "translateY(16px)" : "translateY(0)" }}
+              style={{ opacity: cardProgress, transform: `translateY(${20 * (1 - cardProgress)}px)` }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Step {chapter.step}</span>
@@ -388,8 +389,8 @@ function DesktopShowcase() {
 
           <div className="flex items-center justify-center">
             <div
-              className="w-full transition-all duration-300 ease-out"
-              style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? "scale(0.97)" : "scale(1)" }}
+              className="w-full"
+              style={{ opacity: cardProgress, transform: `scale(${0.96 + 0.04 * cardProgress})` }}
             >
               {chapter.mockup}
             </div>
