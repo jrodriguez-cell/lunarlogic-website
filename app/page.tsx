@@ -117,7 +117,7 @@ export default function HomePage() {
             </h2>
           </ScrollReveal>
           <ScrollReveal animation="zoom-in" delay={100}>
-            <blockquote className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 text-left mb-8">
+            <blockquote className="bg-slate-800/50 border border-slate-700 rounded-2xl p-5 sm:p-8 text-left mb-8">
               <p className="text-lg text-slate-300 leading-relaxed mb-4">
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>

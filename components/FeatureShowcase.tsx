@@ -430,7 +430,7 @@ function MobileShowcase() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <div className="lg:hidden bg-slate-950 px-4 sm:px-6 py-10">
+    <div className="lg:hidden bg-slate-950 py-10">
       <p className="text-xs font-bold text-blue-400 uppercase tracking-widest text-center mb-6">How It Works</p>
 
       <div className="space-y-2">

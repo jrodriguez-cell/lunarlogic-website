@@ -226,7 +226,7 @@ const chapters = [
 
 function MobileChapterCard({ chapter }: { chapter: typeof chapters[number] }) {
   return (
-    <div className="bg-slate-800/40 border border-slate-700 rounded-2xl p-6">
+    <div className="bg-slate-800/40 border border-slate-700 rounded-2xl px-4 py-5">
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {chapter.phase}</span>
         <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${chapter.statusColor}`}>
@@ -350,7 +350,7 @@ export default function SuiteShowcase() {
   return (
     <>
       {/* Mobile: stacked cards with reveal animations */}
-      <div className="lg:hidden bg-slate-950 py-16 px-4 sm:px-6 space-y-6">
+      <div className="lg:hidden bg-slate-950 py-16 space-y-6">
         <div className="text-center mb-8">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">The Platform</p>
         </div>
