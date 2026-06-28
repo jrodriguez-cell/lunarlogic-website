@@ -52,18 +52,18 @@ const SUITES: Suite[] = [
     status: "Production",
     statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
     description:
-      "Accounts receivable is where most service businesses leak cash without realizing it. Money is legally owed — but it sits uncollected because no one has a reliable system for getting it in. The AR suite closes that gap end to end.",
+      "Accounts receivable is where most service businesses leak cash without realizing it. Money is legally owed, but it sits uncollected because no one has a reliable system for getting it in. The AR suite closes that gap end to end.",
     useCases: [
       {
         number: "01",
-        problem: "Invoices leave late — or not at all",
-        snapshot: "Jobs get completed but billing lags days or weeks behind. On a busy month, some invoices simply don't go out — the client doesn't bring it up, and the cash is already a month behind before anyone notices.",
+        problem: "Invoices leave late, or not at all",
+        snapshot: "Jobs get completed but billing lags days or weeks behind. On a busy month, some invoices simply don't go out: the client doesn't bring it up, and the cash is already a month behind before anyone notices.",
         situation:
-          "For most service businesses, invoicing is a manual task that competes with everything else on the owner's plate. Jobs get completed, but billing follows days later — sometimes weeks. On a busy month, some invoices simply don't go out. The client doesn't bring it up. The owner eventually notices. By then, the cash is already a month behind.",
-        context: "Every day an invoice sits unsent is a day added to DSO before the payment clock even starts. A business invoicing 3 days late on Net 30 terms is effectively running Net 33 — before the client pays late on top of it.",
+          "For most service businesses, invoicing is a manual task that competes with everything else on the owner's plate. Jobs get completed, but billing follows days later, sometimes weeks. On a busy month, some invoices simply don't go out. The client doesn't bring it up. The owner eventually notices. By then, the cash is already a month behind.",
+        context: "Every day an invoice sits unsent is a day added to DSO before the payment clock even starts. A business invoicing 3 days late on Net 30 terms is effectively running Net 33, before the client pays late on top of it.",
         fix: [
-          "Invoice generation triggered automatically when a job is completed, a contract date hits, or a recurring billing cycle fires — no manual initiation required",
-          "Each invoice validated against the client record in your accounting system before it leaves — correct address, correct terms, correct GL codes",
+          "Invoice generation triggered automatically when a job is completed, a contract date hits, or a recurring billing cycle fires: no manual initiation required",
+          "Each invoice validated against the client record in your accounting system before it leaves: correct address, correct terms, correct GL codes",
           "Same-day delivery for every billing event, regardless of how busy the week is",
           "Missed-billing alerts surface any client who should have been invoiced but wasn't",
         ],
@@ -78,14 +78,14 @@ const SUITES: Suite[] = [
       {
         number: "02",
         problem: "Outstanding invoices with no follow-up system",
-        snapshot: "Once an invoice is sent, it disappears. Follow-up only happens when someone remembers — usually when cash gets tight. By then the invoice is 45 days overdue and the client has mentally moved on.",
+        snapshot: "Once an invoice is sent, it disappears. Follow-up only happens when someone remembers, usually when cash gets tight. By then the invoice is 45 days overdue and the client has mentally moved on.",
         situation:
-          "Once an invoice is sent, it disappears into the void. Follow-up only happens when someone remembers — usually when cash gets tight. By then the invoice is 45 days overdue, the client has mentally moved on, and the conversation is already uncomfortable. The single biggest driver of high DSO in service businesses is not late-paying clients — it is the absence of a consistent reminder cadence.",
+          "Once an invoice is sent, it disappears into the void. Follow-up only happens when someone remembers, usually when cash gets tight. By then the invoice is 45 days overdue, the client has mentally moved on, and the conversation is already uncomfortable. The single biggest driver of high DSO in service businesses is not late-paying clients, it is the absence of a consistent reminder cadence.",
         context: "Clients pay faster when reminded on a schedule. Most businesses simply don't have one.",
         fix: [
-          "5-touch automated reminder sequence at Day 3, 7, 14, 21, and 30 past due — every time, on every overdue invoice, without anyone initiating it",
+          "5-touch automated reminder sequence at Day 3, 7, 14, 21, and 30 past due: every time, on every overdue invoice, without anyone initiating it",
           "Tone and timing calibrated by client tier: long-standing accounts get a lighter touch, newer or high-balance invoices escalate faster",
-          "Every reminder sent professionally from the business — not a generic template, not from a collections agency",
+          "Every reminder sent professionally from the business: not a generic template, not from a collections agency",
           "Owner surfaced only when a specific account hits a threshold that requires personal judgment",
           "AI Dispute Monitor flags any account paying significantly outside their own historical pattern",
         ],
@@ -100,14 +100,14 @@ const SUITES: Suite[] = [
       {
         number: "03",
         problem: "Bad debt written off as a cost of doing business",
-        snapshot: "Every year, a few invoices get written off — $10K, $15K, $20K. It becomes normalized. But bad debt is what happens when at-risk accounts are caught too late, not an industry constant.",
+        snapshot: "Every year, a few invoices get written off: $10K, $15K, $20K. It becomes normalized. But bad debt is what happens when at-risk accounts are caught too late, not an industry constant.",
         situation:
-          "Every year, some AR gets written off. The amount becomes a line on the P&L and it becomes accepted — $10K, $15K, $20K is just the cost of doing business. It doesn't have to be. It is what happens when at-risk accounts are caught too late, after the window for easy collection has closed. The difference between a collectible invoice and a write-off is almost always timing.",
-        context: "Accounts caught at 30 days overdue pay. Accounts caught at 90 days often don't. The system needs to surface the risk at 30 days — not after the owner notices at quarter-end.",
+          "Every year, some AR gets written off. The amount becomes a line on the P&L and it becomes accepted: $10K, $15K, $20K is just the cost of doing business. It doesn't have to be. It is what happens when at-risk accounts are caught too late, after the window for easy collection has closed. The difference between a collectible invoice and a write-off is almost always timing.",
+        context: "Accounts caught at 30 days overdue pay. Accounts caught at 90 days often don't. The system needs to surface the risk at 30 days, not after the owner notices at quarter-end.",
         fix: [
-          "AI Dispute Monitor analyzes each account's payment pattern against their own history — flagging accounts paying materially outside their norm",
-          "High-confidence flags surfaced with context: days late, reminders sent, historical behavior — and a recommended escalation path",
-          "Escalation sequences tighten automatically as invoices age — the system doesn't wait for someone to notice",
+          "AI Dispute Monitor analyzes each account's payment pattern against their own history, flagging accounts paying materially outside their norm",
+          "High-confidence flags surfaced with context: days late, reminders sent, historical behavior, and a recommended escalation path",
+          "Escalation sequences tighten automatically as invoices age: the system doesn't wait for someone to notice",
           "Complete communication audit trail maintained for every account, usable in any formal dispute or collections process",
         ],
         outcomes: [
@@ -121,14 +121,14 @@ const SUITES: Suite[] = [
       {
         number: "04",
         problem: "The owner is the de facto collections department",
-        snapshot: "Nobody else follows up consistently, so the owner does it — personal calls, uncomfortable emails, 4–6 hours a week. Every hour chasing a $3,000 invoice is an hour not spent closing a $30,000 contract.",
+        snapshot: "Nobody else follows up consistently, so the owner does it: personal calls, uncomfortable emails, 4–6 hours a week. Every hour chasing a $3,000 invoice is an hour not spent closing a $30,000 contract.",
         situation:
-          "In most owner-operated businesses, AR follow-up defaults to the person at the top. Nobody else has the authority, the client relationship, or the willingness to push. So the owner does it — personal calls, uncomfortable emails to clients they also need to retain. It works, but it costs 4–6 hours a week, creates relationship friction, and takes the owner away from the work that actually grows the business.",
+          "In most owner-operated businesses, AR follow-up defaults to the person at the top. Nobody else has the authority, the client relationship, or the willingness to push. So the owner does it: personal calls, uncomfortable emails to clients they also need to retain. It works, but it costs 4–6 hours a week, creates relationship friction, and takes the owner away from the work that actually grows the business.",
         context: "The owner's time has the highest opportunity cost in the organization. Every hour spent chasing a $3,000 invoice is an hour not spent closing a $30,000 contract.",
         fix: [
-          "Entire reminder sequence runs from the business, professionally toned, without owner involvement — clients receive communication that feels personal without requiring personal time",
-          "Daily AR summary pushed to Slack or Teams every morning — the owner sees the number in 10 seconds without logging into anything",
-          "Escalations surface only the accounts that genuinely need a personal call — a handful per month, clearly prioritized",
+          "Entire reminder sequence runs from the business, professionally toned, without owner involvement: clients receive communication that feels personal without requiring personal time",
+          "Daily AR summary pushed to Slack or Teams every morning: the owner sees the number in 10 seconds without logging into anything",
+          "Escalations surface only the accounts that genuinely need a personal call: a handful per month, clearly prioritized",
           "Client tier awareness means high-value relationships get appropriately deferential messaging while chronic late-payers get appropriate pressure",
         ],
         outcomes: [
@@ -142,15 +142,15 @@ const SUITES: Suite[] = [
       {
         number: "05",
         problem: "No real-time visibility into what's owed",
-        snapshot: "Getting a picture of AR means running a report, exporting it, and interpreting aging buckets manually — once a week if it happens at all. At-risk accounts age in silence between those checks.",
+        snapshot: "Getting a picture of AR means running a report, exporting it, and interpreting aging buckets manually, once a week if it happens at all. At-risk accounts age in silence between those checks.",
         situation:
-          "Getting a clear picture of AR means running a report, exporting it, and interpreting aging buckets by hand. That process happens once a week if it happens at all — and by the time the data is reviewed, it's already several days stale. A business running $500K/month in AR with a 45-day DSO has roughly $750K outstanding at any given time. Managing that blind is like driving without a dashboard.",
+          "Getting a clear picture of AR means running a report, exporting it, and interpreting aging buckets by hand. That process happens once a week if it happens at all, and by the time the data is reviewed, it's already several days stale. A business running $500K/month in AR with a 45-day DSO has roughly $750K outstanding at any given time. Managing that blind is like driving without a dashboard.",
         context: "At-risk accounts age in silence between weekly checks. Flags that would have been easy to act on at Day 30 become write-offs by Day 75.",
         fix: [
-          "Live AR dashboard with DSO trend, aging buckets, and overdue flags — updated in real time from your accounting system",
-          "Daily automated summary pushed to Slack or Teams each morning — key numbers without requiring anyone to log in",
+          "Live AR dashboard with DSO trend, aging buckets, and overdue flags: updated in real time from your accounting system",
+          "Daily automated summary pushed to Slack or Teams each morning: key numbers without requiring anyone to log in",
           "At-risk account flags surface before invoices age into write-off territory, not after",
-          "DSO trend line annotated with go-live date — the impact of LunarLogic is visible on the chart, not just in a spreadsheet",
+          "DSO trend line annotated with go-live date: the impact of LunarLogic is visible on the chart, not just in a spreadsheet",
         ],
         outcomes: [
           { value: "Real-time", label: "AR visibility, no manual exports" },
@@ -165,13 +165,13 @@ const SUITES: Suite[] = [
         problem: "Cash flow is unpredictable month to month",
         snapshot: "Revenue looks healthy on the P&L but actual cash arriving varies wildly. When DSO fluctuates between 28 and 55 days, planning for payroll, equipment, or growth is guesswork.",
         situation:
-          "Revenue looks healthy on paper but actual cash arriving varies wildly. Payroll, equipment, and growth decisions all require knowing when money comes in — but when DSO fluctuates between 28 and 55 days month to month, planning is guesswork. Unpredictable cash flow is almost always a DSO problem: when the gap between invoicing and collection varies by weeks, the business can't plan.",
-        context: "Compressing DSO to a consistent, predictable range changes this — not just the average, but the variance. Businesses stop asking when money arrives and start knowing.",
+          "Revenue looks healthy on paper but actual cash arriving varies wildly. Payroll, equipment, and growth decisions all require knowing when money comes in, but when DSO fluctuates between 28 and 55 days month to month, planning is guesswork. Unpredictable cash flow is almost always a DSO problem: when the gap between invoicing and collection varies by weeks, the business can't plan.",
+        context: "Compressing DSO to a consistent, predictable range changes this, not just the average but the variance. Businesses stop asking when money arrives and start knowing.",
         fix: [
-          "Consistent reminder cadence compresses DSO into a predictable, repeatable range — clients pay within a consistent window because they're always reminded within a consistent window",
+          "Consistent reminder cadence compresses DSO into a predictable, repeatable range: clients pay within a consistent window because they're always reminded within a consistent window",
           "DSO trend tracking makes month-to-month cash arrival projectable for the first time",
-          "Cash tied up in aging AR released on a reliable schedule — cash already earned starts arriving when expected",
-          "AR dashboard surfaces projected cash inflow from outstanding invoices — a forward-looking view, not just historical",
+          "Cash tied up in aging AR released on a reliable schedule: cash already earned starts arriving when expected",
+          "AR dashboard surfaces projected cash inflow from outstanding invoices: a forward-looking view, not just historical",
         ],
         outcomes: [
           { value: "~40%", label: "typical DSO compression" },
@@ -188,23 +188,23 @@ const SUITES: Suite[] = [
     id: "ap",
     phase: "02",
     name: "AP Automation Suite",
-    tagline: "Outgoing cash — organized, approved, and on schedule.",
+    tagline: "Outgoing cash: organized, approved, and on schedule.",
     status: "In Development",
     statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
     description:
-      "Once AR is running automatically, the same principle applies to the other side of the ledger. The AP suite brings the same discipline to outgoing cash — bills captured, routed, approved, and paid on a schedule that matches cash position. Nothing paid twice. Nothing paid late. Nothing paid without the right sign-off.",
+      "Once AR is running automatically, the same principle applies to the other side of the ledger. The AP suite brings the same discipline to outgoing cash: bills captured, routed, approved, and paid on a schedule that matches cash position. Nothing paid twice. Nothing paid late. Nothing paid without the right sign-off.",
     useCases: [
       {
         number: "01",
         problem: "Vendor bills scattered across inboxes with no central intake",
         snapshot: "Bills arrive via email, paper, vendor portal, and occasionally a text. There's no single place where payables live. Things get paid late, paid twice, or overlooked until a vendor follows up.",
         situation:
-          "Bills arrive via email, paper invoice, vendor portal, and occasionally a text from a supplier. There is no single place where payables live. Some get forwarded to a shared inbox. Some get filed manually. Some get overlooked until a vendor follows up — or until a service is cut off. The same problem that plagues AR on the way in exists on the AP side too: no system, no visibility, no follow-through.",
+          "Bills arrive via email, paper invoice, vendor portal, and occasionally a text from a supplier. There is no single place where payables live. Some get forwarded to a shared inbox. Some get filed manually. Some get overlooked until a vendor follows up, or until a service is cut off. The same problem that plagues AR on the way in exists on the AP side too: no system, no visibility, no follow-through.",
         fix: [
-          "Automated bill capture from vendor email, PDF attachments, and connected vendor portals — normalized into a single AP queue regardless of format or source",
+          "Automated bill capture from vendor email, PDF attachments, and connected vendor portals: normalized into a single AP queue regardless of format or source",
           "Duplicate detection catches the same bill arriving through multiple channels before it creates a double-payment",
           "Aging alerts surface bills approaching due dates, prioritized by amount and vendor relationship",
-          "Every bill coded to the correct GL account and cost center before it reaches the approver — no manual categorization required",
+          "Every bill coded to the correct GL account and cost center before it reaches the approver: no manual categorization required",
         ],
         outcomes: [
           { value: "Zero", label: "bills missed from inbox overload" },
@@ -217,12 +217,12 @@ const SUITES: Suite[] = [
       {
         number: "02",
         problem: "Payments go out without proper review or approval",
-        snapshot: "In many small businesses, the person who processes payables also approves them. Bills get paid because someone entered them — not because a decision-maker reviewed and authorized them.",
+        snapshot: "In many small businesses, the person who processes payables also approves them. Bills get paid because someone entered them, not because a decision-maker reviewed and authorized them.",
         situation:
-          "In many small businesses, the person who processes payables is also the person who approves them. Bills get paid because someone entered them and clicked pay — not because a decision-maker reviewed and authorized them. This is a controls gap that exposes the business to errors, fraud, and cash flow surprises. At scale — 20 to 40 vendor bills per month — the cumulative financial exposure from unreviewed payables is significant.",
+          "In many small businesses, the person who processes payables is also the person who approves them. Bills get paid because someone entered them and clicked pay, not because a decision-maker reviewed and authorized them. This is a controls gap that exposes the business to errors, fraud, and cash flow surprises. At scale, 20 to 40 vendor bills per month, the cumulative financial exposure from unreviewed payables is significant.",
         fix: [
-          "Approval routing configured by rule: vendor tier, bill amount, GL category, or any combination — routine bills route differently than large one-time vendor payments",
-          "Approvers receive a Slack or Teams notification with one-click approve or reject — no login to the accounting system required",
+          "Approval routing configured by rule: vendor tier, bill amount, GL category, or any combination; routine bills route differently than large one-time vendor payments",
+          "Approvers receive a Slack or Teams notification with one-click approve or reject: no login to the accounting system required",
           "If an approval is not acted on within a configurable window, the bill escalates automatically to the next approver",
           "Every payment carries a complete audit trail: who received the bill, who approved it, when it was scheduled, and when it was paid",
         ],
@@ -236,14 +236,14 @@ const SUITES: Suite[] = [
       },
       {
         number: "03",
-        problem: "Paying late — or early — with no payment schedule",
+        problem: "Paying late, or early, with no payment schedule",
         snapshot: "Without a payment schedule tied to cash position, bills get paid when someone gets to them. Early-payment discounts go uncaptured. Occasionally something goes late, and the penalty follows.",
         situation:
-          "Without a payment schedule tied to cash position and due dates, bills get paid when someone gets to them. Sometimes that means paying early and losing the use of cash unnecessarily. Sometimes it means paying late and incurring penalties or damaging vendor relationships. Early-payment discounts — often 1–2% for paying within 10 days — go uncaptured. For a business with $50K/month in payables, that's $6,000–$12,000 in annual cash left on the table.",
+          "Without a payment schedule tied to cash position and due dates, bills get paid when someone gets to them. Sometimes that means paying early and losing the use of cash unnecessarily. Sometimes it means paying late and incurring penalties or damaging vendor relationships. Early-payment discounts, often 1–2% for paying within 10 days, go uncaptured. For a business with $50K/month in payables, that's $6,000–$12,000 in annual cash left on the table.",
         fix: [
-          "Payment scheduling optimized against due dates, available cash, and early-payment discount windows — the system recommends the most cash-efficient payment timing",
+          "Payment scheduling optimized against due dates, available cash, and early-payment discount windows: the system recommends the most cash-efficient payment timing",
           "Early-payment discount opportunities flagged automatically when the discount exceeds the cost of paying early",
-          "Scheduled payments batched and executed without manual intervention — approved once, paid on schedule",
+          "Scheduled payments batched and executed without manual intervention: approved once, paid on schedule",
           "Cash impact of the full payment queue projected forward so the business sees what its cash position will be, not just what it is today",
         ],
         outcomes: [
@@ -256,15 +256,15 @@ const SUITES: Suite[] = [
       },
       {
         number: "04",
-        problem: "No visibility into what the business owes — or when",
-        snapshot: "Knowing what's owed to vendors requires logging into the accounting system and running reports manually. Cash planning is done without a clear AP picture — which means the plan is incomplete.",
+        problem: "No visibility into what the business owes, or when",
+        snapshot: "Knowing what's owed to vendors requires logging into the accounting system and running reports manually. Cash planning is done without a clear AP picture, which means the plan is incomplete.",
         situation:
-          "The AP picture is just as important as the AR picture, but gets even less attention. Most businesses have a vague sense of what they owe based on what they can recall, not what a system tells them. Vendor calls come as surprises. Cash planning for payroll or equipment is done without accounting for outstanding payables. Running AR and AP in parallel — knowing what comes in and what goes out — is the prerequisite for genuine cash flow management.",
+          "The AP picture is just as important as the AR picture, but gets even less attention. Most businesses have a vague sense of what they owe based on what they can recall, not what a system tells them. Vendor calls come as surprises. Cash planning for payroll or equipment is done without accounting for outstanding payables. Running AR and AP in parallel, knowing what comes in and what goes out, is the prerequisite for genuine cash flow management.",
         fix: [
-          "Live AP dashboard showing every outstanding bill, due date, approval status, and scheduled payment — updated in real time",
-          "The AP view sits alongside the AR dashboard — incoming and outgoing cash visible in a single pane",
+          "Live AP dashboard showing every outstanding bill, due date, approval status, and scheduled payment: updated in real time",
+          "The AP view sits alongside the AR dashboard: incoming and outgoing cash visible in a single pane",
           "Daily push summary includes AP obligations alongside AR receivables so the owner sees net cash impact every morning",
-          "Projected cash position calculated from scheduled payments and expected receivables — forward-looking, not just historical",
+          "Projected cash position calculated from scheduled payments and expected receivables: forward-looking, not just historical",
         ],
         outcomes: [
           { value: "Real-time", label: "AP visibility alongside AR" },
@@ -281,23 +281,23 @@ const SUITES: Suite[] = [
     id: "full",
     phase: "03",
     name: "Full Accounting Suite",
-    tagline: "The entire financial operating layer — running without you.",
+    tagline: "The entire financial operating layer, running without you.",
     status: "Coming Soon",
     statusColor: "text-slate-400 bg-slate-700 border-slate-600",
     description:
-      "With AR and AP automated, the remaining friction is in the connective tissue: month-end close, cash flow forecasting, and financial reporting. The full suite completes the loop — the entire financial backbone runs automatically, and the owner gets accurate, real-time financial intelligence without the manual work that usually produces it.",
+      "With AR and AP automated, the remaining friction is in the connective tissue: month-end close, cash flow forecasting, and financial reporting. The full suite completes the loop: the entire financial backbone runs automatically, and the owner gets accurate, real-time financial intelligence without the manual work that usually produces it.",
     useCases: [
       {
         number: "01",
         problem: "Month-end close takes two weeks of manual work",
         snapshot: "Every month-end: reconcile bank against accounting system, chase missing receipts, correct miscodes, produce a P&L that's already stale. The process takes 10–14 days of staff time.",
         situation:
-          "Every month, the same ritual: reconcile the bank statement against the accounting system, chase down missing receipts, correct GL miscodes, and produce a P&L that is already stale by the time anyone reads it. The process takes 10–14 days, consumes staff time that could go toward revenue-generating work, and produces a snapshot of the past rather than a view of the present. When AR and AP are automated, the vast majority of transactions are already categorized, matched, and recorded in real time — close becomes validation rather than reconstruction.",
+          "Every month, the same ritual: reconcile the bank statement against the accounting system, chase down missing receipts, correct GL miscodes, and produce a P&L that is already stale by the time anyone reads it. The process takes 10–14 days, consumes staff time that could go toward revenue-generating work, and produces a snapshot of the past rather than a view of the present. When AR and AP are automated, the vast majority of transactions are already categorized, matched, and recorded in real time: close becomes validation rather than reconstruction.",
         fix: [
-          "With AR and AP transactions recorded automatically as they occur, reconciliation is reduced to anomaly review — not line-by-line matching",
+          "With AR and AP transactions recorded automatically as they occur, reconciliation is reduced to anomaly review: not line-by-line matching",
           "Bank feed integration flags discrepancies between recorded transactions and actual bank activity in real time, not at month-end",
           "GL coding applied at transaction origination means corrections are rare rather than routine",
-          "Month-end package — P&L, balance sheet, cash flow statement — generated automatically with one-click review",
+          "Month-end package: P&L, balance sheet, cash flow statement, generated automatically with one-click review",
         ],
         outcomes: [
           { value: "3 days", label: "month-end close (vs. 14-day manual)" },
@@ -312,11 +312,11 @@ const SUITES: Suite[] = [
         problem: "Cash flow forecasting is built on guesswork",
         snapshot: "Projecting next month's cash position means combining remembered invoices with estimated payables and a rough sense of revenue. The output might be right to within $20,000.",
         situation:
-          "Projecting next month's cash position means combining what you remember about outstanding invoices with what you think you owe vendors, adjusted for payroll timing, with a rough estimate of what the month's revenue will look like. The output is a number that might be right to within $20,000. Planning for equipment, hiring, or growth on that basis is inherently risky. A business with automated AR and AP is already generating the data required for an accurate forecast — the forecast builds itself from data that already exists.",
+          "Projecting next month's cash position means combining what you remember about outstanding invoices with what you think you owe vendors, adjusted for payroll timing, with a rough estimate of what the month's revenue will look like. The output is a number that might be right to within $20,000. Planning for equipment, hiring, or growth on that basis is inherently risky. A business with automated AR and AP is already generating the data required for an accurate forecast: the forecast builds itself from data that already exists.",
         fix: [
-          "90-day rolling cash flow forecast built from actual AR pipeline, AP payment schedule, and bank balance — not spreadsheet guesswork",
+          "90-day rolling cash flow forecast built from actual AR pipeline, AP payment schedule, and bank balance: not spreadsheet guesswork",
           "Expected receipts projected based on historical payment patterns and outstanding invoice ages",
-          "Scheduled AP payments pulled directly from the payment queue — no manual input required",
+          "Scheduled AP payments pulled directly from the payment queue: no manual input required",
           "Sensitivity scenarios modeled automatically: what the cash position looks like if 10% of outstanding AR pays 30 days late",
         ],
         outcomes: [
@@ -329,15 +329,15 @@ const SUITES: Suite[] = [
       },
       {
         number: "03",
-        problem: "Financial reporting is always behind — and never quite accurate",
+        problem: "Financial reporting is always behind, and never quite accurate",
         snapshot: "Reports reach the owner a week after month-end, built from exported data that was stale when it was pulled. Decisions about the present are made using data from the past.",
         situation:
-          "Reports reach the owner a week after month-end, built from exported data that was already stale when it was pulled. The process involves manual adjustments, restatements, and corrections that introduce their own errors. By the time a decision is made, two more weeks have passed. Owners of service businesses typically spend fewer than 2 hours per month reviewing financial data — not because they don't care, but because access to current, reliable financial information requires too much friction. Remove the friction and the data gets used.",
+          "Reports reach the owner a week after month-end, built from exported data that was already stale when it was pulled. The process involves manual adjustments, restatements, and corrections that introduce their own errors. By the time a decision is made, two more weeks have passed. Owners of service businesses typically spend fewer than 2 hours per month reviewing financial data, not because they don't care, but because access to current, reliable financial information requires too much friction. Remove the friction and the data gets used.",
         fix: [
-          "Live AR/AP dashboards and transaction-level reporting built from live data — fully reviewed financial statements ready in days, not weeks",
-          "Owner-facing summary pushed daily alongside the AR digest — key financial metrics in a 30-second read",
+          "Live AR/AP dashboards and transaction-level reporting built from live data: fully reviewed financial statements ready in days, not weeks",
+          "Owner-facing summary pushed daily alongside the AR digest: key financial metrics in a 30-second read",
           "Custom report templates for the business's specific needs: margin by client, revenue by service line, cost by project",
-          "Accountant access to the same real-time data — significantly reducing the year-end data-gathering burden before tax preparation",
+          "Accountant access to the same real-time data: significantly reducing the year-end data-gathering burden before tax preparation",
         ],
         outcomes: [
           { value: "Days, not weeks", label: "to fully adjusted financial statements" },
@@ -354,7 +354,7 @@ const SUITES: Suite[] = [
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
 function shortLabel(problem: string): string {
-  return problem.split("—")[0].split(".")[0].split(",")[0].trim().split(" ").slice(0, 3).join(" ");
+  return problem.split(".")[0].split(",")[0].trim().split(" ").slice(0, 3).join(" ");
 }
 
 
@@ -370,6 +370,7 @@ function DesktopSuite({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const currentIdxRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -381,6 +382,7 @@ function DesktopSuite({
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+      setScrollProgress(progress);
       const newIdx = Math.min(suite.useCases.length - 1, Math.floor(progress * suite.useCases.length));
       if (newIdx === currentIdxRef.current) return;
       currentIdxRef.current = newIdx;
@@ -413,11 +415,11 @@ function DesktopSuite({
     <div
       ref={(el) => { containerRef.current = el; sectionRef(el); }}
       id={suite.id}
-      style={{ height: `${suite.useCases.length * 100}vh` }}
+      style={{ height: `${suite.useCases.length * 70}vh` }}
     >
       {/* sticky panel sits below nav (64px) + suite tab bar (~48px) */}
       <div
-        className="sticky bg-slate-950 flex flex-col overflow-hidden"
+        className="relative sticky bg-slate-950 flex flex-col overflow-hidden"
         style={{ top: "112px", height: "calc(100vh - 112px)" }}
       >
 
@@ -527,6 +529,10 @@ function DesktopSuite({
             </button>
           ))}
         </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-slate-800 pointer-events-none">
+          <div className="h-full bg-blue-500" style={{ width: `${scrollProgress * 100}%`, transition: "width 80ms linear" }} />
+        </div>
       </div>
     </div>
   );
@@ -552,11 +558,21 @@ function MobileSuite({
       const container = containerRef.current;
       if (!container) return;
       const rect = container.getBoundingClientRect();
-      const scrollableHeight = container.offsetHeight - window.innerHeight;
+      const vh = document.documentElement.clientHeight;
+      const scrollableHeight = container.offsetHeight - vh;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
-      const newIdx = Math.min(suite.useCases.length - 1, Math.floor(progress * suite.useCases.length));
-      if (newIdx === currentIdxRef.current) return;
+      const N = suite.useCases.length;
+      const current = currentIdxRef.current;
+      const forwardThreshold = (current + 1.15) / N;
+      const backwardThreshold = current / N;
+      let newIdx = current;
+      if (progress >= forwardThreshold && current < N - 1) {
+        newIdx = current + 1;
+      } else if (progress < backwardThreshold && current > 0) {
+        newIdx = current - 1;
+      }
+      if (newIdx === current) return;
       currentIdxRef.current = newIdx;
       setVisible(false);
       if (timerRef.current) clearTimeout(timerRef.current);

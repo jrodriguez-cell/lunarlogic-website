@@ -68,7 +68,7 @@ const faqs = [
   },
   {
     q: "Do I need to change my accounting software?",
-    a: "No. LunarLogic connects to the accounting system you already use — QuickBooks, NetSuite, Sage Intacct, Xero, and others. Your existing customers, chart of accounts, and historical data stay exactly where they are.",
+    a: "No. LunarLogic connects to the accounting system you already use: QuickBooks, NetSuite, Sage Intacct, Xero, and others. Your existing customers, chart of accounts, and historical data stay exactly where they are.",
   },
   {
     q: "How does the approval workflow work?",
@@ -168,7 +168,7 @@ export default function PricingPage() {
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                 </svg>
                               ) : (
-                                <span className="text-slate-600">—</span>
+                                <span className="text-slate-600">–</span>
                               )
                             ) : (
                               <span className={tier === "professional" ? "text-blue-400 font-medium" : "text-slate-300"}>{val}</span>

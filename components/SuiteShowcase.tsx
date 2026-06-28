@@ -196,7 +196,7 @@ const chapters = [
     statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
     label: "AR Automation Suite",
     title: "The complete invoice-to-cash cycle. Running automatically.",
-    body: "From sales order to collected cash — every step handled by the system. Invoices dispatched in seconds, reminders run every weekday, payments matched by AI. No AR clerk, no follow-up calls, no manual data entry.",
+    body: "From sales order to collected cash: every step handled by the system. Invoices dispatched in seconds, reminders run every weekday, payments matched by AI. No AR clerk, no follow-up calls, no manual data entry.",
     stat: { value: "40%", label: "average DSO reduction" },
     mockup: <ARMockup />,
   },
@@ -205,7 +205,7 @@ const chapters = [
     status: "In Development",
     statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
     label: "AP Automation Suite",
-    title: "Your payables — organized, approved, and paid on schedule.",
+    title: "Your payables: organized, approved, and paid on schedule.",
     body: "Vendor bills captured automatically, routed for approval, scheduled for payment. Your outgoing cash becomes just as predictable as your incoming cash. Nothing paid early. Nothing paid late. Nothing paid without the right sign-off.",
     stat: { value: "0", label: "manual bill entry required" },
     mockup: <APMockup />,
@@ -216,7 +216,7 @@ const chapters = [
     statusColor: "text-slate-400 bg-slate-700 border-slate-600",
     label: "Full Accounting Suite",
     title: "The entire financial operating layer. Running without you.",
-    body: "With AR and AP automated, the full suite closes the loop — cash flow forecasting, accelerated month-end close, payroll sync, and real-time financial reporting. The entire financial backbone of your business, running on its own.",
+    body: "With AR and AP automated, the full suite closes the loop: cash flow forecasting, accelerated month-end close, payroll sync, and real-time financial reporting. The entire financial backbone of your business, running on its own.",
     stat: { value: "3 days", label: "to close vs. 14-day manual" },
     mockup: <FullSuiteMockup />,
   },
@@ -251,6 +251,7 @@ function DesktopShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -260,6 +261,7 @@ function DesktopShowcase() {
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+      setScrollProgress(progress);
       const newChapter = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
       setActiveChapter(prev => {
         if (prev !== newChapter) {
@@ -276,8 +278,8 @@ function DesktopShowcase() {
   const chapter = chapters[activeChapter];
 
   return (
-    <div ref={containerRef} style={{ height: `${chapters.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
+    <div ref={containerRef} style={{ height: `${chapters.length * 70}vh` }}>
+      <div className="relative sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
         <div className="flex-shrink-0 pt-10 pb-4 text-center">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">The Platform</p>
         </div>
@@ -332,6 +334,10 @@ function DesktopShowcase() {
               </span>
             </button>
           ))}
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-slate-800 pointer-events-none">
+          <div className="h-full bg-blue-500" style={{ width: `${scrollProgress * 100}%`, transition: "width 80ms linear" }} />
         </div>
       </div>
     </div>

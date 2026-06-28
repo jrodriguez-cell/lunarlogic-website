@@ -7,7 +7,7 @@ import UseCaseShowcase from "@/components/UseCaseShowcase";
 export const metadata: Metadata = {
   title: "Use Cases",
   description:
-    "Every AR, AP, and accounting problem LunarLogic was built to solve — and what the business looks like after.",
+    "Every AR, AP, and accounting problem LunarLogic was built to solve, and what the business looks like after.",
 };
 
 const SUITE_NAV = [
@@ -28,8 +28,8 @@ export default function UseCasesPage() {
               Every accounting problem we were built to solve.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              LunarLogic automates the financial operating layer of owner-operated service businesses — module by module,
-              starting with AR — until the entire cycle runs without manual intervention. These are the problems that make
+              LunarLogic automates the financial operating layer of owner-operated service businesses, module by module,
+              starting with AR, until the entire cycle runs without manual intervention. These are the problems that make
               that necessary, and what changes when each one is solved.
             </p>
           </ScrollReveal>
@@ -68,7 +68,7 @@ export default function UseCasesPage() {
               These aren&apos;t hypotheticals.
             </h2>
             <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-              The AR use cases above map directly to live client outcomes — with real company names, real timelines,
+              The AR use cases above map directly to live client outcomes, with real company names, real timelines,
               and real numbers. Read the case studies to see them in practice.
             </p>
             <Link

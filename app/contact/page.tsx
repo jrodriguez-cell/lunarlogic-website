@@ -63,7 +63,7 @@ export default function ContactPage() {
                       "Live walkthrough of LunarLogic workflows",
                       "Custom DSO reduction estimate",
                       "Pricing recommendation for your volume",
-                      "No obligation — no hard sell",
+                      "No obligation, no hard sell",
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">
                         <svg className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

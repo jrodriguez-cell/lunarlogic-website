@@ -22,7 +22,7 @@ export default function CaseStudiesPage() {
               Real numbers. Real firms.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              LunarLogic clients are not cutting days off their DSO in theory — these results are live in production.
+              LunarLogic clients are not cutting days off their DSO in theory. These results are live in production.
             </p>
           </ScrollReveal>
 
@@ -54,7 +54,7 @@ export default function CaseStudiesPage() {
           <ScrollReveal animation="fade-up">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your firm could be next</h2>
             <p className="text-slate-400 mb-8">
-              Professional services firms with 8–20 employees and a recurring invoice model are the right fit —
+              Professional services firms with 8–20 employees and a recurring invoice model are the right fit,
               regardless of which accounting platform you run. We can estimate your DSO improvement before we ever
               charge you a dollar.
             </p>

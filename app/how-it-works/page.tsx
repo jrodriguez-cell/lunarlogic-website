@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "LunarLogic automates the full accounting cycle for owner-operated service businesses — module by module, starting with AR. Platform-agnostic. Works with the tools you already use.",
+    "LunarLogic automates the full accounting cycle for owner-operated service businesses, module by module, starting with AR. Platform-agnostic. Works with the tools you already use.",
 };
 
 const integrationCategories = [
@@ -67,8 +67,8 @@ export default function HowItWorksPage() {
               Module by module. Starting with AR.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              LunarLogic modernizes the accounting infrastructure of owner-operated service businesses — one suite at a
-              time — until the entire financial operating layer runs automatically. Works with the platforms you already use.
+              LunarLogic modernizes the accounting infrastructure of owner-operated service businesses, one suite at a
+              time, until the entire financial operating layer runs automatically. Works with the platforms you already use.
             </p>
           </ScrollReveal>
         </div>
@@ -88,7 +88,7 @@ export default function HowItWorksPage() {
               </h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
                 LunarLogic is not tied to any single accounting platform. We connect to your existing ERP or accounting
-                software and build the automation layer on top — no migration, no rip-and-replace, no retraining.
+                software and build the automation layer on top: no migration, no rip-and-replace, no retraining.
               </p>
             </div>
           </ScrollReveal>
@@ -132,11 +132,11 @@ export default function HowItWorksPage() {
             <p className="text-lg text-slate-300 leading-relaxed mb-4">
               AR is where the money is closest to the surface. You&apos;ve already done the work. The invoices exist.
               The cash is legally owed. The only thing standing between you and a faster bank balance is a consistent
-              system for collecting it — and that&apos;s exactly what LunarLogic builds first.
+              system for collecting it, and that&apos;s exactly what LunarLogic builds first.
             </p>
             <p className="text-slate-400 leading-relaxed">
               Most owners see meaningful DSO compression within 60 days. Once cash flow is predictable and collections
-              run automatically, expanding into AP and beyond is a natural next step — not a leap of faith.
+              run automatically, expanding into AP and beyond is a natural next step, not a leap of faith.
             </p>
           </ScrollReveal>
         </div>
@@ -144,7 +144,7 @@ export default function HowItWorksPage() {
 
       <CTASection
         heading="See exactly what LunarLogic would do for your numbers"
-        subheading="Answer 4 quick questions and get a personalized AR dashboard built around your invoice volume, payment terms, and DSO — generated instantly."
+        subheading="Answer 4 quick questions and get a personalized AR dashboard built around your invoice volume, payment terms, and DSO, generated instantly."
         ctaText="Calculate My DSO →"
         ctaHref="/calculate"
       />

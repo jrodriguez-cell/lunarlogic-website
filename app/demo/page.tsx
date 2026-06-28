@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import DemoDashboard from "./DemoDashboard";
 
 export const metadata = {
-  title: "Your DSO Dashboard — LunarLogic",
+  title: "Your DSO Dashboard: LunarLogic",
   description: "A personalized AR dashboard built from your inputs.",
 };
 

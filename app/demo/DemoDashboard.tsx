@@ -257,7 +257,7 @@ export default function DemoDashboard() {
         <p className="text-xs text-blue-300 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse flex-shrink-0" />
           <span>
-            <strong>Demo mode</strong> — This dashboard is populated with data based on your inputs.
+            <strong>Demo mode</strong>: This dashboard is populated with data based on your inputs.
             Numbers are illustrative of what LunarLogic delivers.
           </span>
         </p>
@@ -309,7 +309,7 @@ export default function DemoDashboard() {
       {/* Welcome */}
       <div className="bg-slate-900/50 border-b border-slate-800 px-4 sm:px-6 py-4">
         <p className="text-sm text-slate-300">
-          Hey {firstName} — here&apos;s what LunarLogic would look like for{" "}
+          Hey {firstName}, here&apos;s what LunarLogic would look like for{" "}
           <span className="text-white font-semibold">{company}</span> based on your numbers.
         </p>
       </div>
@@ -448,7 +448,7 @@ export default function DemoDashboard() {
             {/* Bottom CTA */}
             <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/20 rounded-2xl p-8 text-center">
               <p className="text-xl font-extrabold text-white mb-2">
-                ${(cashUnlocked * 12).toLocaleString()} in working capital — already earned, waiting to be collected.
+                ${(cashUnlocked * 12).toLocaleString()} in working capital, already earned, waiting to be collected.
               </p>
               <p className="text-slate-400 text-sm mb-6">
                 This dashboard is built on your numbers. The real version runs live against your accounting software.
@@ -522,7 +522,7 @@ export default function DemoDashboard() {
                 </span>
               </div>
               <p className="text-sm text-slate-400 mb-5">
-                Invoices past 25 days overdue are analyzed for payment patterns. LunarLogic surfaces which accounts need direct intervention — vs. those that just need another reminder.
+                Invoices past 25 days overdue are analyzed for payment patterns. LunarLogic surfaces which accounts need direct intervention vs. those that just need another reminder.
               </p>
 
               {disputeInvoices.length === 0 ? (
@@ -560,13 +560,13 @@ export default function DemoDashboard() {
                             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400 mb-3">
                               <span className="text-white font-semibold">${inv.amount.toLocaleString()}</span>
                               <span className="text-red-400 font-medium">{inv.daysOverdue} days overdue</span>
-                              <span>{inv.reminderCount} reminder{inv.reminderCount !== 1 ? "s" : ""} sent — no response</span>
+                              <span>{inv.reminderCount} reminder{inv.reminderCount !== 1 ? "s" : ""} sent, no response</span>
                             </div>
                             <p className="text-xs text-slate-400 bg-slate-900/60 rounded-lg px-3 py-2 border border-slate-700/50">
                               <span className="text-blue-300 font-semibold">AI analysis:</span>{" "}
                               This account is paying {urgencyMultiplier}× their historical average delay.{" "}
                               {callRequired
-                                ? "Pattern suggests a billing dispute or cash flow issue — direct call recommended before escalation."
+                                ? "Pattern suggests a billing dispute or cash flow issue. Direct call recommended before escalation."
                                 : "Escalated reminder with revised payment schedule offer has highest predicted response rate."}
                             </p>
                           </div>
@@ -717,7 +717,7 @@ export default function DemoDashboard() {
                             {inv.daysOverdue > 0 && status !== "Paid" ? (
                               <span className="text-red-400 text-xs font-medium">{inv.daysOverdue}d overdue</span>
                             ) : (
-                              <span className="text-slate-600 text-xs">—</span>
+                              <span className="text-slate-600 text-xs">–</span>
                             )}
                           </td>
                           <td className="px-5 py-3.5">
@@ -747,7 +747,7 @@ export default function DemoDashboard() {
                                 </button>
                               )}
                               {status === "Paid" && (
-                                <span className="text-xs text-slate-600">—</span>
+                                <span className="text-xs text-slate-600">–</span>
                               )}
                               {status === "Draft" && (
                                 <button
@@ -796,11 +796,11 @@ export default function DemoDashboard() {
             <div className="space-y-3">
               {overdueInvoices.map((inv) => {
                 const stages = [
-                  { label: "Day 3 — Friendly nudge",    nextLabel: "Day 7 follow-up",    days: 3 },
-                  { label: "Day 7 — Follow-up",          nextLabel: "Day 14 escalation",  days: 7 },
-                  { label: "Day 14 — Escalation",        nextLabel: "Day 21 urgent",      days: 14 },
-                  { label: "Day 21 — Urgent notice",     nextLabel: "Final notice",       days: 21 },
-                  { label: "Day 30 — Final notice",      nextLabel: "Escalate to owner",  days: 30 },
+                  { label: "Day 3: Friendly nudge",    nextLabel: "Day 7 follow-up",    days: 3 },
+                  { label: "Day 7: Follow-up",          nextLabel: "Day 14 escalation",  days: 7 },
+                  { label: "Day 14: Escalation",        nextLabel: "Day 21 urgent",      days: 14 },
+                  { label: "Day 21: Urgent notice",     nextLabel: "Final notice",       days: 21 },
+                  { label: "Day 30: Final notice",      nextLabel: "Escalate to owner",  days: 30 },
                 ];
                 const stageIdx = Math.min(Math.floor(inv.daysOverdue / 7), 4);
                 const stage = stages[stageIdx];
@@ -928,7 +928,7 @@ export default function DemoDashboard() {
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
-                  Export PDF — Full Version
+                  Export PDF: Full Version
                 </button>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">

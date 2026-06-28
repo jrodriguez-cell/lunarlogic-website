@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import FeatureShowcase from "@/components/FeatureShowcase";
 
 export const metadata: Metadata = {
-  title: "LunarLogic — We turn what you have already earned into cash in your bank account.",
+  title: "LunarLogic: We turn what you have already earned into cash in your bank account.",
   description:
     "LunarLogic automates the full Order-to-Cash cycle for owner-operated service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
 };
@@ -50,12 +50,12 @@ export default function HomePage() {
                   Revenue is recognized. Cash is the reality.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  82% of small business failures are caused by cash flow problems — not lack of revenue. The money is
+                  82% of small business failures are caused by cash flow problems, not lack of revenue. The money is
                   already earned. It is legally owed. It is sitting in your aging report instead of your bank account.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
                   The AR problem is not a technology problem. The tools have existed for years. What has not existed
-                  is a partner willing to go into a service business and deploy that technology permanently — without
+                  is a partner willing to go into a service business and deploy that technology permanently, without
                   ongoing consulting involvement.
                 </p>
                 <Link
@@ -81,7 +81,7 @@ export default function HomePage() {
                 },
                 {
                   title: "No systematic follow-up",
-                  body: "Businesses without consistent, escalating follow-up always get paid last — regardless of relationship or invoice size.",
+                  body: "Businesses without consistent, escalating follow-up always get paid last, regardless of relationship or invoice size.",
                 },
                 {
                   title: "No real-time visibility",
@@ -119,7 +119,7 @@ export default function HomePage() {
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
                 DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in cash freed from outstanding
-                receivables — not from new revenue, but from money that was already earned and sitting uncollected.
+                receivables, not from new revenue, but from money that was already earned and sitting uncollected.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -127,7 +127,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-white font-semibold text-sm">Kaptain Clean LLC</p>
-                  <p className="text-slate-400 text-xs">Commercial Cleaning — Charlotte, NC</p>
+                  <p className="text-slate-400 text-xs">Commercial Cleaning, Charlotte, NC</p>
                 </div>
               </div>
             </blockquote>

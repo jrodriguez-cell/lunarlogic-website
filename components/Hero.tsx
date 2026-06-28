@@ -50,12 +50,12 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          The money is already there — legally owed, sitting in your aging report. LunarLogic collects it. No manual follow-up. No chasing.
+          The money is already there, legally owed and sitting in your aging report. LunarLogic collects it. No manual follow-up. No chasing.
         </p>
 
         {/* Tagline */}
         <p className="mt-4 text-base text-slate-500 italic max-w-xl mx-auto">
-          So you can rest assured — your accounting is working while you sleep.
+          So you can rest assured, your accounting is working while you sleep.
         </p>
 
         {/* CTAs */}

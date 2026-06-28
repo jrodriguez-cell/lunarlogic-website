@@ -98,7 +98,7 @@ function KaptainCleanMockup() {
         <p className="text-xs text-slate-300 italic leading-relaxed">
           &ldquo;I feel like I finally own my business again.&rdquo;
         </p>
-        <p className="text-xs text-slate-500 mt-2">— Kaptain Clean LLC</p>
+        <p className="text-xs text-slate-500 mt-2">- Kaptain Clean LLC</p>
       </div>
     </div>
   );
@@ -142,7 +142,7 @@ function MeridianMockup() {
         <p className="text-xs text-slate-300 italic leading-relaxed">
           &ldquo;Project managers were spending Fridays chasing invoices instead of closing new work. That stopped the week we went live.&rdquo;
         </p>
-        <p className="text-xs text-slate-500 mt-2">— Operations Director, Meridian Field Services</p>
+        <p className="text-xs text-slate-500 mt-2">- Operations Director, Meridian Field Services</p>
       </div>
     </div>
   );
@@ -186,7 +186,7 @@ function HalloranMockup() {
         <p className="text-xs text-slate-300 italic leading-relaxed">
           &ldquo;We had $18,000 written off last year. This year we haven&apos;t written off a dollar.&rdquo;
         </p>
-        <p className="text-xs text-slate-500 mt-2">— Managing Partner, Halloran Consulting Group</p>
+        <p className="text-xs text-slate-500 mt-2">- Managing Partner, Halloran Consulting Group</p>
       </div>
     </div>
   );
@@ -200,7 +200,7 @@ const chapters = [
     label: "Kaptain Clean LLC",
     industry: "Commercial Cleaning",
     title: "19 days of DSO. Gone in 60 days.",
-    body: "Manual invoicing, no systematic follow-up, growing client base. DSO crept to 52 days. LunarLogic deployed the full AR suite and within two billing cycles, $65,000 in cash was permanently freed from outstanding receivables — not from new revenue, from money already owed.",
+    body: "Manual invoicing, no systematic follow-up, growing client base. DSO crept to 52 days. LunarLogic deployed the full AR suite and within two billing cycles, $65,000 in cash was permanently freed from outstanding receivables, not from new revenue but from money already owed.",
     stat: { value: "19 days", label: "DSO reduction" },
     mockup: <KaptainCleanMockup />,
   },

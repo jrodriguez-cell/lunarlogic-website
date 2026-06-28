@@ -27,7 +27,7 @@ function InvoiceMockup() {
           </div>
         </div>
 
-        <p className="text-white font-semibold text-sm mb-1">Job Complete — Acme Corp</p>
+        <p className="text-white font-semibold text-sm mb-1">Job Complete: Acme Corp</p>
         <div className="border-l-2 border-blue-500/40 pl-3 mb-4 space-y-1">
           <div className="flex justify-between text-xs">
             <span className="text-slate-400">Monthly service</span>
@@ -97,8 +97,8 @@ function ReminderMockup() {
     { day: "Day 3",  label: "Friendly nudge",        status: "sent",   time: "Mon 9:02 AM" },
     { day: "Day 7",  label: "Follow-up",              status: "sent",   time: "Fri 9:01 AM" },
     { day: "Day 14", label: "Escalation",             status: "sent",   time: "Fri 9:03 AM" },
-    { day: "Day 21", label: "Urgent — past due",      status: "queued", time: "Next Mon" },
-    { day: "Day 30", label: "Final notice",           status: "future", time: "—" },
+    { day: "Day 21", label: "Urgent: past due",       status: "queued", time: "Next Mon" },
+    { day: "Day 30", label: "Final notice",           status: "future", time: "–" },
   ];
 
   return (
@@ -260,7 +260,7 @@ function CashMockup() {
           <div className={`flex items-center gap-3 bg-slate-700/40 rounded-xl p-3 border transition-colors ${matched ? "border-green-500/30" : "border-slate-600"}`}>
             <div className={`w-2 h-2 rounded-full flex-shrink-0 ${matched ? "bg-green-400" : "bg-slate-500"}`} />
             <div>
-              <p className="text-slate-200 text-xs font-medium">Invoice #1042 — $4,200.00</p>
+              <p className="text-slate-200 text-xs font-medium">Invoice #1042: $4,200.00</p>
               <p className="text-slate-500 text-xs">Acme Corp · Due Mar 15</p>
             </div>
           </div>
@@ -274,7 +274,7 @@ function CashMockup() {
             <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <p className="text-green-400 font-semibold text-sm">Auto-applied — no action needed</p>
+            <p className="text-green-400 font-semibold text-sm">Auto-applied, no action needed</p>
           </div>
           <p className="text-slate-400 text-xs">Invoice #1042 marked paid. QuickBooks updated automatically.</p>
         </div>
@@ -295,7 +295,7 @@ const chapters = [
     step: "01",
     label: "Invoice Creation",
     title: "Job complete. Invoice out.",
-    body: "The moment a job is marked complete, LunarLogic generates the invoice, pulls the correct client details, and sends it — automatically. No manual entry, no delay, no billing that slips through the cracks because someone was busy.",
+    body: "The moment a job is marked complete, LunarLogic generates the invoice, pulls the correct client details, and sends it automatically. No manual entry, no delay, no billing that slips through the cracks because someone was busy.",
     stat: { value: "84%", label: "faster invoice processing" },
     mockup: <InvoiceMockup />,
   },
@@ -303,7 +303,7 @@ const chapters = [
     step: "02",
     label: "Payment Reminders",
     title: "Stop sending the same email. Again.",
-    body: "Every overdue invoice triggers an automatic reminder sequence — Day 3, 7, 14, 21 — professionally worded, sent from your business. Clients who always pay late get pressure. Long-standing relationships get a lighter touch. You get out of the follow-up business entirely.",
+    body: "Every overdue invoice triggers an automatic reminder sequence on Day 3, 7, 14, and 21, professionally worded, sent from your business. Clients who always pay late get pressure. Long-standing relationships get a lighter touch. You get out of the follow-up business entirely.",
     stat: { value: "0", label: "manual follow-up calls" },
     mockup: <ReminderMockup />,
   },
@@ -311,14 +311,14 @@ const chapters = [
     step: "03",
     label: "Cash Application",
     title: "Payments matched and applied by AI.",
-    body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence — applied automatically, your accounting system updated, done. Below that threshold, you get a one-click prompt. Unapplied cash doesn't age in the system unclaimed.",
+    body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence, applied automatically, your accounting system updated, done. Below that threshold, you get a one-click prompt. Unapplied cash doesn't age in the system unclaimed.",
     stat: { value: "91%", label: "of payments auto-applied" },
     mockup: <CashMockup />,
   },
   {
     step: "04",
     label: "AR Dashboard",
-    title: "Your DSO — live, not at month-end.",
+    title: "Your DSO: live, not at month-end.",
     body: "A real-time dashboard shows your DSO trend, aging buckets, and which clients are drifting late. The go-live date is annotated on the trend line so you see exactly when the curve started bending down. That line is the ROI.",
     stat: { value: "19", label: "day DSO reduction (Kaptain Clean)" },
     mockup: <DashboardMockup />,
@@ -332,6 +332,7 @@ function DesktopShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -341,6 +342,7 @@ function DesktopShowcase() {
       const scrollableHeight = container.offsetHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+      setScrollProgress(progress);
       const newChapter = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
       setActiveChapter(prev => {
         if (prev !== newChapter) {
@@ -357,8 +359,8 @@ function DesktopShowcase() {
   const chapter = chapters[activeChapter];
 
   return (
-    <div ref={containerRef} style={{ height: `${chapters.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
+    <div ref={containerRef} style={{ height: `${chapters.length * 70}vh` }}>
+      <div className="relative sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
         <div className="flex-shrink-0 pt-10 pb-4 text-center">
           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">How It Works</p>
         </div>
@@ -412,6 +414,10 @@ function DesktopShowcase() {
               </span>
             </button>
           ))}
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-slate-800 pointer-events-none">
+          <div className="h-full bg-blue-500" style={{ width: `${scrollProgress * 100}%`, transition: "width 80ms linear" }} />
         </div>
       </div>
     </div>
