@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth overflow-x-hidden">
-      <body className="antialiased bg-slate-950 text-white min-h-screen flex flex-col overflow-x-hidden">
+    <html lang="en" className="scroll-smooth overflow-x-clip">
+      <body className="antialiased bg-slate-950 text-white min-h-screen flex flex-col overflow-x-clip">
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
