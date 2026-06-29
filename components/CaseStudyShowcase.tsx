@@ -9,26 +9,52 @@ function DSOChart({
   after,
   color,
   goLiveAt,
+  variant = 0,
 }: {
   before: number;
   after: number;
   color: string;
   goLiveAt: number;
+  variant?: number;
 }) {
-  const total = 10;
+  const total = 12;
   const pts = Array.from({ length: total + 1 }, (_, i) => {
     const t = i / total;
     if (t < goLiveAt) {
-      const jitter = Math.sin(i * 2.4) * 2;
-      return before + jitter;
+      if (variant === 0) {
+        // KC: volatile/bouncy before go-live — inconsistent payment behavior
+        return before + Math.sin(i * 2.4) * 3.2 + Math.cos(i * 1.1) * 1.6;
+      } else if (variant === 1) {
+        // MF: slow upward drift — DSO gradually worsening before intervention
+        const drift = (t / goLiveAt) * 5;
+        return before - 5 + drift + Math.sin(i * 1.6 + 0.8) * 1.4;
+      } else {
+        // HC: flat and elevated — consistent but chronically late payers
+        return before + Math.sin(i * 0.8 + 2.0) * 1.3 + Math.cos(i * 1.9) * 0.6;
+      }
     }
     const progress = (t - goLiveAt) / (1 - goLiveAt);
-    const eased = 1 - Math.pow(1 - progress, 2);
-    return before - (before - after) * eased + Math.sin(i * 1.7) * 0.8;
+    let eased: number;
+    if (variant === 0) {
+      // KC: quick steep drop then stabilizes
+      eased = 1 - Math.pow(1 - progress, 2);
+    } else if (variant === 1) {
+      // MF: more gradual, linear-ish recovery
+      eased = 1 - Math.pow(1 - progress, 1.4);
+    } else {
+      // HC: fast initial drop, very clean
+      eased = 1 - Math.pow(1 - progress, 2.8);
+    }
+    const postJitter = variant === 0
+      ? Math.sin(i * 1.7) * 0.9
+      : variant === 1
+      ? Math.sin(i * 2.3 + 1.2) * 1.1
+      : Math.sin(i * 1.1 + 3.0) * 0.4;
+    return before - (before - after) * eased + postJitter;
   });
 
   const minY = after - 4;
-  const maxY = before + 6;
+  const maxY = before + 8;
   const range = maxY - minY;
   const svgH = 64;
   const svgW = 200;
@@ -39,6 +65,7 @@ function DSOChart({
   const pathD = pts.map((v, i) => `${i === 0 ? "M" : "L"}${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
   const areaD = `${pathD} L${svgW},${svgH} L0,${svgH} Z`;
   const glX = (goLiveAt * svgW).toFixed(1);
+  const glXPct = `${(goLiveAt * 100).toFixed(1)}%`;
 
   return (
     <div className="relative h-16">
@@ -52,8 +79,14 @@ function DSOChart({
         <path d={areaD} fill={`url(#grad-${color})`} />
         <path d={pathD} fill="none" stroke="rgb(59,130,246)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <line x1={glX} y1="0" x2={glX} y2={svgH} stroke="rgb(34,197,94)" strokeWidth="1" strokeDasharray="3,2" />
-        <text x={parseFloat(glX) + 3} y="12" fill="rgb(34,197,94)" fontSize="7" fontFamily="sans-serif">Go-live</text>
       </svg>
+      {/* Label outside SVG — avoids stretch from preserveAspectRatio="none" */}
+      <div
+        className="absolute top-0.5 text-green-400 font-medium leading-none"
+        style={{ left: `calc(${glXPct} + 3px)`, fontSize: "9px" }}
+      >
+        Go-live
+      </div>
     </div>
   );
 }
@@ -75,7 +108,7 @@ function KaptainCleanMockup() {
         </div>
 
         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">DSO Trend</p>
-        <DSOChart before={52} after={33} color="kc" goLiveAt={0.4} />
+        <DSOChart before={52} after={33} color="kc" goLiveAt={0.4} variant={0} />
         <div className="flex justify-between text-xs mt-2">
           <span className="text-slate-500">Before: 52 days</span>
           <span className="text-blue-400 font-semibold">After: 33 days</span>
@@ -119,7 +152,7 @@ function MeridianMockup() {
         </div>
 
         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">DSO Trend</p>
-        <DSOChart before={61} after={37} color="mf" goLiveAt={0.45} />
+        <DSOChart before={61} after={37} color="mf" goLiveAt={0.45} variant={1} />
         <div className="flex justify-between text-xs mt-2">
           <span className="text-slate-500">Before: 61 days</span>
           <span className="text-emerald-400 font-semibold">After: 37 days</span>
@@ -163,7 +196,7 @@ function HalloranMockup() {
         </div>
 
         <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">DSO Trend</p>
-        <DSOChart before={48} after={32} color="hc" goLiveAt={0.5} />
+        <DSOChart before={48} after={32} color="hc" goLiveAt={0.5} variant={2} />
         <div className="flex justify-between text-xs mt-2">
           <span className="text-slate-500">Before: 48 days</span>
           <span className="text-violet-400 font-semibold">After: 32 days</span>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const INDUSTRIES = [
   "Commercial Cleaning",
@@ -109,26 +108,6 @@ export default function CalculatePage() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col">
-      {/* Header */}
-      <header className="border-b border-slate-800 px-6 py-4 flex items-center gap-3">
-        <Link href="/" className="flex items-center gap-2">
-          <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
-            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="url(#calcMoon)" />
-            <defs>
-              <linearGradient id="calcMoon" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#60A5FA" />
-                <stop offset="100%" stopColor="#818CF8" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <span className="font-logo font-bold text-lg">
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">lunarlogic</span>
-            <span className="text-white/70 font-semibold">.ai</span>
-          </span>
-        </Link>
-        <span className="ml-3 text-xs font-semibold text-slate-500 uppercase tracking-widest">DSO Calculator</span>
-      </header>
-
       {/* Progress bar */}
       <div className="w-full bg-slate-900 h-1">
         <div
