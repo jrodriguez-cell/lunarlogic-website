@@ -17,8 +17,11 @@ export async function POST(req: NextRequest) {
   const projectedDSO = Math.round(currentDSO * 0.6);
   const monthlyAR = (Number(monthlyInvoices) || 0) * (Number(avgInvoiceValue) || 0);
   const cashUnlocked = Math.round(monthlyAR * (currentDSO - projectedDSO) / 30);
+  const firstName = name.split(" ")[0];
 
-  const html = `
+  // ── Internal lead notification ────────────────────────────────────────────────
+
+  const internalHtml = `
     <h2 style="color:#1e293b">New DSO Calculator Lead — LunarLogic</h2>
     <table cellpadding="8" style="border-collapse:collapse;width:100%;max-width:520px;font-family:sans-serif;font-size:14px">
       <tr style="background:#f1f5f9"><td style="width:200px"><strong>Name</strong></td><td>${name}</td></tr>
@@ -39,25 +42,126 @@ export async function POST(req: NextRequest) {
     </p>
   `;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "LunarLogic Website <onboarding@resend.dev>",
-      to: ["support@lunarlogic.ai"],
-      reply_to: email,
-      subject: `DSO Lead: ${company} — ${currentDSO}→${projectedDSO} day DSO, $${cashUnlocked.toLocaleString()}/mo opportunity`,
-      html,
-    }),
-  });
+  // ── Customer confirmation email ───────────────────────────────────────────────
 
-  if (!res.ok) {
-    console.error("Resend error:", await res.text());
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+  const customerHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+    <body style="margin:0;padding:0;background:#020617;font-family:system-ui,-apple-system,sans-serif">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background:#020617;padding:40px 16px">
+        <tr><td align="center">
+          <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px">
+
+            <!-- Logo -->
+            <tr><td style="padding-bottom:32px">
+              <p style="margin:0;font-size:18px;font-weight:700;color:#ffffff;letter-spacing:-0.3px">
+                <span style="color:#60a5fa">lunarlogic</span><span style="color:#ffffff99">.ai</span>
+              </p>
+            </td></tr>
+
+            <!-- Headline -->
+            <tr><td style="padding-bottom:8px">
+              <p style="margin:0;font-size:13px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1px">Your DSO Results</p>
+            </td></tr>
+            <tr><td style="padding-bottom:24px">
+              <h1 style="margin:0;font-size:28px;font-weight:800;color:#ffffff;line-height:1.2">
+                Here's what LunarLogic would do for ${company}, ${firstName}.
+              </h1>
+            </td></tr>
+
+            <!-- Numbers -->
+            <tr><td style="padding-bottom:24px">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-radius:12px;overflow:hidden;border:1px solid #1e293b">
+                <tr style="background:#0f172a">
+                  <td style="padding:16px 20px;border-bottom:1px solid #1e293b">
+                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px">Current DSO</p>
+                    <p style="margin:0;font-size:32px;font-weight:800;color:#ffffff">${currentDSO} <span style="font-size:16px;font-weight:400;color:#94a3b8">days</span></p>
+                  </td>
+                  <td style="padding:16px 20px;border-bottom:1px solid #1e293b;border-left:1px solid #1e293b">
+                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px">Projected with LunarLogic</p>
+                    <p style="margin:0;font-size:32px;font-weight:800;color:#4ade80">${projectedDSO} <span style="font-size:16px;font-weight:400;color:#94a3b8">days</span></p>
+                  </td>
+                </tr>
+                <tr style="background:#052e16">
+                  <td colspan="2" style="padding:16px 20px">
+                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:1px">Cash you could unlock</p>
+                    <p style="margin:0;font-size:28px;font-weight:800;color:#4ade80">$${cashUnlocked.toLocaleString()}<span style="font-size:15px;font-weight:400;color:#86efac"> / month</span></p>
+                    <p style="margin:4px 0 0;font-size:13px;color:#86efac">$${(cashUnlocked * 12).toLocaleString()} annually — from AR you've already earned</p>
+                  </td>
+                </tr>
+              </table>
+            </td></tr>
+
+            <!-- Body copy -->
+            <tr><td style="padding-bottom:32px">
+              <p style="margin:0 0 16px;font-size:15px;color:#94a3b8;line-height:1.6">
+                These figures are based on your inputs: ${monthlyInvoices} invoices/month at $${Number(avgInvoiceValue).toLocaleString()} average on Net ${paymentTerms} terms, with payments arriving roughly ${overdueDays} days past due.
+              </p>
+              <p style="margin:0;font-size:15px;color:#94a3b8;line-height:1.6">
+                LunarLogic compresses DSO by automating the full invoice-to-cash cycle: same-day invoicing, a structured 5-touch reminder sequence, and AI-assisted cash application. The $${cashUnlocked.toLocaleString()}/month figure represents working capital already earned and sitting uncollected — not new revenue.
+              </p>
+            </td></tr>
+
+            <!-- CTA -->
+            <tr><td style="padding-bottom:32px;text-align:center">
+              <a href="https://www.lunarlogic.ai/contact"
+                 style="display:inline-block;background:#3b82f6;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:14px 32px;border-radius:10px">
+                Talk to us about your numbers
+              </a>
+              <p style="margin:16px 0 0;font-size:13px;color:#475569">
+                Or reply directly to this email — we read every one.
+              </p>
+            </td></tr>
+
+            <!-- Divider -->
+            <tr><td style="border-top:1px solid #1e293b;padding-top:24px">
+              <p style="margin:0;font-size:12px;color:#334155;line-height:1.6">
+                You received this because you ran a DSO calculation at lunarlogic.ai. We won't add you to any mailing list.
+                Questions? Reply here or email <a href="mailto:support@lunarlogic.ai" style="color:#60a5fa">support@lunarlogic.ai</a>.
+              </p>
+            </td></tr>
+
+          </table>
+        </td></tr>
+      </table>
+    </body>
+    </html>
+  `;
+
+  // Send both emails — fire in parallel, fail independently
+  const [internalRes, customerRes] = await Promise.all([
+    fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "LunarLogic <noreply@lunarlogic.ai>",
+        to: ["support@lunarlogic.ai"],
+        reply_to: email,
+        subject: `DSO Lead: ${company} — ${currentDSO}→${projectedDSO} day DSO, $${cashUnlocked.toLocaleString()}/mo opportunity`,
+        html: internalHtml,
+      }),
+    }),
+    fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "LunarLogic <noreply@lunarlogic.ai>",
+        to: [email],
+        reply_to: "support@lunarlogic.ai",
+        subject: `Your DSO results: ${currentDSO}→${projectedDSO} days, $${cashUnlocked.toLocaleString()}/mo opportunity`,
+        html: customerHtml,
+      }),
+    }),
+  ]);
+
+  if (!internalRes.ok) {
+    console.error("Resend internal error:", await internalRes.text());
+  }
+  if (!customerRes.ok) {
+    console.error("Resend customer error:", await customerRes.text());
   }
 
+  // Return success as long as the request itself was valid — email delivery is best-effort
   return NextResponse.json({ success: true });
 }
