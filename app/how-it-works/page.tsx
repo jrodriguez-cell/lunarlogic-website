@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "LunarLogic automates the full accounting cycle for owner-operated service businesses, module by module, starting with AR. Platform-agnostic. Works with the tools you already use.",
+    "LunarLogic handles the money side of your service business — one piece at a time, starting with getting you paid. Works with the tools you already use.",
 };
 
 const integrationCategories = [
@@ -64,11 +64,11 @@ export default function HowItWorksPage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Platform</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
-              Module by module. Starting with AR.
+              One piece at a time. Starting with getting you paid.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              LunarLogic modernizes the accounting infrastructure of owner-operated service businesses, one suite at a
-              time, until the entire financial operating layer runs automatically. Works with the platforms you already use.
+              LunarLogic takes the money side of your business off your plate — one piece at a time, until the whole
+              thing runs on its own. It works with the tools you already use.
             </p>
           </ScrollReveal>
         </div>
@@ -87,8 +87,8 @@ export default function HowItWorksPage() {
                 Works with the tools you already use
               </h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                LunarLogic is not tied to any single accounting platform. We connect to your existing ERP or accounting
-                software and build the automation layer on top: no migration, no rip-and-replace, no retraining.
+                LunarLogic isn&apos;t tied to any one accounting program. We connect to whatever you already use and do the
+                work on top of it — no switching software, no ripping anything out, no relearning.
               </p>
             </div>
           </ScrollReveal>
@@ -128,15 +128,15 @@ export default function HowItWorksPage() {
       <section className="py-16 bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal animation="fade-up">
-            <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-4">Why AR First</p>
+            <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-4">Why Start With Getting Paid</p>
             <p className="text-lg text-slate-300 leading-relaxed mb-4">
-              AR is where the money is closest to the surface. You&apos;ve already done the work. The invoices exist.
-              The cash is legally owed. The only thing standing between you and a faster bank balance is a consistent
-              system for collecting it, and that&apos;s exactly what LunarLogic builds first.
+              Getting paid is where the money is closest to your pocket. You&apos;ve already done the work. The invoices
+              already exist. The money is already owed to you. The only thing standing between you and a fuller bank
+              account is someone reliably collecting it — and that&apos;s exactly what LunarLogic does first.
             </p>
             <p className="text-slate-400 leading-relaxed">
-              Most owners see meaningful DSO compression within 60 days. Once cash flow is predictable and collections
-              run automatically, expanding into AP and beyond is a natural next step, not a leap of faith.
+              Most owners are getting paid noticeably faster within 60 days. Once the cash is coming in like clockwork,
+              taking the rest of the busywork off your plate is an easy next step.
             </p>
           </ScrollReveal>
         </div>
@@ -144,8 +144,8 @@ export default function HowItWorksPage() {
 
       <CTASection
         heading="See exactly what LunarLogic would do for your numbers"
-        subheading="Answer 4 quick questions and get a personalized AR dashboard built around your invoice volume, payment terms, and DSO, generated instantly."
-        ctaText="Calculate My DSO →"
+        subheading="Answer 4 quick questions and get a personalized dashboard showing how much faster you'd get paid and how much cash that frees up — built from your own numbers, in seconds."
+        ctaText="See How Fast You'd Get Paid →"
         ctaHref="/calculate"
       />
     </>

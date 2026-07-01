@@ -7,13 +7,13 @@ import UseCaseShowcase from "@/components/UseCaseShowcase";
 export const metadata: Metadata = {
   title: "Use Cases",
   description:
-    "Every AR, AP, and accounting problem LunarLogic was built to solve, and what the business looks like after.",
+    "Every money headache LunarLogic was built to fix — getting paid, paying bills, and running the books — and what your business feels like once it's handled.",
 };
 
 const SUITE_NAV = [
-  { id: "ar",   name: "AR Automation Suite",    status: "Production",     statusColor: "text-green-400 bg-green-500/10 border-green-500/20" },
-  { id: "ap",   name: "AP Automation Suite",    status: "In Development", statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20" },
-  { id: "full", name: "Full Accounting Suite",  status: "Coming Soon",    statusColor: "text-slate-400 bg-slate-700 border-slate-600" },
+  { id: "ar",   name: "Getting Paid",     status: "Available Now",  statusColor: "text-green-400 bg-green-500/10 border-green-500/20" },
+  { id: "ap",   name: "Paying Bills",     status: "In the Works",   statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20" },
+  { id: "full", name: "Full Accounting",  status: "Coming Soon",    statusColor: "text-slate-400 bg-slate-700 border-slate-600" },
 ];
 
 export default function UseCasesPage() {
@@ -25,12 +25,12 @@ export default function UseCasesPage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Use Cases</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 text-balance">
-              Every accounting problem we were built to solve.
+              Every money headache we were built to fix.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              LunarLogic automates the financial operating layer of owner-operated service businesses, module by module,
-              starting with AR, until the entire cycle runs without manual intervention. These are the problems that make
-              that necessary, and what changes when each one is solved.
+              LunarLogic takes the money side of your business off your plate — one piece at a time, starting with getting
+              you paid, until the whole thing runs on its own. Here are the everyday problems that make that worth it, and
+              what changes once each one is handled.
             </p>
           </ScrollReveal>
 
@@ -68,8 +68,8 @@ export default function UseCasesPage() {
               These aren&apos;t hypotheticals.
             </h2>
             <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-              The AR use cases above map directly to live client outcomes, with real company names, real timelines,
-              and real numbers. Read the case studies to see them in practice.
+              The problems above map straight to real customers — real company names, real timelines, and real numbers.
+              Read the stories to see them in action.
             </p>
             <Link
               href="/case-studies"
@@ -83,8 +83,8 @@ export default function UseCasesPage() {
 
       <CTASection
         heading="See your numbers in a live dashboard."
-        subheading="Answer 4 questions about your invoice volume and payment terms. Get a personalized AR dashboard showing your DSO, your cash gap, and what changes when LunarLogic runs."
-        ctaText="Calculate My DSO →"
+        subheading="Answer 4 quick questions about your invoices. Get a personalized dashboard showing how long you wait to get paid today, how much cash is stuck, and what changes once LunarLogic takes over."
+        ctaText="See How Fast You'd Get Paid →"
         ctaHref="/calculate"
       />
     </>

@@ -8,7 +8,7 @@ import FeatureShowcase from "@/components/FeatureShowcase";
 export const metadata: Metadata = {
   title: "LunarLogic: We turn what you have already earned into cash in your bank account.",
   description:
-    "LunarLogic automates the full Order-to-Cash cycle for service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
+    "LunarLogic gets service businesses paid faster — invoices out on time, late payments chased for you, and the money matched to the right invoice. On average, customers get paid 40% sooner.",
 };
 
 
@@ -22,10 +22,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "40%", label: "Average DSO Reduction" },
-              { value: "84%", label: "Faster Invoice Processing" },
-              { value: "500+ hrs", label: "Saved Annually Per Firm" },
-              { value: "70%", label: "Bad Debt Improvement" },
+              { value: "40%", label: "Faster to Get Paid" },
+              { value: "84%", label: "Faster Invoicing" },
+              { value: "500+ hrs", label: "Saved Every Year" },
+              { value: "70%", label: "Less Money Written Off" },
             ].map((stat, i) => (
               <ScrollReveal key={stat.label} animation="zoom-in" delay={i * 80}>
                 <p className="text-2xl sm:text-3xl font-extrabold text-blue-400">{stat.value}</p>
@@ -44,26 +44,23 @@ export default function HomePage() {
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                  Revenue is recognized. Cash is a separate problem.
+                  Making money and having money aren&apos;t the same thing.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  Under US GAAP, revenue is recognized when performance obligations are satisfied, not when cash is
-                  received. The resulting accounts receivable balance is money legally earned that sits on your balance
-                  sheet instead of your operating account. Days Sales Outstanding (DSO) measures how long it takes to
-                  close that gap. The longer the DSO, the more working capital is tied up in uncollected receivables at
-                  any given time.
+                  You finish the job and send the invoice. But the cash doesn&apos;t show up for weeks — sometimes months.
+                  Until then, money you&apos;ve already earned is just sitting there, unpaid. The longer that takes, the
+                  less cash you actually have on hand to run the business.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
-                  Payroll, vendor obligations, and overhead run on fixed cycles. Collections do not. When the
-                  receivables cycle lags, even profitable service businesses face recurring cash shortfalls that
-                  constrain capacity and growth, not because revenue is insufficient, but because the collection
-                  cycle is unmanaged.
+                  Meanwhile, payroll, rent, and your own bills are due on time, every time. So even a busy, profitable
+                  business can feel broke — not because the work isn&apos;t there, but because the money is stuck in
+                  invoices nobody is chasing.
                 </p>
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors"
                 >
-                  See how LunarLogic compresses the collection cycle
+                  See how LunarLogic gets you paid faster
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -73,20 +70,20 @@ export default function HomePage() {
             <div className="space-y-4">
               {[
                 {
-                  title: "Billing lag extends DSO before collection starts",
-                  body: "Every day between service delivery and invoice issuance adds to DSO before the collection clock even begins. Billing latency compounds the receivables gap.",
+                  title: "Invoices go out late — so they get paid late",
+                  body: "Every day between finishing the job and sending the invoice is a day added to how long you wait for the money. Slow billing means slow paydays.",
                 },
                 {
-                  title: "No structured collection workflow",
-                  body: "Without a defined, escalating follow-up sequence, receivables age in silence. Outreach happens reactively, which means your invoices get paid after the ones with a system behind them.",
+                  title: "Nobody is following up",
+                  body: "Once an invoice is sent, it's easy to forget. Without someone reminding customers on a schedule, your invoices get paid after the ones from businesses that do follow up.",
                 },
                 {
-                  title: "Receivables aging is invisible until it becomes a crisis",
-                  body: "By the time a cash shortfall surfaces, the underlying receivable has often been aging 45-60 days. Real-time visibility converts a crisis into a managed workflow.",
+                  title: "You don't see a problem until cash gets tight",
+                  body: "By the time you notice, an invoice has often been unpaid for 45–60 days. Seeing it early turns a cash-flow scare into a quick nudge.",
                 },
                 {
-                  title: "High DSO locks working capital in the receivables cycle",
-                  body: "Capital tied up in slow-paying AR cannot fund operations, payroll, or growth. The constraint is not revenue: it is the velocity of cash conversion.",
+                  title: "Your cash is stuck in unpaid invoices",
+                  body: "Money tied up in invoices customers haven't paid can't cover payroll, bills, or growth. The problem isn't the work — it's how long the money takes to arrive.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} animation="slide-right" delay={i * 90}>
@@ -113,7 +110,7 @@ export default function HomePage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Case Study</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-              How Kaptain Clean cut DSO by 19 days
+              How Kaptain Clean started getting paid 19 days sooner
             </h2>
           </ScrollReveal>
           <ScrollReveal animation="zoom-in" delay={100}>
@@ -122,8 +119,8 @@ export default function HomePage() {
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in cash freed from outstanding
-                receivables, not from new revenue, but from money that was already earned and sitting uncollected.
+                They started getting paid 19 days sooner. Invoices went out 84% faster. And over $65,000 in cash showed
+                up — not from new work, but from money they&apos;d already earned and were just waiting on.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">

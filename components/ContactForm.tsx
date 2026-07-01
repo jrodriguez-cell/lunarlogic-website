@@ -149,7 +149,7 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Tell us about your current AR process, pain points, or what you're hoping to solve..."
+          placeholder="Tell us how you handle invoices and getting paid today, what's frustrating, or what you're hoping to fix..."
           className={inputClass + " resize-none"}
         />
       </div>

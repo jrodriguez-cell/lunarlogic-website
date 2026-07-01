@@ -290,7 +290,7 @@ export default function DemoDashboard() {
           <span className="text-slate-600 hidden sm:block">/</span>
           <div className="min-w-0">
             <p className="text-sm font-semibold text-white truncate">{company}</p>
-            <p className="text-xs text-slate-500">{industry} · AR Dashboard</p>
+            <p className="text-xs text-slate-500">{industry} · Get-Paid Dashboard</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -347,7 +347,7 @@ export default function DemoDashboard() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
-                  label: "Current DSO",
+                  label: "Days to Get Paid",
                   value: `${currentDSO} days`,
                   sub: "Before LunarLogic",
                   color: "text-white",
@@ -356,7 +356,7 @@ export default function DemoDashboard() {
                 {
                   label: "With LunarLogic",
                   value: `${projectedDSO} days`,
-                  sub: `↓ ${dsoDrop} day improvement`,
+                  sub: `↓ ${dsoDrop} days sooner`,
                   color: "text-green-400",
                   icon: "trending-down",
                 },
@@ -368,7 +368,7 @@ export default function DemoDashboard() {
                   icon: "dollar",
                 },
                 {
-                  label: "Outstanding AR",
+                  label: "Unpaid Invoices",
                   value: `$${totalOverdueAR.toLocaleString()}`,
                   sub: `${overdueInvoices.length} overdue invoices`,
                   color: "text-orange-400",
@@ -388,11 +388,11 @@ export default function DemoDashboard() {
               <div className="lg:col-span-2 bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
                 <div className="flex items-center justify-between mb-5">
                   <div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">DSO Trend</p>
-                    <p className="text-sm text-slate-400">6-month projection · LunarLogic go-live at month 3</p>
+                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Days to Get Paid</p>
+                    <p className="text-sm text-slate-400">6-month projection · LunarLogic starts at month 3</p>
                   </div>
                   <div className="flex items-center gap-4 text-xs">
-                    <span className="flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 bg-blue-400 inline-block" />DSO</span>
+                    <span className="flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 bg-blue-400 inline-block" />Days to get paid</span>
                     <span className="flex items-center gap-1.5 text-slate-400"><span className="w-3 h-px border-t border-dashed border-green-400 inline-block" />Go-live</span>
                   </div>
                 </div>
@@ -400,7 +400,7 @@ export default function DemoDashboard() {
               </div>
 
               <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-5">AR Aging</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-5">Who Still Owes You</p>
                 <div className="space-y-4">
                   {agingBuckets.map((b) => (
                     <div key={b.label}>
@@ -416,7 +416,7 @@ export default function DemoDashboard() {
                 </div>
                 <div className="mt-5 pt-4 border-t border-slate-700">
                   <div className="flex justify-between text-sm">
-                    <span className="text-slate-400">Total AR</span>
+                    <span className="text-slate-400">Total owed to you</span>
                     <span className="text-white font-semibold">${monthlyAR.toLocaleString()}</span>
                   </div>
                 </div>
@@ -448,7 +448,7 @@ export default function DemoDashboard() {
             {/* Bottom CTA */}
             <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/20 rounded-2xl p-8 text-center">
               <p className="text-xl font-extrabold text-white mb-2">
-                ${(cashUnlocked * 12).toLocaleString()} in working capital, already earned, waiting to be collected.
+                ${(cashUnlocked * 12).toLocaleString()} you&apos;ve already earned, just waiting to be collected.
               </p>
               <p className="text-slate-400 text-sm mb-6">
                 This dashboard is built on your numbers. The real version runs live against your accounting software.
@@ -474,12 +474,12 @@ export default function DemoDashboard() {
                 <p className="text-xs text-slate-500">invoices past 25 days overdue</p>
               </div>
               <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-5">
-                <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">DSO Improvement Possible</p>
+                <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">Days You Could Save</p>
                 <p className="text-3xl font-extrabold text-white mb-1">{dsoCompressionIfCollected}d</p>
-                <p className="text-xs text-slate-500">if all overdue AR collected this month</p>
+                <p className="text-xs text-slate-500">if every overdue invoice were collected this month</p>
               </div>
               <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-5">
-                <p className="text-xs font-semibold text-green-400 uppercase tracking-wider mb-2">Projected DSO After Action</p>
+                <p className="text-xs font-semibold text-green-400 uppercase tracking-wider mb-2">Days to Get Paid After</p>
                 <p className="text-3xl font-extrabold text-green-400 mb-1">{projectedDSO}d</p>
                 <p className="text-xs text-slate-500">vs. {currentDSO}d today</p>
               </div>
@@ -489,12 +489,12 @@ export default function DemoDashboard() {
             <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
               <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Working Capital at Stake</p>
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Cash Tied Up in Late Invoices</p>
                   <p className="text-2xl font-extrabold text-white">${totalOverdueAR.toLocaleString()}</p>
-                  <p className="text-sm text-slate-400 mt-1">{overdueInvoices.length} overdue invoices · {dsoCompressionIfCollected} days of DSO tied up in these alone</p>
+                  <p className="text-sm text-slate-400 mt-1">{overdueInvoices.length} overdue invoices · about {dsoCompressionIfCollected} extra days of waiting in these alone</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs text-slate-500 mb-1">Best Possible DSO</p>
+                  <p className="text-xs text-slate-500 mb-1">Best Case: Days to Get Paid</p>
                   <p className="text-3xl font-extrabold text-green-400">{projectedDSO}d</p>
                   <p className="text-xs text-slate-500 mt-0.5">↓ {dsoDrop} days from today</p>
                 </div>
@@ -506,7 +506,7 @@ export default function DemoDashboard() {
                 />
               </div>
               <p className="text-xs text-slate-500 mt-2">
-                Overdue AR as % of monthly AR
+                Late invoices as a share of what you invoice each month
               </p>
             </div>
 
@@ -528,7 +528,7 @@ export default function DemoDashboard() {
               {disputeInvoices.length === 0 ? (
                 <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
                   <p className="text-green-400 font-semibold">No disputes flagged</p>
-                  <p className="text-slate-400 text-sm mt-1">All overdue invoices are within normal collection range.</p>
+                  <p className="text-slate-400 text-sm mt-1">Every late invoice is still within a normal range — nothing to worry about yet.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -608,7 +608,7 @@ export default function DemoDashboard() {
 
             {/* Path to best possible DSO */}
             <div className="bg-gradient-to-r from-blue-600/15 to-indigo-600/15 border border-blue-500/20 rounded-2xl p-6">
-              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3">Path to Best Possible DSO</p>
+              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3">Your Path to Getting Paid Faster</p>
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-center">
                   <p className="text-3xl font-extrabold text-white">{currentDSO}d</p>
@@ -629,9 +629,9 @@ export default function DemoDashboard() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 {[
-                  { label: "DSO reduction", value: `${dsoDrop} days` },
+                  { label: "Paid sooner by", value: `${dsoDrop} days` },
                   { label: "Monthly cash freed", value: `$${cashUnlocked.toLocaleString()}` },
-                  { label: "Annual impact", value: `$${(cashUnlocked * 12).toLocaleString()}` },
+                  { label: "Over a year", value: `$${(cashUnlocked * 12).toLocaleString()}` },
                 ].map((s) => (
                   <div key={s.label} className="bg-slate-900/40 rounded-xl p-3 text-center">
                     <p className="text-slate-500 mb-1">{s.label}</p>
@@ -870,17 +870,17 @@ export default function DemoDashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
                 {
-                  title: "DSO Improvement",
+                  title: "Days to Get Paid",
                   current: `${currentDSO} days`,
                   projected: `${projectedDSO} days`,
-                  change: `↓ ${dsoDrop} days`,
+                  change: `↓ ${dsoDrop} days sooner`,
                   changeColor: "text-green-400",
                 },
                 {
-                  title: "Monthly AR Volume",
+                  title: "Invoiced Each Month",
                   current: `$${monthlyAR.toLocaleString()}`,
                   projected: `$${Math.round(monthlyAR * 1.08).toLocaleString()}`,
-                  change: "+8% collection rate",
+                  change: "+8% collected",
                   changeColor: "text-blue-400",
                 },
                 {
@@ -933,10 +933,10 @@ export default function DemoDashboard() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                 {[
-                  { label: "Current DSO",       value: `${currentDSO}d` },
-                  { label: "Projected DSO",      value: `${projectedDSO}d` },
-                  { label: "Monthly Cash",       value: `$${cashUnlocked.toLocaleString()}` },
-                  { label: "Annual Opportunity", value: `$${(cashUnlocked * 12).toLocaleString()}` },
+                  { label: "Days to get paid now", value: `${currentDSO}d` },
+                  { label: "With LunarLogic",      value: `${projectedDSO}d` },
+                  { label: "Monthly cash",         value: `$${cashUnlocked.toLocaleString()}` },
+                  { label: "Over a year",          value: `$${(cashUnlocked * 12).toLocaleString()}` },
                 ].map((s) => (
                   <div key={s.label} className="bg-slate-900 rounded-xl p-4">
                     <p className="text-xs text-slate-500 mb-1">{s.label}</p>
@@ -949,7 +949,7 @@ export default function DemoDashboard() {
             <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/20 rounded-2xl p-8 text-center">
               <p className="text-xl font-extrabold text-white mb-2">Ready to see this with live data?</p>
               <p className="text-slate-400 text-sm mb-6">
-                Book a 30-minute demo. We&apos;ll walk through your actual accounting data and give you a real DSO reduction estimate.
+                Book a 30-minute demo. We&apos;ll walk through your real numbers and show you exactly how much faster you&apos;d get paid.
               </p>
               <Link
                 href="/contact"

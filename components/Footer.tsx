@@ -35,7 +35,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-3 text-sm text-slate-400 max-w-xs">
-              AR automation for professional services firms. Cut your DSO and get paid faster.
+              We help service businesses get paid faster — invoices sent, late payments chased, all on autopilot.
             </p>
           </div>
 

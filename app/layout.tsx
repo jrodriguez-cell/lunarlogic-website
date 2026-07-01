@@ -5,20 +5,20 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "LunarLogic: AR Automation for Professional Services",
+    default: "LunarLogic: Get Paid Faster, Automatically",
     template: "%s | LunarLogic",
   },
   description:
-    "LunarLogic automates your Accounts Receivable: invoice creation, payment reminders, and cash application, reducing DSO for small professional services firms.",
-  keywords: ["AR automation", "accounts receivable", "DSO reduction", "QuickBooks", "invoice automation"],
+    "LunarLogic sends your invoices, chases late payments, and matches the money to the right invoice — so your service business gets paid faster without the busywork.",
+  keywords: ["get paid faster", "invoice automation", "payment reminders", "QuickBooks", "small business cash flow"],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lunarlogic.ai",
     siteName: "LunarLogic",
-    title: "LunarLogic: Cut Your DSO. Get Paid Faster.",
+    title: "LunarLogic: Get Paid Faster, Automatically",
     description:
-      "AR automation platform for professional services firms. 19-day DSO improvement proven with Kaptain Clean LLC.",
+      "LunarLogic gets service businesses paid faster — invoices out on time, reminders sent for you, payments matched automatically. Kaptain Clean got paid 19 days sooner.",
   },
 };
 
