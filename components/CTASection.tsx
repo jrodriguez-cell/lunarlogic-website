@@ -9,7 +9,7 @@ interface CTASectionProps {
 
 export default function CTASection({
   heading = "Ready to get paid faster?",
-  subheading = "Join the service businesses already using LunarLogic to send invoices, chase payments, and get their money in the door sooner — without lifting a finger.",
+  subheading = "Join the service businesses already using LunarLogic to send invoices, follow up on late payments, and get their money in sooner, with far less manual work.",
   ctaText = "Get a Demo",
   ctaHref = "/contact",
 }: CTASectionProps) {

@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "See how LunarLogic customers are getting paid faster and taking invoicing off their plate. Real results from real businesses.",
+    "See how service businesses use LunarLogic's AI accounting automation to get paid faster and take invoicing off their plate. Real results from real companies.",
 };
 
 export default function CaseStudiesPage() {
@@ -54,7 +54,7 @@ export default function CaseStudiesPage() {
           <ScrollReveal animation="fade-up">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your business could be next</h2>
             <p className="text-slate-400 mb-8">
-              Service businesses with 8–20 people who bill customers regularly are the perfect fit — no matter which
+              Service businesses with 8 to 20 people who bill customers regularly are the ideal fit, no matter which
               accounting software you use. We&apos;ll show you how much faster you&apos;d get paid before you ever pay us a dollar.
             </p>
             <Link

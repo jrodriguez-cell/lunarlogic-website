@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "LunarLogic handles the money side of your service business — one piece at a time, starting with getting you paid. Works with the tools you already use.",
+    "See how LunarLogic's AI accounting automation works. It takes the money side of your service business off your plate, one piece at a time, starting with getting you paid. Works with the tools you already use.",
 };
 
 const integrationCategories = [
@@ -67,8 +67,8 @@ export default function HowItWorksPage() {
               One piece at a time. Starting with getting you paid.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              LunarLogic takes the money side of your business off your plate — one piece at a time, until the whole
-              thing runs on its own. It works with the tools you already use.
+              LunarLogic is AI accounting automation that takes the money side of your business off your plate, one
+              piece at a time, until the whole thing runs on its own. It works with the tools you already use.
             </p>
           </ScrollReveal>
         </div>
@@ -88,7 +88,7 @@ export default function HowItWorksPage() {
               </h2>
               <p className="text-slate-400 max-w-2xl mx-auto">
                 LunarLogic isn&apos;t tied to any one accounting program. We connect to whatever you already use and do the
-                work on top of it — no switching software, no ripping anything out, no relearning.
+                work on top of it, with no switching software, nothing ripped out, and no relearning.
               </p>
             </div>
           </ScrollReveal>
@@ -132,11 +132,11 @@ export default function HowItWorksPage() {
             <p className="text-lg text-slate-300 leading-relaxed mb-4">
               Getting paid is where the money is closest to your pocket. You&apos;ve already done the work. The invoices
               already exist. The money is already owed to you. The only thing standing between you and a fuller bank
-              account is someone reliably collecting it — and that&apos;s exactly what LunarLogic does first.
+              account is someone reliably collecting it, and that&apos;s exactly what LunarLogic does first.
             </p>
             <p className="text-slate-400 leading-relaxed">
               Most owners are getting paid noticeably faster within 60 days. Once the cash is coming in like clockwork,
-              taking the rest of the busywork off your plate is an easy next step.
+              taking the rest of the manual work off your plate is an easy next step.
             </p>
           </ScrollReveal>
         </div>
@@ -144,7 +144,7 @@ export default function HowItWorksPage() {
 
       <CTASection
         heading="See exactly what LunarLogic would do for your numbers"
-        subheading="Answer 4 quick questions and get a personalized dashboard showing how much faster you'd get paid and how much cash that frees up — built from your own numbers, in seconds."
+        subheading="Answer 4 quick questions and get a personalized dashboard showing how much faster you'd get paid and how much cash that frees up, built from your own numbers, in seconds."
         ctaText="See How Fast You'd Get Paid →"
         ctaHref="/calculate"
       />

@@ -36,7 +36,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-8">
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-sm text-blue-300 font-medium">Get paid faster, automatically</span>
+          <span className="text-sm text-blue-300 font-medium">AI-Powered Accounting Automation</span>
         </div>
 
         {/* Headline */}
@@ -50,7 +50,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          You did the work. You sent the invoice. Now you&apos;re waiting to get paid. LunarLogic does the chasing for you — so the money shows up sooner. No awkward emails. No follow-up calls.
+          You did the work. You sent the invoice. Now you&apos;re waiting to get paid. LunarLogic handles the follow-up for you, so the money arrives sooner. No uncomfortable emails, no chasing calls.
         </p>
 
         {/* Tagline */}

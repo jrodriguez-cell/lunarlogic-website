@@ -6,9 +6,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import FeatureShowcase from "@/components/FeatureShowcase";
 
 export const metadata: Metadata = {
-  title: "LunarLogic: We turn what you have already earned into cash in your bank account.",
+  title: "AI Accounting Automation That Gets You Paid Faster",
   description:
-    "LunarLogic gets service businesses paid faster — invoices out on time, late payments chased for you, and the money matched to the right invoice. On average, customers get paid 40% sooner.",
+    "LunarLogic is AI accounting automation for service businesses. It sends invoices on time, follows up on late payments, and matches payments to the right invoice. On average, customers are paid 40% sooner.",
 };
 
 
@@ -44,17 +44,17 @@ export default function HomePage() {
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                  Making money and having money aren&apos;t the same thing.
+                  Earning the money and collecting it are two different things.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  You finish the job and send the invoice. But the cash doesn&apos;t show up for weeks — sometimes months.
-                  Until then, money you&apos;ve already earned is just sitting there, unpaid. The longer that takes, the
-                  less cash you actually have on hand to run the business.
+                  You finish the job and send the invoice, but the cash does not arrive for weeks, sometimes months.
+                  Until it does, money you have already earned sits unpaid. The longer that takes, the less cash you
+                  actually have on hand to run the business.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
                   Meanwhile, payroll, rent, and your own bills are due on time, every time. So even a busy, profitable
-                  business can feel broke — not because the work isn&apos;t there, but because the money is stuck in
-                  invoices nobody is chasing.
+                  business can run short on cash. Not because the work is not there, but because the money is stuck in
+                  invoices no one is following up on.
                 </p>
                 <Link
                   href="/how-it-works"
@@ -70,20 +70,20 @@ export default function HomePage() {
             <div className="space-y-4">
               {[
                 {
-                  title: "Invoices go out late — so they get paid late",
-                  body: "Every day between finishing the job and sending the invoice is a day added to how long you wait for the money. Slow billing means slow paydays.",
+                  title: "Invoices go out late, so they get paid late",
+                  body: "Every day between finishing the job and sending the invoice adds to how long you wait for the money. Slow billing leads to slow paydays.",
                 },
                 {
-                  title: "Nobody is following up",
-                  body: "Once an invoice is sent, it's easy to forget. Without someone reminding customers on a schedule, your invoices get paid after the ones from businesses that do follow up.",
+                  title: "No one is following up",
+                  body: "Once an invoice is sent, it is easy to forget. Without someone reminding customers on a schedule, your invoices get paid after the ones from businesses that do follow up.",
                 },
                 {
                   title: "You don't see a problem until cash gets tight",
-                  body: "By the time you notice, an invoice has often been unpaid for 45–60 days. Seeing it early turns a cash-flow scare into a quick nudge.",
+                  body: "By the time you notice, an invoice has often been unpaid for 45 to 60 days. Catching it early turns a cash-flow scare into a simple reminder.",
                 },
                 {
                   title: "Your cash is stuck in unpaid invoices",
-                  body: "Money tied up in invoices customers haven't paid can't cover payroll, bills, or growth. The problem isn't the work — it's how long the money takes to arrive.",
+                  body: "Money tied up in unpaid invoices cannot cover payroll, bills, or growth. The problem is not the work. It is how long the money takes to arrive.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} animation="slide-right" delay={i * 90}>
@@ -119,8 +119,8 @@ export default function HomePage() {
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                They started getting paid 19 days sooner. Invoices went out 84% faster. And over $65,000 in cash showed
-                up — not from new work, but from money they&apos;d already earned and were just waiting on.
+                They started getting paid 19 days sooner. Invoices went out 84% faster. And over $65,000 in cash came in.
+                Not from new work, but from money they had already earned and were simply waiting on.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">

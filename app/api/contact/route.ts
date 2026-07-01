@@ -15,13 +15,13 @@ export async function POST(req: NextRequest) {
   }
 
   const html = `
-    <h2>New Demo Request — LunarLogic</h2>
+    <h2>New Demo Request: LunarLogic</h2>
     <table cellpadding="8" style="border-collapse:collapse">
       <tr><td><strong>Name</strong></td><td>${name}</td></tr>
       <tr><td><strong>Email</strong></td><td>${email}</td></tr>
       <tr><td><strong>Company</strong></td><td>${company}</td></tr>
       <tr><td><strong>Invoice Volume</strong></td><td>${invoiceVolume || "Not specified"}</td></tr>
-      <tr><td><strong>Message</strong></td><td>${message || "—"}</td></tr>
+      <tr><td><strong>Message</strong></td><td>${message || "(none)"}</td></tr>
     </table>
   `;
 

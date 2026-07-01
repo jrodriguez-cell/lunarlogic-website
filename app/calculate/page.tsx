@@ -162,7 +162,7 @@ export default function CalculatePage() {
           {step === 2 && (
             <div>
               <h1 className="text-3xl font-extrabold text-white mb-2">Your invoice volume</h1>
-              <p className="text-slate-400 mb-8">Estimates are fine — we&apos;ll use these to size your dashboard.</p>
+              <p className="text-slate-400 mb-8">Estimates are fine. We&apos;ll use these to size your dashboard.</p>
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Invoices sent per month</label>

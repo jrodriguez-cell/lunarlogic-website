@@ -7,7 +7,7 @@ import UseCaseShowcase from "@/components/UseCaseShowcase";
 export const metadata: Metadata = {
   title: "Use Cases",
   description:
-    "Every money headache LunarLogic was built to fix — getting paid, paying bills, and running the books — and what your business feels like once it's handled.",
+    "The accounting problems LunarLogic's AI automation was built to solve: getting paid, paying bills, and running the books. See what changes once each one is handled for you.",
 };
 
 const SUITE_NAV = [
@@ -28,9 +28,9 @@ export default function UseCasesPage() {
               Every money headache we were built to fix.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              LunarLogic takes the money side of your business off your plate — one piece at a time, starting with getting
-              you paid, until the whole thing runs on its own. Here are the everyday problems that make that worth it, and
-              what changes once each one is handled.
+              LunarLogic is AI accounting automation that takes the money side of your business off your plate, one piece
+              at a time, starting with getting you paid, until the whole thing runs on its own. Here are the everyday
+              problems that make that worth it, and what changes once each one is handled.
             </p>
           </ScrollReveal>
 
@@ -68,8 +68,8 @@ export default function UseCasesPage() {
               These aren&apos;t hypotheticals.
             </h2>
             <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-              The problems above map straight to real customers — real company names, real timelines, and real numbers.
-              Read the stories to see them in action.
+              The problems above map straight to real customers, with real company names, real timelines, and real
+              numbers. Read the stories to see them in action.
             </p>
             <Link
               href="/case-studies"

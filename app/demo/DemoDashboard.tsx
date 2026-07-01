@@ -528,7 +528,7 @@ export default function DemoDashboard() {
               {disputeInvoices.length === 0 ? (
                 <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
                   <p className="text-green-400 font-semibold">No disputes flagged</p>
-                  <p className="text-slate-400 text-sm mt-1">Every late invoice is still within a normal range — nothing to worry about yet.</p>
+                  <p className="text-slate-400 text-sm mt-1">Every late invoice is still within a normal range, with nothing to worry about yet.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -796,7 +796,7 @@ export default function DemoDashboard() {
             <div className="space-y-3">
               {overdueInvoices.map((inv) => {
                 const stages = [
-                  { label: "Day 3: Friendly nudge",    nextLabel: "Day 7 follow-up",    days: 3 },
+                  { label: "Day 3: Friendly reminder", nextLabel: "Day 7 follow-up",    days: 3 },
                   { label: "Day 7: Follow-up",          nextLabel: "Day 14 escalation",  days: 7 },
                   { label: "Day 14: Escalation",        nextLabel: "Day 21 urgent",      days: 14 },
                   { label: "Day 21: Urgent notice",     nextLabel: "Final notice",       days: 21 },

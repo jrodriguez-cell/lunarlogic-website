@@ -5,20 +5,29 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "LunarLogic: Get Paid Faster, Automatically",
+    default: "LunarLogic: AI Accounting Automation for Service Businesses",
     template: "%s | LunarLogic",
   },
   description:
-    "LunarLogic sends your invoices, chases late payments, and matches the money to the right invoice — so your service business gets paid faster without the busywork.",
-  keywords: ["get paid faster", "invoice automation", "payment reminders", "QuickBooks", "small business cash flow"],
+    "LunarLogic is AI accounting automation for service businesses. It sends invoices, follows up on late payments, and matches payments to the right invoice, so you get paid faster with far less manual work.",
+  keywords: [
+    "AI accounting automation",
+    "accounting automation software",
+    "AI accounts receivable automation",
+    "invoice automation",
+    "automated payment reminders",
+    "QuickBooks automation",
+    "accounts receivable software",
+    "get paid faster",
+  ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lunarlogic.ai",
     siteName: "LunarLogic",
-    title: "LunarLogic: Get Paid Faster, Automatically",
+    title: "LunarLogic: AI Accounting Automation for Service Businesses",
     description:
-      "LunarLogic gets service businesses paid faster — invoices out on time, reminders sent for you, payments matched automatically. Kaptain Clean got paid 19 days sooner.",
+      "AI accounting automation that gets service businesses paid faster. Invoices go out on time, late payments are followed up automatically, and payments are matched for you. Kaptain Clean was paid 19 days sooner.",
   },
 };
 

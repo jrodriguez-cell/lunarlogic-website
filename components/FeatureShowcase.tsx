@@ -94,7 +94,7 @@ function InvoiceMockup() {
 
 function ReminderMockup() {
   const reminders = [
-    { day: "Day 3",  label: "Friendly nudge",        status: "sent",   time: "Mon 9:02 AM" },
+    { day: "Day 3",  label: "Friendly reminder",     status: "sent",   time: "Mon 9:02 AM" },
     { day: "Day 7",  label: "Follow-up",              status: "sent",   time: "Fri 9:01 AM" },
     { day: "Day 14", label: "Escalation",             status: "sent",   time: "Fri 9:03 AM" },
     { day: "Day 21", label: "Urgent: past due",       status: "queued", time: "Next Mon" },
@@ -295,7 +295,7 @@ const chapters = [
     step: "01",
     label: "Send the Invoice",
     title: "Job done. Invoice out.",
-    body: "The moment a job is marked complete, LunarLogic builds the invoice, fills in the right customer details, and sends it — automatically. No typing it up later. No invoice forgotten because you were busy doing the actual work.",
+    body: "The moment a job is marked complete, LunarLogic builds the invoice, fills in the right customer details, and sends it automatically. No typing it up later, and no invoice forgotten because you were busy doing the actual work.",
     stat: { value: "84%", label: "faster invoicing" },
     mockup: <InvoiceMockup />,
   },
@@ -303,7 +303,7 @@ const chapters = [
     step: "02",
     label: "Chase the Payment",
     title: "Never send that awkward reminder again.",
-    body: "When an invoice is late, LunarLogic sends friendly reminders for you — on day 3, 7, 14, and 21 — written to sound like they came from you. Customers who always pay late get a firmer nudge. Your good regulars get a gentle one. Either way, you're out of the chasing business.",
+    body: "When an invoice is late, LunarLogic sends courteous reminders for you on day 3, 7, 14, and 21, written to sound like they came from you. Customers who tend to pay late receive a firmer reminder, while your reliable regulars get a lighter touch. Either way, you are out of the follow-up business.",
     stat: { value: "0", label: "reminder emails you have to write" },
     mockup: <ReminderMockup />,
   },
@@ -318,7 +318,7 @@ const chapters = [
   {
     step: "04",
     label: "See Where You Stand",
-    title: "Know how fast you're getting paid — right now.",
+    title: "Know how fast you're getting paid, right now.",
     body: "A simple dashboard shows how long you're waiting to get paid, how much is still owed to you, and which customers are drifting late. It even marks the day you started with LunarLogic, so you can see exactly when things started getting better.",
     stat: { value: "19", label: "days sooner paid (Kaptain Clean)" },
     mockup: <DashboardMockup />,

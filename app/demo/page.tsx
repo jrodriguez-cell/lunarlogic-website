@@ -3,7 +3,7 @@ import DemoDashboard from "./DemoDashboard";
 
 export const metadata = {
   title: "Your Get-Paid Dashboard: LunarLogic",
-  description: "A personalized dashboard built from your numbers, showing how much faster you could get paid.",
+  description: "A personalized AI accounting automation dashboard built from your numbers, showing how much faster you could get paid.",
 };
 
 export default function DemoPage() {

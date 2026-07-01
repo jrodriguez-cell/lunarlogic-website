@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with LunarLogic to book a demo or ask how we can help your service business get paid faster.",
+    "Get in touch with LunarLogic to book a demo or ask how our AI accounting automation can help your service business get paid faster.",
 };
 
 export default function ContactPage() {
