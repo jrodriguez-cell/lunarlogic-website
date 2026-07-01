@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
   // ── Internal lead notification ────────────────────────────────────────────────
 
   const internalHtml = `
-    <h2 style="color:#1e293b">New Calculator Lead: LunarLogic</h2>
+    <h2 style="color:#1e293b">New DSO Calculator Lead — LunarLogic</h2>
     <table cellpadding="8" style="border-collapse:collapse;width:100%;max-width:520px;font-family:sans-serif;font-size:14px">
       <tr style="background:#f1f5f9"><td style="width:200px"><strong>Name</strong></td><td>${name}</td></tr>
       <tr><td><strong>Email</strong></td><td><a href="mailto:${email}">${email}</a></td></tr>
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
 
             <!-- Headline -->
             <tr><td style="padding-bottom:8px">
-              <p style="margin:0;font-size:13px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1px">Your Results</p>
+              <p style="margin:0;font-size:13px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1px">Your DSO Results</p>
             </td></tr>
             <tr><td style="padding-bottom:24px">
               <h1 style="margin:0;font-size:28px;font-weight:800;color:#ffffff;line-height:1.2">
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
               <table width="100%" cellpadding="0" cellspacing="0" style="border-radius:12px;overflow:hidden;border:1px solid #1e293b">
                 <tr style="background:#0f172a">
                   <td style="padding:16px 20px;border-bottom:1px solid #1e293b">
-                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px">Days to get paid now</p>
+                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px">Current DSO</p>
                     <p style="margin:0;font-size:32px;font-weight:800;color:#ffffff">${currentDSO} <span style="font-size:16px;font-weight:400;color:#94a3b8">days</span></p>
                   </td>
                   <td style="padding:16px 20px;border-bottom:1px solid #1e293b;border-left:1px solid #1e293b">
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
                   <td colspan="2" style="padding:16px 20px">
                     <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:1px">Cash you could unlock</p>
                     <p style="margin:0;font-size:28px;font-weight:800;color:#4ade80">$${cashUnlocked.toLocaleString()}<span style="font-size:15px;font-weight:400;color:#86efac"> / month</span></p>
-                    <p style="margin:4px 0 0;font-size:13px;color:#86efac">$${(cashUnlocked * 12).toLocaleString()} a year, from money you have already earned</p>
+                    <p style="margin:4px 0 0;font-size:13px;color:#86efac">$${(cashUnlocked * 12).toLocaleString()} annually — from AR you've already earned</p>
                   </td>
                 </tr>
               </table>
@@ -99,7 +99,7 @@ export async function POST(req: NextRequest) {
                 These figures are based on your inputs: ${monthlyInvoices} invoices/month at $${Number(avgInvoiceValue).toLocaleString()} average on Net ${paymentTerms} terms, with payments arriving roughly ${overdueDays} days past due.
               </p>
               <p style="margin:0;font-size:15px;color:#94a3b8;line-height:1.6">
-                LunarLogic gets you paid faster by handling the whole process for you: same-day invoices, a set schedule of reminders on late payments, and payments matched to the right invoice automatically. The $${cashUnlocked.toLocaleString()} a month is money you have already earned and are simply waiting on, not new revenue.
+                LunarLogic compresses DSO by automating the full invoice-to-cash cycle: same-day invoicing, a structured 5-touch reminder sequence, and AI-assisted cash application. The $${cashUnlocked.toLocaleString()}/month figure represents working capital already earned and sitting uncollected — not new revenue.
               </p>
             </td></tr>
 
@@ -110,14 +110,14 @@ export async function POST(req: NextRequest) {
                 Talk to us about your numbers
               </a>
               <p style="margin:16px 0 0;font-size:13px;color:#475569">
-                Or reply directly to this email. We read every one.
+                Or reply directly to this email — we read every one.
               </p>
             </td></tr>
 
             <!-- Divider -->
             <tr><td style="border-top:1px solid #1e293b;padding-top:24px">
               <p style="margin:0;font-size:12px;color:#334155;line-height:1.6">
-                You received this because you used the get-paid calculator at lunarlogic.ai. We won't add you to any mailing list.
+                You received this because you ran a DSO calculation at lunarlogic.ai. We won't add you to any mailing list.
                 Questions? Reply here or email <a href="mailto:support@lunarlogic.ai" style="color:#60a5fa">support@lunarlogic.ai</a>.
               </p>
             </td></tr>
@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
         from: "LunarLogic Website <onboarding@resend.dev>",
         to: ["support@lunarlogic.ai"],
         reply_to: email,
-        subject: `New lead: ${company} (${currentDSO} to ${projectedDSO} days to get paid, $${cashUnlocked.toLocaleString()}/mo opportunity)`,
+        subject: `DSO Lead: ${company} — ${currentDSO}→${projectedDSO} day DSO, $${cashUnlocked.toLocaleString()}/mo opportunity`,
         html: internalHtml,
       }),
     }),
@@ -149,7 +149,7 @@ export async function POST(req: NextRequest) {
         from: "LunarLogic Website <onboarding@resend.dev>",
         to: [email],
         reply_to: "support@lunarlogic.ai",
-        subject: `Your results: getting paid in ${projectedDSO} days instead of ${currentDSO}, freeing $${cashUnlocked.toLocaleString()}/mo`,
+        subject: `Your DSO results: ${currentDSO}→${projectedDSO} days, $${cashUnlocked.toLocaleString()}/mo opportunity`,
         html: customerHtml,
       }),
     }),

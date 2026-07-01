@@ -17,12 +17,12 @@ function ARMockup() {
   return (
     <div className="w-full max-w-sm mx-auto space-y-3">
       <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl">
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">How Getting Paid Works</p>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">AR Automation Pipeline</p>
         {[
-          { label: "Job comes in", sub: "via Slack or email", done: step >= 0 },
-          { label: "Invoice created & sent", sub: "in about 90 seconds", done: step >= 1 },
-          { label: "Reminders go out", sub: "on a set schedule", done: step >= 1 },
-          { label: "Payment matched to invoice", sub: "marked paid for you", done: step >= 2 },
+          { label: "Sales order received", sub: "via Slack or email", done: step >= 0 },
+          { label: "Invoice created & sent", sub: "90-second processing", done: step >= 1 },
+          { label: "Reminders dispatched", sub: "systematic follow-up", done: step >= 1 },
+          { label: "Payment matched & applied", sub: "AI cash application", done: step >= 2 },
         ].map((s, i) => (
           <div key={i} className="flex items-start gap-3 mb-3 last:mb-0">
             <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${s.done ? "bg-blue-500" : "bg-slate-700"}`}>
@@ -46,12 +46,12 @@ function ARMockup() {
         <div className="bg-blue-500/10 border border-blue-500/25 rounded-2xl p-4 flex items-center gap-4">
           <div>
             <p className="text-3xl font-extrabold text-blue-400">19</p>
-            <p className="text-xs text-slate-400">days sooner paid</p>
+            <p className="text-xs text-slate-400">days cut from DSO</p>
           </div>
           <div className="flex-1 h-px bg-blue-500/20" />
           <div>
             <p className="text-3xl font-extrabold text-blue-400">$65K</p>
-            <p className="text-xs text-slate-400">cash freed up</p>
+            <p className="text-xs text-slate-400">working capital freed</p>
           </div>
         </div>
       </div>
@@ -173,8 +173,8 @@ function FullSuiteMockup() {
 
       <div className="grid grid-cols-2 gap-3">
         {[
-          { label: "Closing the books", value: "3 days", sub: "was 14 days" },
-          { label: "Your numbers", value: "Up to date", sub: "not once a month" },
+          { label: "Month-end close", value: "3 days", sub: "vs. 14-day manual" },
+          { label: "Reporting", value: "Real-time", sub: "vs. monthly" },
         ].map((m) => (
           <div key={m.label} className="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center">
             <p className="text-lg font-extrabold text-blue-400">{m.value}</p>
@@ -194,30 +194,30 @@ const chapters = [
     phase: "01",
     status: "Production",
     statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
-    label: "Getting Paid",
-    title: "Getting paid, handled from start to finish.",
-    body: "From the moment a job is done to the money landing in your account, every step runs on its own. Invoices go out in seconds, reminders go out every week, and payments are matched to the right invoice for you. No one chasing customers, no uncomfortable calls, and nothing to type up.",
-    stat: { value: "40%", label: "faster to get paid" },
+    label: "AR Automation Suite",
+    title: "The complete invoice-to-cash cycle. Running automatically.",
+    body: "From sales order to collected cash: every step handled by the system. Invoices dispatched in seconds, reminders run every weekday, payments matched by AI. No AR clerk, no follow-up calls, no manual data entry.",
+    stat: { value: "40%", label: "average DSO reduction" },
     mockup: <ARMockup />,
   },
   {
     phase: "02",
     status: "In Development",
     statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
-    label: "Paying Bills",
-    title: "Your bills: sorted, approved, and paid on time.",
-    body: "The bills you owe are collected in one place, sent to the right person to approve, and paid on schedule. The money going out becomes just as predictable as the money coming in. Nothing paid too early, nothing paid late, and nothing paid without approval.",
-    stat: { value: "0", label: "bills you have to enter by hand" },
+    label: "AP Automation Suite",
+    title: "Your payables: organized, approved, and paid on schedule.",
+    body: "Vendor bills captured automatically, routed for approval, scheduled for payment. Your outgoing cash becomes just as predictable as your incoming cash. Nothing paid early. Nothing paid late. Nothing paid without the right sign-off.",
+    stat: { value: "0", label: "manual bill entry required" },
     mockup: <APMockup />,
   },
   {
     phase: "03",
     status: "Coming Soon",
     statusColor: "text-slate-400 bg-slate-700 border-slate-600",
-    label: "Full Accounting",
-    title: "Your whole back office, running without you.",
-    body: "Once the money in and the money out are handled, everything else falls into place: a clear view of your cash for the months ahead, books that close in days instead of weeks, payroll that stays in sync, and up-to-date numbers whenever you want them. The financial side of your business, running on its own.",
-    stat: { value: "3 days", label: "to close the books (was 14)" },
+    label: "Full Accounting Suite",
+    title: "The entire financial operating layer. Running without you.",
+    body: "With AR and AP automated, the full suite closes the loop: cash flow forecasting, accelerated month-end close, payroll sync, and real-time financial reporting. The entire financial backbone of your business, running on its own.",
+    stat: { value: "3 days", label: "to close vs. 14-day manual" },
     mockup: <FullSuiteMockup />,
   },
 ];

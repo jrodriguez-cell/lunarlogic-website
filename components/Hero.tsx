@@ -41,21 +41,21 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight text-balance">
-          Turn work you&apos;ve{" "}
+          Turn what you have{" "}
           <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            already done
+            already earned
           </span>
-          {" "}into money in the bank.
+          {" "}into cash in your bank account.
         </h1>
 
         {/* Subheadline */}
         <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          You did the work. You sent the invoice. Now you&apos;re waiting to get paid. LunarLogic handles the follow-up for you, so the money arrives sooner. No uncomfortable emails, no chasing calls.
+          The money is already there, legally owed and sitting in your aging report. LunarLogic collects it. No manual follow-up. No chasing.
         </p>
 
         {/* Tagline */}
         <p className="mt-4 text-base text-slate-500 italic max-w-xl mx-auto">
-          Your invoices get paid while you sleep.
+          So you can rest assured, your accounting is working while you sleep.
         </p>
 
         {/* CTAs */}
@@ -70,7 +70,7 @@ export default function Hero() {
             href="/calculate"
             className="w-full sm:w-auto border border-blue-500/40 hover:border-blue-400 text-blue-300 hover:text-blue-200 px-8 py-3.5 rounded-xl text-base font-semibold transition-all"
           >
-            See How Fast You&apos;d Get Paid →
+            Calculate My DSO →
           </Link>
         </div>
 

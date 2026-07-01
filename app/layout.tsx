@@ -5,29 +5,20 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "LunarLogic: AI Accounting Automation for Service Businesses",
+    default: "LunarLogic: AR Automation for Professional Services",
     template: "%s | LunarLogic",
   },
   description:
-    "LunarLogic is AI accounting automation for service businesses. It sends invoices, follows up on late payments, and matches payments to the right invoice, so you get paid faster with far less manual work.",
-  keywords: [
-    "AI accounting automation",
-    "accounting automation software",
-    "AI accounts receivable automation",
-    "invoice automation",
-    "automated payment reminders",
-    "QuickBooks automation",
-    "accounts receivable software",
-    "get paid faster",
-  ],
+    "LunarLogic automates your Accounts Receivable: invoice creation, payment reminders, and cash application, reducing DSO for small professional services firms.",
+  keywords: ["AR automation", "accounts receivable", "DSO reduction", "QuickBooks", "invoice automation"],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lunarlogic.ai",
     siteName: "LunarLogic",
-    title: "LunarLogic: AI Accounting Automation for Service Businesses",
+    title: "LunarLogic: Cut Your DSO. Get Paid Faster.",
     description:
-      "AI accounting automation that gets service businesses paid faster. Invoices go out on time, late payments are followed up automatically, and payments are matched for you. Kaptain Clean was paid 19 days sooner.",
+      "AR automation platform for professional services firms. 19-day DSO improvement proven with Kaptain Clean LLC.",
   },
 };
 

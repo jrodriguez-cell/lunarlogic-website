@@ -162,7 +162,7 @@ export default function CalculatePage() {
           {step === 2 && (
             <div>
               <h1 className="text-3xl font-extrabold text-white mb-2">Your invoice volume</h1>
-              <p className="text-slate-400 mb-8">Estimates are fine. We&apos;ll use these to size your dashboard.</p>
+              <p className="text-slate-400 mb-8">Estimates are fine — we&apos;ll use these to size your dashboard.</p>
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Invoices sent per month</label>
@@ -237,11 +237,11 @@ export default function CalculatePage() {
                 ))}
               </div>
               <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-5">
-                <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">How long you wait to get paid</p>
+                <p className="text-xs text-slate-500 uppercase tracking-wider mb-3">Your estimated current DSO</p>
                 <p className="text-4xl font-extrabold text-white mb-1">
                   {currentDSO} <span className="text-xl font-normal text-slate-400">days</span>
                 </p>
-                <p className="text-xs text-slate-500">{form.paymentTerms} days to pay + about {form.overdueDays} days late, on average</p>
+                <p className="text-xs text-slate-500">Net {form.paymentTerms} terms + ~{form.overdueDays} days late on average</p>
               </div>
             </div>
           )}
@@ -278,10 +278,10 @@ export default function CalculatePage() {
                 <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Your dashboard preview</p>
                 {[
                   { label: "Company", value: form.company },
-                  { label: "Days to get paid now", value: `${currentDSO} days` },
-                  { label: "With LunarLogic", value: `${projectedDSO} days`, green: true },
-                  { label: "You invoice per month", value: `$${monthlyAR.toLocaleString()}` },
-                  { label: "Cash freed up / month", value: `$${cashUnlocked.toLocaleString()}`, green: true },
+                  { label: "Current DSO", value: `${currentDSO} days` },
+                  { label: "Projected DSO with LunarLogic", value: `${projectedDSO} days`, green: true },
+                  { label: "Monthly AR", value: `$${monthlyAR.toLocaleString()}` },
+                  { label: "Cash to unlock / month", value: `$${cashUnlocked.toLocaleString()}`, green: true },
                 ].map((row) => (
                   <div key={row.label} className="flex justify-between items-center text-sm">
                     <span className="text-slate-400">{row.label}</span>

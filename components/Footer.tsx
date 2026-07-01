@@ -35,7 +35,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-3 text-sm text-slate-400 max-w-xs">
-              AI accounting automation that helps service businesses get paid faster. Invoices sent, late payments followed up, and payments matched automatically.
+              AR automation for professional services firms. Cut your DSO and get paid faster.
             </p>
           </div>
 

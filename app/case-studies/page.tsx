@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "See how service businesses use LunarLogic's AI accounting automation to get paid faster and take invoicing off their plate. Real results from real companies.",
+    "See how LunarLogic clients are cutting DSO and automating AR. Real results from real firms.",
 };
 
 export default function CaseStudiesPage() {
@@ -22,7 +22,7 @@ export default function CaseStudiesPage() {
               Real numbers. Real firms.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              These aren&apos;t projections. Real businesses are getting paid faster right now, and here are their numbers.
+              LunarLogic clients are not cutting days off their DSO in theory. These results are live in production.
             </p>
           </ScrollReveal>
 
@@ -30,10 +30,10 @@ export default function CaseStudiesPage() {
           <ScrollReveal animation="zoom-in" delay={100}>
             <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { value: "19 days", label: "Sooner paid" },
-                { value: "$112K", label: "Most cash freed up" },
-                { value: "84%", label: "Fastest invoicing" },
-                { value: "$0", label: "Written off (Halloran)" },
+                { value: "19 days", label: "Best DSO reduction" },
+                { value: "$112K", label: "Most working capital freed" },
+                { value: "84%", label: "Fastest invoice processing" },
+                { value: "$0", label: "Bad debt (Halloran)" },
               ].map((s) => (
                 <div key={s.label} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
                   <p className="text-xl font-extrabold text-blue-400">{s.value}</p>
@@ -52,16 +52,17 @@ export default function CaseStudiesPage() {
       <section className="py-16 bg-slate-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal animation="fade-up">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your business could be next</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your firm could be next</h2>
             <p className="text-slate-400 mb-8">
-              Service businesses with 8 to 20 people who bill customers regularly are the ideal fit, no matter which
-              accounting software you use. We&apos;ll show you how much faster you&apos;d get paid before you ever pay us a dollar.
+              Professional services firms with 8–20 employees and a recurring invoice model are the right fit,
+              regardless of which accounting platform you run. We can estimate your DSO improvement before we ever
+              charge you a dollar.
             </p>
             <Link
               href="/contact"
               className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3.5 rounded-xl font-semibold transition-all hover:scale-105"
             >
-              Get a Free Estimate
+              Get a DSO Estimate
             </Link>
           </ScrollReveal>
         </div>

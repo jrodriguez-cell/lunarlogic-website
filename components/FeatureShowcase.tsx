@@ -94,7 +94,7 @@ function InvoiceMockup() {
 
 function ReminderMockup() {
   const reminders = [
-    { day: "Day 3",  label: "Friendly reminder",     status: "sent",   time: "Mon 9:02 AM" },
+    { day: "Day 3",  label: "Friendly nudge",        status: "sent",   time: "Mon 9:02 AM" },
     { day: "Day 7",  label: "Follow-up",              status: "sent",   time: "Fri 9:01 AM" },
     { day: "Day 14", label: "Escalation",             status: "sent",   time: "Fri 9:03 AM" },
     { day: "Day 21", label: "Urgent: past due",       status: "queued", time: "Next Mon" },
@@ -171,7 +171,7 @@ function DashboardMockup() {
     <div className="w-full max-w-sm mx-auto space-y-3">
       {/* DSO Hero */}
       <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl">
-        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Days to get paid</p>
+        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Current DSO</p>
         <div className="flex items-end gap-3 mb-3">
           <p className="text-5xl font-extrabold text-white">33</p>
           <div className="mb-1.5">
@@ -200,9 +200,9 @@ function DashboardMockup() {
         </div>
       </div>
 
-      {/* Unpaid invoice buckets */}
+      {/* AR Aging Buckets */}
       <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-4 space-y-2.5">
-        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Who still owes you</p>
+        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">AR Aging</p>
         {buckets.map((b) => (
           <div key={b.label}>
             <div className="flex justify-between text-xs mb-1">
@@ -293,34 +293,34 @@ function CashMockup() {
 const chapters = [
   {
     step: "01",
-    label: "Send the Invoice",
-    title: "Job done. Invoice out.",
-    body: "The moment a job is marked complete, LunarLogic builds the invoice, fills in the right customer details, and sends it automatically. No typing it up later, and no invoice forgotten because you were busy doing the actual work.",
-    stat: { value: "84%", label: "faster invoicing" },
+    label: "Invoice Creation",
+    title: "Job complete. Invoice out.",
+    body: "The moment a job is marked complete, LunarLogic generates the invoice, pulls the correct client details, and sends it automatically. No manual entry, no delay, no billing that slips through the cracks because someone was busy.",
+    stat: { value: "84%", label: "faster invoice processing" },
     mockup: <InvoiceMockup />,
   },
   {
     step: "02",
-    label: "Chase the Payment",
-    title: "Never send that awkward reminder again.",
-    body: "When an invoice is late, LunarLogic sends courteous reminders for you on day 3, 7, 14, and 21, written to sound like they came from you. Customers who tend to pay late receive a firmer reminder, while your reliable regulars get a lighter touch. Either way, you are out of the follow-up business.",
-    stat: { value: "0", label: "reminder emails you have to write" },
+    label: "Payment Reminders",
+    title: "Stop sending the same email. Again.",
+    body: "Every overdue invoice triggers an automatic reminder sequence on Day 3, 7, 14, and 21, professionally worded, sent from your business. Clients who always pay late get pressure. Long-standing relationships get a lighter touch. You get out of the follow-up business entirely.",
+    stat: { value: "0", label: "manual follow-up calls" },
     mockup: <ReminderMockup />,
   },
   {
     step: "03",
-    label: "Match the Money",
-    title: "Payments matched to invoices, automatically.",
-    body: "When a payment lands, LunarLogic figures out which invoice it belongs to and marks it paid in your books. It gets this right on its own the vast majority of the time. When it's not sure, you get a one-tap check. No payments sitting around unaccounted for.",
-    stat: { value: "91%", label: "of payments matched automatically" },
+    label: "Cash Application",
+    title: "Payments matched and applied by AI.",
+    body: "When a payment arrives, AI matches it to the correct open invoice. Above 90% confidence, applied automatically, your accounting system updated, done. Below that threshold, you get a one-click prompt. Unapplied cash doesn't age in the system unclaimed.",
+    stat: { value: "91%", label: "of payments auto-applied" },
     mockup: <CashMockup />,
   },
   {
     step: "04",
-    label: "See Where You Stand",
-    title: "Know how fast you're getting paid, right now.",
-    body: "A simple dashboard shows how long you're waiting to get paid, how much is still owed to you, and which customers are drifting late. It even marks the day you started with LunarLogic, so you can see exactly when things started getting better.",
-    stat: { value: "19", label: "days sooner paid (Kaptain Clean)" },
+    label: "AR Dashboard",
+    title: "Your DSO: live, not at month-end.",
+    body: "A real-time dashboard shows your DSO trend, aging buckets, and which clients are drifting late. The go-live date is annotated on the trend line so you see exactly when the curve started bending down. That line is the ROI.",
+    stat: { value: "19", label: "day DSO reduction (Kaptain Clean)" },
     mockup: <DashboardMockup />,
   },
 ];

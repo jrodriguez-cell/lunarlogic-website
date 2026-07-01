@@ -6,9 +6,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import FeatureShowcase from "@/components/FeatureShowcase";
 
 export const metadata: Metadata = {
-  title: "AI Accounting Automation That Gets You Paid Faster",
+  title: "LunarLogic: We turn what you have already earned into cash in your bank account.",
   description:
-    "LunarLogic is AI accounting automation for service businesses. It sends invoices on time, follows up on late payments, and matches payments to the right invoice. On average, customers are paid 40% sooner.",
+    "LunarLogic automates the full Order-to-Cash cycle for service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
 };
 
 
@@ -22,10 +22,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "40%", label: "Faster to Get Paid" },
-              { value: "84%", label: "Faster Invoicing" },
-              { value: "500+ hrs", label: "Saved Every Year" },
-              { value: "70%", label: "Less Money Written Off" },
+              { value: "40%", label: "Average DSO Reduction" },
+              { value: "84%", label: "Faster Invoice Processing" },
+              { value: "500+ hrs", label: "Saved Annually Per Firm" },
+              { value: "70%", label: "Bad Debt Improvement" },
             ].map((stat, i) => (
               <ScrollReveal key={stat.label} animation="zoom-in" delay={i * 80}>
                 <p className="text-2xl sm:text-3xl font-extrabold text-blue-400">{stat.value}</p>
@@ -44,23 +44,26 @@ export default function HomePage() {
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                  Earning the money and collecting it are two different things.
+                  Revenue is recognized. Cash is a separate problem.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  You finish the job and send the invoice, but the cash does not arrive for weeks, sometimes months.
-                  Until it does, money you have already earned sits unpaid. The longer that takes, the less cash you
-                  actually have on hand to run the business.
+                  Under US GAAP, revenue is recognized when performance obligations are satisfied, not when cash is
+                  received. The resulting accounts receivable balance is money legally earned that sits on your balance
+                  sheet instead of your operating account. Days Sales Outstanding (DSO) measures how long it takes to
+                  close that gap. The longer the DSO, the more working capital is tied up in uncollected receivables at
+                  any given time.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
-                  Meanwhile, payroll, rent, and your own bills are due on time, every time. So even a busy, profitable
-                  business can run short on cash. Not because the work is not there, but because the money is stuck in
-                  invoices no one is following up on.
+                  Payroll, vendor obligations, and overhead run on fixed cycles. Collections do not. When the
+                  receivables cycle lags, even profitable service businesses face recurring cash shortfalls that
+                  constrain capacity and growth, not because revenue is insufficient, but because the collection
+                  cycle is unmanaged.
                 </p>
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors"
                 >
-                  See how LunarLogic gets you paid faster
+                  See how LunarLogic compresses the collection cycle
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -70,20 +73,20 @@ export default function HomePage() {
             <div className="space-y-4">
               {[
                 {
-                  title: "Invoices go out late, so they get paid late",
-                  body: "Every day between finishing the job and sending the invoice adds to how long you wait for the money. Slow billing leads to slow paydays.",
+                  title: "Billing lag extends DSO before collection starts",
+                  body: "Every day between service delivery and invoice issuance adds to DSO before the collection clock even begins. Billing latency compounds the receivables gap.",
                 },
                 {
-                  title: "No one is following up",
-                  body: "Once an invoice is sent, it is easy to forget. Without someone reminding customers on a schedule, your invoices get paid after the ones from businesses that do follow up.",
+                  title: "No structured collection workflow",
+                  body: "Without a defined, escalating follow-up sequence, receivables age in silence. Outreach happens reactively, which means your invoices get paid after the ones with a system behind them.",
                 },
                 {
-                  title: "You don't see a problem until cash gets tight",
-                  body: "By the time you notice, an invoice has often been unpaid for 45 to 60 days. Catching it early turns a cash-flow scare into a simple reminder.",
+                  title: "Receivables aging is invisible until it becomes a crisis",
+                  body: "By the time a cash shortfall surfaces, the underlying receivable has often been aging 45-60 days. Real-time visibility converts a crisis into a managed workflow.",
                 },
                 {
-                  title: "Your cash is stuck in unpaid invoices",
-                  body: "Money tied up in unpaid invoices cannot cover payroll, bills, or growth. The problem is not the work. It is how long the money takes to arrive.",
+                  title: "High DSO locks working capital in the receivables cycle",
+                  body: "Capital tied up in slow-paying AR cannot fund operations, payroll, or growth. The constraint is not revenue: it is the velocity of cash conversion.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} animation="slide-right" delay={i * 90}>
@@ -110,7 +113,7 @@ export default function HomePage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Case Study</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-              How Kaptain Clean started getting paid 19 days sooner
+              How Kaptain Clean cut DSO by 19 days
             </h2>
           </ScrollReveal>
           <ScrollReveal animation="zoom-in" delay={100}>
@@ -119,8 +122,8 @@ export default function HomePage() {
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                They started getting paid 19 days sooner. Invoices went out 84% faster. And over $65,000 in cash came in.
-                Not from new work, but from money they had already earned and were simply waiting on.
+                DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in cash freed from outstanding
+                receivables, not from new revenue, but from money that was already earned and sitting uncollected.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
