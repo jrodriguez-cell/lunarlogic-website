@@ -17,6 +17,41 @@ export default function HomePage() {
     <>
       <Hero />
 
+      {/* Product Demo Video */}
+      <section className="bg-slate-950 pb-16 sm:pb-24 -mt-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">See It In Action</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Your receivables, running on autopilot.
+            </h2>
+          </div>
+          <div className="relative">
+            {/* Glow */}
+            <div
+              aria-hidden="true"
+              className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-3xl rounded-[2rem] pointer-events-none"
+            />
+            <div className="relative rounded-2xl overflow-hidden border border-blue-500/25 shadow-2xl shadow-blue-500/20">
+              <video
+                className="w-full h-auto block"
+                width={1280}
+                height={720}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster="/video/lunarlogic-demo-poster.png"
+                aria-label="Animated demo of the LunarLogic accounts receivable dashboard"
+              >
+                <source src="/video/lunarlogic-demo.webm" type="video/webm" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Strip */}
       <section className="bg-slate-900 border-y border-slate-800 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
