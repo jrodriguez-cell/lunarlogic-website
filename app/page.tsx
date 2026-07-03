@@ -46,6 +46,7 @@ export default function HomePage() {
                 aria-label="Animated demo of the LunarLogic accounts receivable dashboard"
               >
                 <source src="/video/lunarlogic-demo.webm" type="video/webm" />
+                <source src="/video/lunarlogic-demo.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
