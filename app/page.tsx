@@ -35,8 +35,8 @@ export default function HomePage() {
             <div className="relative rounded-2xl overflow-hidden border border-blue-500/25 shadow-2xl shadow-blue-500/20">
               <video
                 className="w-full h-auto block"
-                width={1280}
-                height={720}
+                width={1440}
+                height={810}
                 autoPlay
                 loop
                 muted
