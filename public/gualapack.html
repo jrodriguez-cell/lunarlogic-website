@@ -760,7 +760,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
           <!-- FEAT 0: Reminder Sequence -->
           <div class="feat-panel active" id="feat-0">
             <h3>Automated Reminders</h3>
-            <p class="feat-intro">Every invoice goes on a set schedule — a courtesy note before it's due, then steady follow-ups if it slips. All automatic. Tap a step:</p>
+            <p class="feat-intro">Every invoice goes on a set schedule: a courtesy note before it's due, then steady follow-ups if it slips. All automatic. Tap a step:</p>
             <div class="cad-track" id="cadTrack">
               <div class="cad-node active" data-cad="0" onclick="cadStep(0)"><div class="cd">−7d</div><div class="cl">Pre-due</div></div>
               <div class="cad-node" data-cad="1" onclick="cadStep(1)"><div class="cd">Due</div><div class="cl">Day 0</div></div>
@@ -775,13 +775,13 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               <div class="msg" id="cadMsg"></div>
               <div class="meta" id="cadMeta"></div>
             </div>
-            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> No invoice slips, and follow-up stays consistent. Customers on a steady cadence pay about <b>40% faster</b> — exactly the gap tying up your cash.</span></div>
+            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> No invoice slips, and follow-up stays consistent. Customers on a steady cadence pay about <b>40% faster</b>. That's exactly the gap tying up your cash.</span></div>
           </div>
 
           <!-- FEAT 1: Risk-Based Timing -->
           <div class="feat-panel" id="feat-1">
             <h3>Risk-Based Timing</h3>
-            <p class="feat-intro">The system reads each customer's payment history and sets the timing itself — gentle with reliable payers, firmer with chronic late ones. Pick a payer type:</p>
+            <p class="feat-intro">The system reads each customer's payment history and sets the timing itself: gentle with reliable payers, firmer with chronic late ones. Pick a payer type:</p>
             <div class="risk-chips">
               <button class="risk-chip lo active" data-risk="lo" onclick="riskSel('lo')">Reliable payer</button>
               <button class="risk-chip me" data-risk="me" onclick="riskSel('me')">Occasionally late</button>
@@ -791,7 +791,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               <div class="rd-top"><span class="rd-name" id="rdName"></span><span class="rd-avg" id="rdAvg"></span></div>
               <div class="rd-body" id="rdBody"></div>
             </div>
-            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> Your best customers are never pestered; slow payers get steady pressure — automatically, with no one deciding who to chase.</span></div>
+            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> Your best customers are never pestered; slow payers get steady pressure automatically, with no one deciding who to chase.</span></div>
           </div>
 
           <!-- FEAT 2: Automation Coverage -->
@@ -816,7 +816,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
           <!-- FEAT 3: Exceptions only -->
           <div class="feat-panel" id="feat-3">
             <h3>When a Person Is Needed</h3>
-            <p class="feat-intro">The routine chasing is automated. These are for the few moments that need judgment — a promised date, a dispute, a call worth logging. Tap one:</p>
+            <p class="feat-intro">The routine chasing is automated. These are for the few moments that need judgment: a promised date, a dispute, a call worth logging. Tap one:</p>
             <div class="act-grid">
               <button class="act-btn primary active" data-act="log" onclick="actSel('log')"><div class="al">Log a Call</div><div class="as">Record the outcome</div></button>
               <button class="act-btn" data-act="snooze" onclick="actSel('snooze')"><div class="al">Promise-to-Pay</div><div class="as">Hold until a date</div></button>
@@ -824,13 +824,13 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               <button class="act-btn" data-act="reminder" onclick="actSel('reminder')"><div class="al">One-off Nudge</div><div class="as">Rarely needed</div></button>
             </div>
             <div class="act-detail" id="actDetail"></div>
-            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> The system does the repetitive sending. People step in only for the exceptions — nothing else takes their time.</span></div>
+            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> The system does the repetitive sending. People step in only for the exceptions. Nothing else takes their time.</span></div>
           </div>
 
           <!-- FEAT 4: Dispute & Aging Radar -->
           <div class="feat-panel" id="feat-4">
             <h3>Dispute &amp; Aging Radar</h3>
-            <p class="feat-intro">LunarLogic flags invoices overdue in ways that don't fit the customer's history — a sign of a dispute, not just slowness — while they're still easy to fix.</p>
+            <p class="feat-intro">LunarLogic flags invoices overdue in ways that don't fit the customer's history. That usually signals a dispute, not just slowness, and surfaces it while it's still easy to fix.</p>
             <div class="disp-card">
               <div class="disp-top">
                 <div>
@@ -846,7 +846,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               <button class="disp-toggle" onclick="toggleDispute()" id="dispBtn">Why was this flagged? →</button>
               <div class="disp-why" id="dispWhy">This customer normally pays in <b style="color:#F1F5F9">28 days</b>. This invoice was <b style="color:#F1F5F9">viewed but left unpaid</b> well past due, outside their normal pattern. That usually means a billing question or internal approval delay, not a cash problem. A two-minute call now clears it, before it ages into bad debt.</div>
             </div>
-            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> Unresolved disputes become write-offs. Catching the one invoice that's actually stuck protects real dollars — recovery drops below 50% past 90 days.</span></div>
+            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> Unresolved disputes become write-offs. Catching the one invoice that's actually stuck protects real dollars. Recovery drops below 50% past 90 days.</span></div>
           </div>
 
           <!-- FEAT 5: Daily Recap -->
@@ -874,7 +874,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
       <div class="voiceover">
         <span class="vo-label">The full scope</span>
-        Reminders are the start. The same system tracks every invoice, flags the few that need attention, and recaps it each morning —
+        Reminders are the start. The same system tracks every invoice, flags the few that need attention, and recaps it each morning,
         automatically. It doesn't replace anyone; it takes the repetitive 80% off your team's plate.
       </div>
     </section>
@@ -883,7 +883,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
     <section class="section" id="s4">
       <div class="eyebrow">Section 4 · What the first 90 days show</div>
       <h2>The Result</h2>
-      <p class="lead">Same team, same customers. Invoices simply get paid sooner. Here's what consistent, automated follow-up typically moves in the first quarter — and it compounds from there.</p>
+      <p class="lead">Same team, same customers. Invoices simply get paid sooner. Here's what consistent, automated follow-up typically moves in the first quarter, and it compounds from there.</p>
 
       <div class="compare">
         <div class="panel before">
@@ -956,7 +956,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
       <div class="cta-slide">
         <div class="eyebrow" style="margin-left:auto;margin-right:auto">Section 6 · The Next Step</div>
         <h2>How the Rollout Begins</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto">We start focused — a handful of your slowest-paying accounts, fully measurable — then expand across the full AR book from there.</p>
+        <p class="lead" style="margin-left:auto;margin-right:auto">We start focused on a handful of your slowest-paying accounts, fully measurable, then expand across the full AR book from there.</p>
 
         <div class="timeline">
           <div class="tl-step">
