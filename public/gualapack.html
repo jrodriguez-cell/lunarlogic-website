@@ -644,7 +644,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
           </div>
           <div class="callout">
             <div class="num">46 days</div>
-            <div class="lbl">Average time invoices sit <em style="color:var(--slate-300);font-style:italic">past</em> your 14-day terms</div>
+            <div class="lbl">Average time to get paid, on <em style="color:var(--slate-300);font-style:italic">14-day</em> terms</div>
           </div>
           <div class="callout">
             <div class="num">$295K</div>
@@ -667,7 +667,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
       <div class="dash" role="region" aria-label="AR dashboard demo">
         <div class="dash-stats">
-          <div class="stat"><div class="k">Avg. time to get paid</div><div class="v amber">60 days</div></div>
+          <div class="stat"><div class="k">Avg. time to get paid</div><div class="v amber">46 days</div></div>
           <div class="stat"><div class="k">Total AR</div><div class="v">$295K</div></div>
           <div class="stat"><div class="k">Overdue</div><div class="v blue">$87K</div></div>
         </div>
@@ -807,8 +807,8 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
             </div>
             <button class="disp-toggle" style="margin-top:1rem;color:#FBBF24;background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35)" onclick="toggleNeeds()" id="needsBtn">Show what needs me →</button>
             <div class="needs-list" id="needsList">
-              <div class="needs-item"><span>Western Foods · #2851 · $8,200 · sequence complete, still unpaid</span><span class="nf">Call recommended</span></div>
-              <div class="needs-item"><span>Bell Packaging · #2864 · $8,200 · opened but unpaid</span><span class="nf">Possible dispute</span></div>
+              <div class="needs-item"><span>Delta Mfg. · #2864 · $3,400 · sequence complete, still unpaid</span><span class="nf">Call recommended</span></div>
+              <div class="needs-item"><span>Bell Packaging · #2851 · $8,200 · opened but unpaid</span><span class="nf">Possible dispute</span></div>
             </div>
             <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> No one re-reads the AR list every day. The system handles the routine 12 and points to the 2 that need attention.</span></div>
           </div>
@@ -836,12 +836,12 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
                 <div>
                   <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.3rem">
                     <span class="disp-cust">Bell Packaging</span>
-                    <span style="color:var(--slate-500);font-size:.82rem">#2864</span>
+                    <span style="color:var(--slate-500);font-size:.82rem">#2851</span>
                     <span class="disp-flag">Possible dispute</span>
                   </div>
                   <div style="color:var(--slate-400);font-size:.86rem">Opened the invoice 9 days ago, still unpaid</div>
                 </div>
-                <div style="text-align:right"><div class="disp-amt">$8,200</div><div style="color:#C4B5FD;font-size:.78rem">15d overdue</div></div>
+                <div style="text-align:right"><div class="disp-amt">$8,200</div><div style="color:#C4B5FD;font-size:.78rem">47d overdue</div></div>
               </div>
               <button class="disp-toggle" onclick="toggleDispute()" id="dispBtn">Why was this flagged? →</button>
               <div class="disp-why" id="dispWhy">This customer normally pays in <b style="color:#F1F5F9">28 days</b>. This invoice was <b style="color:#F1F5F9">viewed but left unpaid</b> well past due, outside their normal pattern. That usually means a billing question or internal approval delay, not a cash problem. A two-minute call now clears it, before it ages into bad debt.</div>
@@ -862,8 +862,8 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               <div class="digest-body">
                 <div class="digest-row"><span class="dr-ic" style="background:rgba(96,165,250,.15);color:var(--blue-light)">✉</span><span><b>7 reminders sent</b> · $43,200 in invoices followed up, hands-free</span></div>
                 <div class="digest-row"><span class="dr-ic" style="background:rgba(74,222,128,.15);color:var(--green)">✓</span><span><b>2 customers promised to pay</b> this week</span></div>
-                <div class="digest-row"><span class="dr-ic" style="background:rgba(251,191,36,.15);color:#FBBF24">!</span><span><b>1 invoice needs your call</b> · Western Foods, 47 days</span></div>
-                <div class="digest-row"><span class="dr-ic" style="background:rgba(129,140,248,.15);color:var(--indigo)">↓</span><span><b>Getting paid faster</b> · 60 to 54 to 49 days on average</span></div>
+                <div class="digest-row"><span class="dr-ic" style="background:rgba(251,191,36,.15);color:#FBBF24">!</span><span><b>1 invoice needs your call</b> · Delta Mfg., 61 days</span></div>
+                <div class="digest-row"><span class="dr-ic" style="background:rgba(129,140,248,.15);color:var(--indigo)">↓</span><span><b>Getting paid faster</b> · 46 to 42 to 38 days on average</span></div>
               </div>
             </div>
             <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> Your team <b>monitors without managing</b>. The work still gets done, while their time shifts to the calls that need a person.</span></div>
@@ -888,7 +888,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
       <div class="compare">
         <div class="panel before">
           <h3><span class="badge">Today</span></h3>
-          <div class="metric"><div class="ml">Time to get paid</div><div class="mv">60 days</div></div>
+          <div class="metric"><div class="ml">Time to get paid</div><div class="mv">46 days</div></div>
           <div class="metric"><div class="ml">Cash tied up</div><div class="mv">$295K</div></div>
           <div class="metric"><div class="ml">Follow-up / week</div><div class="mv">~5 hours</div></div>
         </div>
@@ -899,7 +899,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
         <div class="panel after">
           <h3><span class="badge">After 90 days</span></h3>
-          <div class="metric"><div class="ml">Time to get paid</div><div class="mv hl">38 to 42 days</div></div>
+          <div class="metric"><div class="ml">Time to get paid</div><div class="mv hl">32 to 36 days</div></div>
           <div class="metric"><div class="ml">Cash tied up</div><div class="mv">$215K</div></div>
           <div class="metric"><div class="ml">Follow-up / week</div><div class="mv">&lt; 1 hour</div></div>
         </div>
@@ -908,7 +908,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
       <div class="result-box">
         <div class="big">Working Capital Released: <span>$65K to $85K</span></div>
         <p class="proof">
-          A conservative projection for your AR profile. Collecting roughly 18 to 22 days sooner releases the cash that's currently sitting past terms, without changing a single customer relationship.
+          A conservative projection for your AR profile. Collecting roughly 10 to 14 days sooner releases the cash that's currently sitting past terms, without changing a single customer relationship.
         </p>
         <div class="adv">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-3 7h6l-3 13"/></svg>
