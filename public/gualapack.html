@@ -658,10 +658,10 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               <div class="xls-row late"><div>Crane Co.</div><div>$5,750</div><div>22</div></div>
               <div class="xls-row late"><div>Delta Mfg.</div><div>$3,400</div><div>61</div></div>
             </div>
-            <div class="mock" aria-label="Outlook inbox mockup">
+            <div class="mock" aria-label="Email outbox mockup">
               <div class="mock-head out">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-                Sent · Outlook
+                Sent · Email
               </div>
               <div class="out-item"><b>RE: Invoice past due</b>Acme Foods <span class="cc">sent by hand</span></div>
               <div class="out-item"><b>Friendly reminder</b>Bell Pkg. <span class="cc">sent by hand</span></div>
@@ -713,7 +713,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
           <span class="pulse" aria-hidden="true"></span>
           <div class="txt">
             <b>Payment Reminders</b>
-            <span>7 reminders sent this week · $43,200 followed up · auto-sent 9:00 AM via Outlook</span>
+            <span>7 reminders sent this week · $43,200 followed up · auto-sent 9:00 AM via QuickBooks</span>
           </div>
           <span class="on">ACTIVE</span>
         </div>
@@ -1250,7 +1250,7 @@ function selectFeat(i){
 
 /* Reminder cadence steps */
 const CAD = [
-  { tone:'Courtesy',     bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Heads-up: Invoice #2847 is due in one week. Just flagging it early so it doesn\'t sneak up on you."', meta:'Auto-sent 9:00 AM via Outlook · <b style="color:#86EFAC">before it\'s even late</b>' },
+  { tone:'Courtesy',     bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Heads-up: Invoice #2847 is due in one week. Just flagging it early so it doesn\'t sneak up on you."', meta:'Auto-sent 9:00 AM via QuickBooks · <b style="color:#86EFAC">before it\'s even late</b>' },
   { tone:'Neutral',      bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"A quick note that Invoice #2847 is due today. A copy is attached for your convenience."', meta:'Auto-sent 9:00 AM · the day it\'s due' },
   { tone:'Gentle',       bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Friendly reminder: Invoice #2847 was due yesterday and is now showing as outstanding."', meta:'Auto-sent · 1 day past due' },
   { tone:'Polite',       bg:'rgba(251,191,36,.16)', fg:'#FBBF24', msg:'"Following up on Invoice #2847, now 7 days past due. We\'d appreciate it being processed at your earliest convenience."', meta:'Auto-sent · 7 days past due' },
