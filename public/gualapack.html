@@ -955,15 +955,15 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
     <section class="section" id="s6">
       <div class="cta-slide">
         <div class="eyebrow" style="margin-left:auto;margin-right:auto">Section 6 · The Next Step</div>
-        <h2>Start With a 90-Day Pilot</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto">A focused, fully measurable trial on a handful of your slowest-paying accounts — the start of an ongoing engagement, not a one-time project.</p>
+        <h2>How the Rollout Begins</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto">We start focused — a handful of your slowest-paying accounts, fully measurable — then expand across the full AR book from there.</p>
 
         <div class="timeline">
           <div class="tl-step">
             <div class="nodecirc">1</div>
             <div class="wk">Week 1</div>
             <div class="ti">Setup &amp; Configuration</div>
-            <div class="td">Connect QuickBooks, load templates, and pick 5 pilot accounts.</div>
+            <div class="td">Connect QuickBooks, load templates, and pick your first 5 accounts.</div>
           </div>
           <div class="tl-step">
             <div class="nodecirc">2</div>
@@ -986,11 +986,11 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
         </div>
 
         <button class="btn btn-cta" id="pilotBtn" type="button" onclick="pilotClick()">
-          <span id="pilotBtnLabel">Start the Pilot</span>
+          <span id="pilotBtnLabel">Get Started</span>
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
         <div class="pilot-confirm" id="pilotConfirm" role="status">
-          <b>Thanks, your request is in.</b> We've notified the LunarLogic team at support@lunarlogic.ai and we'll reach out to set up your pilot.
+          <b>Thanks, your request is in.</b> We've notified the LunarLogic team at support@lunarlogic.ai and we'll reach out to get you set up.
         </div>
         <p style="margin-top:1rem;color:var(--slate-500);font-size:.86rem">
           <span class="grad" style="font-weight:800">lunarlogic</span><span style="color:var(--slate-400)">.ai</span> · AR automation for professional services &nbsp;·&nbsp; support@lunarlogic.ai
@@ -1164,10 +1164,10 @@ function pilotClick(){
       method: 'POST',
       // No custom headers => simple request => no CORS preflight.
       body: JSON.stringify({
-        name: 'Pilot CTA',
+        name: 'Get Started CTA',
         email: 'support@lunarlogic.ai',
         company: 'Gualapack North America',
-        message: 'Clicked "Start the Pilot" in the Gualapack payment reminder demo.',
+        message: 'Clicked "Get Started" in the Gualapack payment reminder demo.',
       }),
       keepalive: true,
     }).catch(()=>{});
