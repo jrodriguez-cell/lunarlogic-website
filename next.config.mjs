@@ -6,6 +6,10 @@ const nextConfig = {
         source: '/gualapack',
         destination: '/gualapack.html',
       },
+      {
+        source: '/truemixmasters',
+        destination: '/truemixmasters.html',
+      },
     ];
   },
 };
