@@ -15,16 +15,17 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Hero />
-
-      {/* Product Demo Video */}
-      <section className="bg-slate-950 pb-16 sm:pb-24 -mt-4">
+      {/* Product Demo Video — top of page */}
+      <section className="bg-slate-950 pt-12 sm:pt-16 pb-14 sm:pb-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 max-w-2xl mx-auto">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">See It In Action</p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              Your receivables, running on autopilot.
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Watch LunarLogic run your accounts receivable, end to end.
             </h2>
+            <p className="text-slate-400 text-base sm:text-lg">
+              Invoices sent, late payments chased, and cash matched automatically. A 30-second look inside the dashboard.
+            </p>
           </div>
           <div className="relative">
             {/* Glow */}
@@ -52,6 +53,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Hero />
 
       {/* Stats Strip */}
       <section className="bg-slate-900 border-y border-slate-800 py-10">
