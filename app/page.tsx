@@ -55,17 +55,19 @@ const EXAMPLE_SUITES = [
 export default function HomePage() {
   return (
     <>
-      {/* Product Demo Video — top of page */}
-      <section className="bg-slate-950 pt-12 sm:pt-16 pb-14 sm:pb-20">
+      <Hero />
+
+      {/* Automation Overview Video */}
+      <section className="bg-slate-950 pt-4 sm:pt-6 pb-14 sm:pb-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 max-w-2xl mx-auto">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">See It In Action</p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              A week of accounts receivable work. Done automatically.
+              What AI automation looks like across your books.
             </h2>
             <p className="text-slate-400 text-base sm:text-lg">
-              Invoices sent, late payments chased, cash matched, without anyone on your team lifting a finger. This is
-              one example of the custom automations we build.
+              Accounts receivable, accounts payable, and the full close: three examples of the custom automations we
+              build, and what changes for the business when each one runs.
             </p>
           </div>
           <div className="relative">
@@ -84,18 +86,16 @@ export default function HomePage() {
                 muted
                 playsInline
                 preload="metadata"
-                poster="/video/lunarlogic-demo-poster.png"
-                aria-label="Animated demo of an example LunarLogic accounts receivable automation"
+                poster="/video/lunarlogic-automations-poster.png"
+                aria-label="Animated overview of accounts receivable, accounts payable, and full accounting suite automation examples"
               >
-                <source src="/video/lunarlogic-demo.webm" type="video/webm" />
-                <source src="/video/lunarlogic-demo.mp4" type="video/mp4" />
+                <source src="/video/lunarlogic-automations.webm" type="video/webm" />
+                <source src="/video/lunarlogic-automations.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
         </div>
       </section>
-
-      <Hero />
 
       {/* What We Automate — AR / AP / Full Suite as examples */}
       <section className="bg-slate-900 border-y border-slate-800 py-20">
