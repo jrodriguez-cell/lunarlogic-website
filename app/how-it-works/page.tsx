@@ -64,11 +64,12 @@ export default function HowItWorksPage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Platform</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
-              Module by module. Starting with AR.
+              Custom automation, built around your business.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              LunarLogic modernizes the accounting infrastructure of owner-operated service businesses, one suite at a
-              time, until the entire financial operating layer runs automatically. Works with the platforms you already use.
+              LunarLogic builds tailored accounting automation for owner-operated service businesses. AR and AP are
+              common starting points, examples of the kind of custom build we deliver, not a fixed product roadmap.
+              Works with the platforms you already use.
             </p>
           </ScrollReveal>
         </div>

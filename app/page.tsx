@@ -3,14 +3,54 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
-import FeatureShowcase from "@/components/FeatureShowcase";
 
 export const metadata: Metadata = {
-  title: "LunarLogic: We turn what you have already earned into cash in your bank account.",
+  title: "LunarLogic: Custom Accounting Automation, Built Around Your Business",
   description:
-    "LunarLogic automates the full Order-to-Cash cycle for service businesses. 40% average DSO reduction. Proven with Kaptain Clean LLC.",
+    "LunarLogic builds custom accounting automation for owner-operated service businesses. Accounts receivable, accounts payable, and full back-office automation are common examples of what we build.",
 };
 
+const EXAMPLE_SUITES = [
+  {
+    id: "ar",
+    name: "AR Automation",
+    status: "Production",
+    statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
+    description:
+      "Invoicing, payment follow-up, and cash application, running without anyone chasing a client.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+      </svg>
+    ),
+  },
+  {
+    id: "ap",
+    name: "AP Automation",
+    status: "In Development",
+    statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+    description:
+      "Vendor bills captured, routed for approval, and paid on schedule, no more surprise due dates.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+  },
+  {
+    id: "full",
+    name: "Full Accounting Suite",
+    status: "Coming Soon",
+    statusColor: "text-slate-400 bg-slate-700 border-slate-600",
+    description:
+      "Cash flow forecasting, faster month-end close, and real-time reporting, the whole back office on autopilot.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    ),
+  },
+];
 
 export default function HomePage() {
   return (
@@ -21,10 +61,11 @@ export default function HomePage() {
           <div className="text-center mb-8 max-w-2xl mx-auto">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">See It In Action</p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              Watch LunarLogic run your accounts receivable, end to end.
+              One example of a custom automation we built.
             </h2>
             <p className="text-slate-400 text-base sm:text-lg">
-              Invoices sent, late payments chased, and cash matched automatically. A 30-second look inside the dashboard.
+              This one handles accounts receivable end to end: invoices sent, late payments chased, and cash matched
+              automatically. It&apos;s one of many workflows we can build for your business.
             </p>
           </div>
           <div className="relative">
@@ -44,7 +85,7 @@ export default function HomePage() {
                 playsInline
                 preload="metadata"
                 poster="/video/lunarlogic-demo-poster.png"
-                aria-label="Animated demo of the LunarLogic accounts receivable dashboard"
+                aria-label="Animated demo of an example LunarLogic accounts receivable automation"
               >
                 <source src="/video/lunarlogic-demo.webm" type="video/webm" />
                 <source src="/video/lunarlogic-demo.mp4" type="video/mp4" />
@@ -56,53 +97,86 @@ export default function HomePage() {
 
       <Hero />
 
-      {/* Stats Strip */}
-      <section className="bg-slate-900 border-y border-slate-800 py-10">
+      {/* What We Automate — AR / AP / Full Suite as examples */}
+      <section className="bg-slate-900 border-y border-slate-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "40%", label: "Average DSO Reduction" },
-              { value: "84%", label: "Faster Invoice Processing" },
-              { value: "500+ hrs", label: "Saved Annually Per Firm" },
-              { value: "70%", label: "Bad Debt Improvement" },
-            ].map((stat, i) => (
-              <ScrollReveal key={stat.label} animation="zoom-in" delay={i * 80}>
-                <p className="text-2xl sm:text-3xl font-extrabold text-blue-400">{stat.value}</p>
-                <p className="text-xs sm:text-sm text-slate-400 mt-1">{stat.label}</p>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Example Solutions</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                Not a fixed product. A custom build.
+              </h2>
+              <p className="text-lg text-slate-400">
+                Every LunarLogic automation is tailored to how your business actually runs. These are the problems we
+                solve most often, offered here as examples of what a custom build can look like.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {EXAMPLE_SUITES.map((suite, i) => (
+              <ScrollReveal key={suite.id} animation="zoom-in" delay={i * 90}>
+                <Link
+                  href={`/use-cases#${suite.id}`}
+                  className="group block h-full bg-slate-800/50 border border-slate-700 hover:border-blue-500/50 rounded-2xl p-6 transition-all hover:-translate-y-0.5"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
+                      {suite.icon}
+                    </div>
+                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${suite.statusColor}`}>
+                      {suite.status}
+                    </span>
+                  </div>
+                  <h3 className="text-base font-semibold text-white mb-2">{suite.name}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{suite.description}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 group-hover:text-blue-300 transition-colors">
+                    See the use cases
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
+
+          <ScrollReveal animation="fade-in" delay={280}>
+            <p className="text-center text-slate-500 text-sm mt-10">
+              Your bottleneck lives somewhere else in your books?{" "}
+              <Link href="/contact" className="text-blue-400 hover:text-blue-300 transition-colors">
+                Tell us about it.
+              </Link>
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Problem / Why It Matters */}
-      <section className="py-24 bg-slate-900">
+      <section className="py-24 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="slide-left">
               <div>
                 <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">The Problem</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-                  Revenue is recognized. Cash is a separate problem.
+                  Every business has a bottleneck in its books.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  Under US GAAP, revenue is recognized when performance obligations are satisfied, not when cash is
-                  received. The resulting accounts receivable balance is money legally earned that sits on your balance
-                  sheet instead of your operating account. Days Sales Outstanding (DSO) measures how long it takes to
-                  close that gap. The longer the DSO, the more working capital is tied up in uncollected receivables at
-                  any given time.
+                  For some businesses it&apos;s getting invoices out the door. For others it&apos;s chasing late
+                  payments, approving vendor bills, or closing the books each month. Off-the-shelf software handles
+                  the easy 80%. The last 20%, the part that actually costs you hours every week, gets left to whoever
+                  has time.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
-                  Payroll, vendor obligations, and overhead run on fixed cycles. Collections do not. When the
-                  receivables cycle lags, even profitable service businesses face recurring cash shortfalls that
-                  constrain capacity and growth, not because revenue is insufficient, but because the collection
-                  cycle is unmanaged.
+                  LunarLogic builds the automation for that last 20%: tailored to your workflow, your accounting
+                  system, and the specific way your business runs.
                 </p>
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors"
                 >
-                  See how LunarLogic compresses the collection cycle
+                  See how a LunarLogic build comes together
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -112,20 +186,20 @@ export default function HomePage() {
             <div className="space-y-4">
               {[
                 {
-                  title: "Billing lag extends DSO before collection starts",
-                  body: "Every day between service delivery and invoice issuance adds to DSO before the collection clock even begins. Billing latency compounds the receivables gap.",
+                  title: "Invoices go out late, or not at all",
+                  body: "A common AR bottleneck: billing competes with everything else on the owner's plate, so it slips.",
                 },
                 {
-                  title: "No structured collection workflow",
-                  body: "Without a defined, escalating follow-up sequence, receivables age in silence. Outreach happens reactively, which means your invoices get paid after the ones with a system behind them.",
+                  title: "No consistent follow-up on what's owed",
+                  body: "Whether it's client payments or vendor bills, work without a system to track it ages in silence.",
                 },
                 {
-                  title: "Receivables aging is invisible until it becomes a crisis",
-                  body: "By the time a cash shortfall surfaces, the underlying receivable has often been aging 45-60 days. Real-time visibility converts a crisis into a managed workflow.",
+                  title: "Manual work is invisible until it isn't",
+                  body: "The cost of a missing automation doesn't show up until a deadline is missed or cash runs short.",
                 },
                 {
-                  title: "High DSO locks working capital in the receivables cycle",
-                  body: "Capital tied up in slow-paying AR cannot fund operations, payroll, or growth. The constraint is not revenue: it is the velocity of cash conversion.",
+                  title: "The fix has to fit how you already work",
+                  body: "Generic software rarely matches your process exactly. A custom build is made to fit it.",
                 },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} animation="slide-right" delay={i * 90}>
@@ -143,16 +217,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature Showcase — sticky scroll */}
-      <FeatureShowcase />
-
       {/* Kaptain Clean Case Study Teaser */}
-      <section className="py-24 bg-slate-950">
+      <section className="py-24 bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Case Study</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-              How Kaptain Clean cut DSO by 19 days
+              How a custom AR build freed $65,000 for Kaptain Clean
             </h2>
           </ScrollReveal>
           <ScrollReveal animation="zoom-in" delay={100}>
@@ -161,8 +232,8 @@ export default function HomePage() {
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                DSO dropped 19 days. Invoice processing time fell 84%. Over $65,000 in cash freed from outstanding
-                receivables, not from new revenue, but from money that was already earned and sitting uncollected.
+                Payments started arriving 19 days faster on average. Invoice processing time fell 84%. Over $65,000 in
+                cash freed up, not from new revenue, but from money that was already earned and sitting uncollected.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">

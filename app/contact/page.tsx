@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with LunarLogic to book a demo or ask about AR automation for your professional services firm.",
+    "Get in touch with LunarLogic to book a demo or ask about custom accounting automation for your business.",
 };
 
 export default function ContactPage() {
@@ -18,8 +18,8 @@ export default function ContactPage() {
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Get in Touch</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">Book a Demo</h1>
             <p className="text-lg text-slate-400 max-w-xl mx-auto">
-              30 minutes. We will walk through your current AR process, show you the LunarLogic workflow live, and give
-              you a DSO reduction estimate.
+              30 minutes. We will walk through your current process, show you what a custom LunarLogic automation
+              would look like for it, and give you an estimate of the time and cash it would free up.
             </p>
           </ScrollReveal>
         </div>
@@ -59,10 +59,10 @@ export default function ContactPage() {
                   <h3 className="text-white font-semibold mb-4">What to Expect</h3>
                   <ul className="space-y-3">
                     {[
-                      "Review your current AR process",
-                      "Live walkthrough of LunarLogic workflows",
-                      "Custom DSO reduction estimate",
-                      "Pricing recommendation for your volume",
+                      "Review your current accounting workflow",
+                      "Live walkthrough of a custom automation for it",
+                      "Estimate of time and cash it would free up",
+                      "Pricing recommendation for your business",
                       "No obligation, no hard sell",
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm text-slate-300">

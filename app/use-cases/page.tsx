@@ -25,12 +25,12 @@ export default function UseCasesPage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Use Cases</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 text-balance">
-              Every accounting problem we were built to solve.
+              Examples of the problems a custom build solves.
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              LunarLogic automates the financial operating layer of owner-operated service businesses, module by module,
-              starting with AR, until the entire cycle runs without manual intervention. These are the problems that make
-              that necessary, and what changes when each one is solved.
+              LunarLogic builds custom accounting automation for owner-operated service businesses. AR, AP, and full
+              accounting automation are the problems we solve most often, laid out below as examples of what a
+              tailored build looks like and what changes once it&apos;s live.
             </p>
           </ScrollReveal>
 

@@ -36,26 +36,28 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-8">
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-sm text-blue-300 font-medium">AI-Powered Accounting Automation</span>
+          <span className="text-sm text-blue-300 font-medium">Custom Accounting Automation</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight text-balance">
-          Turn what you have{" "}
+          We build the automation{" "}
           <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            already earned
+            your accounting actually needs
           </span>
-          {" "}into cash in your bank account.
+          .
         </h1>
 
         {/* Subheadline */}
         <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          The money is already there, legally owed and sitting in your aging report. LunarLogic collects it. No manual follow-up. No chasing.
+          Every business loses hours somewhere to accounting busywork: chasing payments, entering bills, closing the
+          books. LunarLogic builds a custom automation for wherever yours does. Accounts receivable and accounts
+          payable are just two common places we start.
         </p>
 
         {/* Tagline */}
         <p className="mt-4 text-base text-slate-500 italic max-w-xl mx-auto">
-          So you can rest assured, your accounting is working while you sleep.
+          So the work gets done, even when no one&apos;s watching it happen.
         </p>
 
         {/* CTAs */}
@@ -67,10 +69,10 @@ export default function Hero() {
             Get a Demo
           </Link>
           <Link
-            href="/calculate"
+            href="/use-cases"
             className="w-full sm:w-auto border border-blue-500/40 hover:border-blue-400 text-blue-300 hover:text-blue-200 px-8 py-3.5 rounded-xl text-base font-semibold transition-all"
           >
-            Calculate My DSO →
+            See Example Automations →
           </Link>
         </div>
 

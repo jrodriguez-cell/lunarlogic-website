@@ -8,8 +8,8 @@ interface CTASectionProps {
 }
 
 export default function CTASection({
-  heading = "Ready to reduce your DSO?",
-  subheading = "Join professional services firms already using LunarLogic to automate their AR and get paid faster.",
+  heading = "Ready to automate the busywork?",
+  subheading = "Join service businesses using custom LunarLogic automations to run their accounting, AR, AP, and beyond, without the manual work.",
   ctaText = "Get a Demo",
   ctaHref = "/contact",
 }: CTASectionProps) {

@@ -5,20 +5,20 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "LunarLogic: AR Automation for Professional Services",
+    default: "LunarLogic: Custom Accounting Automation for Service Businesses",
     template: "%s | LunarLogic",
   },
   description:
-    "LunarLogic automates your Accounts Receivable: invoice creation, payment reminders, and cash application, reducing DSO for small professional services firms.",
-  keywords: ["AR automation", "accounts receivable", "DSO reduction", "QuickBooks", "invoice automation"],
+    "LunarLogic builds custom accounting automation for owner-operated service businesses, tailored to your workflow. Accounts receivable, accounts payable, and full back-office automation are common examples of what we build.",
+  keywords: ["accounting automation", "custom automation", "accounts receivable automation", "accounts payable automation", "QuickBooks automation", "business process automation"],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lunarlogic.ai",
     siteName: "LunarLogic",
-    title: "LunarLogic: Cut Your DSO. Get Paid Faster.",
+    title: "LunarLogic: Custom Accounting Automation, Built Around Your Business",
     description:
-      "AR automation platform for professional services firms. 19-day DSO improvement proven with Kaptain Clean LLC.",
+      "Tailored automation for the accounting work eating your week, accounts receivable, accounts payable, and beyond. Proven with real service businesses.",
   },
 };
 
