@@ -61,11 +61,11 @@ export default function HomePage() {
           <div className="text-center mb-8 max-w-2xl mx-auto">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">See It In Action</p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              One example of a custom automation we built.
+              A week of accounts receivable work. Done automatically.
             </h2>
             <p className="text-slate-400 text-base sm:text-lg">
-              This one handles accounts receivable end to end: invoices sent, late payments chased, and cash matched
-              automatically. It&apos;s one of many workflows we can build for your business.
+              Invoices sent, late payments chased, cash matched, without anyone on your team lifting a finger. This is
+              one example of the custom automations we build.
             </p>
           </div>
           <div className="relative">
