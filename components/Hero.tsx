@@ -202,23 +202,27 @@ function AutomationPipelineCard() {
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
   const glowLayerRef = useRef<HTMLDivElement>(null);
   const cardLayerRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
 
-  // Scroll-driven handoff: the card racks focus and recedes as the hero
-  // scrolls past, while a shared CSS variable ramps up the demo video
-  // section's glow to meet it.
+  // Scroll-driven handoff: the card racks focus and recedes as it scrolls
+  // past, while a shared CSS variable ramps up the demo video section's
+  // glow to meet it. Tied to the visual's own position (not the whole
+  // hero section) so it can't start receding before the card has even
+  // scrolled into view, which is what happened on mobile's taller,
+  // stacked layout.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const section = sectionRef.current;
-    if (!section) return;
+    const visual = visualRef.current;
+    if (!visual) return;
 
     let raf: number | null = null;
     const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 
     const update = () => {
-      const rect = section.getBoundingClientRect();
+      const rect = visual.getBoundingClientRect();
       const progress = clamp01(-rect.top / (rect.height * 0.85));
 
       if (glowLayerRef.current) {
@@ -347,7 +351,10 @@ export default function Hero() {
           </div>
 
           {/* Automation pipeline visual */}
-          <div className="relative flex items-center justify-center min-h-[320px] sm:min-h-[360px] lg:min-h-[440px]">
+          <div
+            ref={visualRef}
+            className="relative flex items-center justify-center min-h-[320px] sm:min-h-[360px] lg:min-h-[440px]"
+          >
             {/* Glow (background layer) */}
             <div ref={glowLayerRef} aria-hidden="true" className="absolute" style={{ willChange: "transform, opacity" }}>
               <div className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] bg-blue-500/20 rounded-full blur-3xl" />

@@ -71,11 +71,8 @@ function APMockup() {
   return (
     <div className="w-full max-w-sm mx-auto space-y-3">
       <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl">
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4">
           <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Bill Queue</p>
-          <span className="text-xs font-semibold text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-2 py-0.5 rounded-full">
-            In Development
-          </span>
         </div>
         <div className="space-y-2">
           {bills.map((b) => (
@@ -133,11 +130,8 @@ function FullSuiteMockup() {
   return (
     <div className="w-full max-w-sm mx-auto space-y-3">
       <div className="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-xl">
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4">
           <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Cash Flow Forecast</p>
-          <span className="text-xs font-semibold text-slate-400 bg-slate-700 border border-slate-600 px-2 py-0.5 rounded-full">
-            Coming Soon
-          </span>
         </div>
 
         <div className="flex items-end gap-1 h-16 mb-3">
