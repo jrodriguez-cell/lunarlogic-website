@@ -3,19 +3,161 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+const FEED_LINES = [
+  { text: "Invoice #1042 created for Acme Corp", meta: "Slack → QuickBooks" },
+  { text: "Reminder sent, Day 7 follow-up", meta: "Delivered" },
+  { text: "Payment matched, $4,200.00", meta: "97% confidence" },
+  { text: "QuickBooks updated automatically", meta: "0 manual entry" },
+];
+
+function CheckIcon() {
+  return (
+    <svg className="w-3 h-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function Spinner() {
+  return (
+    <span className="block w-2.5 h-2.5 rounded-full border-2 border-blue-400/30 border-t-blue-400 animate-spin" />
+  );
+}
+
+function LiveFeedCard() {
+  const [doneCount, setDoneCount] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReducedMotion(prefersReduced);
+    if (prefersReduced) {
+      setDoneCount(FEED_LINES.length);
+      return;
+    }
+
+    let cancelled = false;
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+    const wait = (fn: () => void, ms: number) => {
+      const t = setTimeout(() => {
+        if (!cancelled) fn();
+      }, ms);
+      timeouts.push(t);
+    };
+
+    function typeLine(lineIdx: number) {
+      if (cancelled) return;
+      if (lineIdx >= FEED_LINES.length) {
+        wait(() => {
+          setDoneCount(0);
+          setTypedText("");
+          typeLine(0);
+        }, 2600);
+        return;
+      }
+      const text = FEED_LINES[lineIdx].text;
+      let i = 0;
+      const typeChar = () => {
+        if (cancelled) return;
+        i++;
+        setTypedText(text.slice(0, i));
+        if (i < text.length) {
+          wait(typeChar, 16 + Math.random() * 18);
+        } else {
+          wait(() => {
+            setDoneCount(lineIdx + 1);
+            setTypedText("");
+            typeLine(lineIdx + 1);
+          }, 600);
+        }
+      };
+      typeChar();
+    }
+
+    typeLine(0);
+    return () => {
+      cancelled = true;
+      timeouts.forEach(clearTimeout);
+    };
+  }, []);
+
+  return (
+    <div className="w-full max-w-sm bg-slate-900/90 backdrop-blur border border-slate-700/60 rounded-2xl shadow-2xl shadow-blue-500/10 p-5 sm:p-6">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-2">
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="url(#feedMoonGrad)" />
+            <defs>
+              <linearGradient id="feedMoonGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#60A5FA" />
+                <stop offset="100%" stopColor="#818CF8" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Automation Activity</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+          <span className="text-xs font-semibold text-green-400">Live</span>
+        </div>
+      </div>
+
+      {/* Feed */}
+      <div className="space-y-4 min-h-[172px]">
+        {FEED_LINES.map((line, i) => {
+          const isDone = i < doneCount;
+          const isActive = !reducedMotion && i === doneCount;
+          const isPending = !isDone && !isActive;
+          return (
+            <div
+              key={i}
+              className={`flex items-start gap-3 transition-opacity duration-300 ${isPending ? "opacity-0" : "opacity-100"}`}
+            >
+              <div
+                className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  isDone ? "bg-green-500/15" : "bg-blue-500/10"
+                }`}
+              >
+                {isDone ? <CheckIcon /> : isActive ? <Spinner /> : null}
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm text-slate-200 font-medium leading-snug">
+                  {isDone ? line.text : isActive ? typedText : " "}
+                  {isActive && (
+                    <span className="inline-block w-[2px] h-[13px] bg-blue-400 ml-0.5 align-middle animate-pulse" />
+                  )}
+                </p>
+                <p className={`text-xs text-slate-500 mt-0.5 transition-opacity duration-300 ${isDone ? "opacity-100" : "opacity-0"}`}>
+                  {line.meta}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer stat */}
+      <div className="mt-5 pt-4 border-t border-slate-700/50 flex items-center justify-between text-xs">
+        <span className="text-slate-500">13 actions today</span>
+        <span className="text-blue-400 font-semibold">0 manual</span>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const glowLayerRef = useRef<HTMLDivElement>(null);
-  const ring1LayerRef = useRef<HTMLDivElement>(null);
-  const ring2LayerRef = useRef<HTMLDivElement>(null);
-  const moonLayerRef = useRef<HTMLDivElement>(null);
+  const cardLayerRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const [spotlightOn, setSpotlightOn] = useState(false);
 
-  // Scroll-driven handoff: the moon graphic racks focus and recedes in
-  // depth-ordered layers as the hero scrolls past, while a shared CSS
-  // variable ramps up the demo video section's glow to meet it.
+  // Scroll-driven handoff: the card racks focus and recedes as the hero
+  // scrolls past, while a shared CSS variable ramps up the demo video
+  // section's glow to meet it.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const section = sectionRef.current;
@@ -29,22 +171,14 @@ export default function Hero() {
       const progress = clamp01(-rect.top / (rect.height * 0.85));
 
       if (glowLayerRef.current) {
-        glowLayerRef.current.style.transform = `translateY(${(-progress * 8).toFixed(1)}px)`;
+        glowLayerRef.current.style.transform = `translateY(${(-progress * 10).toFixed(1)}px)`;
         glowLayerRef.current.style.opacity = (1 - progress * 0.5).toFixed(3);
       }
-      if (ring1LayerRef.current) {
-        ring1LayerRef.current.style.transform = `translateY(${(-progress * 24).toFixed(1)}px)`;
-        ring1LayerRef.current.style.opacity = (1 - progress * 0.55).toFixed(3);
-      }
-      if (ring2LayerRef.current) {
-        ring2LayerRef.current.style.transform = `translateY(${(-progress * 16).toFixed(1)}px)`;
-        ring2LayerRef.current.style.opacity = (1 - progress * 0.5).toFixed(3);
-      }
-      if (moonLayerRef.current) {
-        const scale = 1 - progress * 0.14;
-        moonLayerRef.current.style.transform = `translateY(${(-progress * 46).toFixed(1)}px) scale(${scale.toFixed(3)})`;
-        moonLayerRef.current.style.opacity = (1 - progress * 0.6).toFixed(3);
-        moonLayerRef.current.style.filter = `blur(${(progress * 6).toFixed(2)}px)`;
+      if (cardLayerRef.current) {
+        const scale = 1 - progress * 0.08;
+        cardLayerRef.current.style.transform = `translateY(${(-progress * 34).toFixed(1)}px) scale(${scale.toFixed(3)})`;
+        cardLayerRef.current.style.opacity = (1 - progress * 0.55).toFixed(3);
+        cardLayerRef.current.style.filter = `blur(${(progress * 4).toFixed(2)}px)`;
       }
       document.documentElement.style.setProperty("--hero-exit", progress.toFixed(3));
       raf = null;
@@ -63,8 +197,9 @@ export default function Hero() {
     };
   }, []);
 
-  // Cursor-reactive spotlight + magnetic pull on the primary CTA, both
-  // scoped to the hero section so they only engage while hovering here.
+  // Cursor-reactive spotlight + card tilt + magnetic pull on the primary
+  // CTA, all scoped to the hero section so they only engage while
+  // hovering here.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const section = sectionRef.current;
@@ -168,64 +303,34 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Moon visual */}
-          <div
-            className="relative flex items-center justify-center h-[280px] sm:h-[360px] lg:h-[440px]"
-            aria-hidden="true"
-          >
+          {/* Live automation feed visual */}
+          <div className="relative flex items-center justify-center min-h-[320px] sm:min-h-[360px] lg:min-h-[440px]">
             {/* Cursor spotlight */}
             <div
               ref={spotlightRef}
+              aria-hidden="true"
               className={`absolute left-0 top-0 w-[560px] h-[560px] rounded-full pointer-events-none transition-opacity duration-500 ${
                 spotlightOn ? "opacity-100" : "opacity-0"
               }`}
               style={{
                 background:
-                  "radial-gradient(circle, rgba(148,180,250,0.16) 0%, rgba(96,165,250,0.06) 40%, transparent 70%)",
+                  "radial-gradient(circle, rgba(148,180,250,0.14) 0%, rgba(96,165,250,0.05) 40%, transparent 70%)",
                 willChange: "transform",
               }}
             />
 
             {/* Glow (background layer) */}
-            <div ref={glowLayerRef} className="absolute" style={{ willChange: "transform, opacity" }}>
-              <div className="w-[260px] h-[260px] lg:w-[340px] lg:h-[340px] bg-blue-500/20 rounded-full blur-3xl" />
+            <div ref={glowLayerRef} aria-hidden="true" className="absolute" style={{ willChange: "transform, opacity" }}>
+              <div className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] bg-blue-500/20 rounded-full blur-3xl" />
             </div>
 
-            {/* Orbit ring — outer */}
-            <div ref={ring2LayerRef} className="absolute" style={{ willChange: "transform, opacity" }}>
-              <div
-                className="w-[340px] h-[340px] lg:w-[460px] lg:h-[460px] rounded-full border border-indigo-400/15 animate-spin-slow"
-              />
-            </div>
-
-            {/* Orbit ring — inner, plus stars */}
-            <div ref={ring1LayerRef} className="absolute" style={{ willChange: "transform, opacity" }}>
-              <div
-                className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] rounded-full border border-blue-400/15"
-                style={{ transform: "rotate(-14deg) scaleY(0.86)" }}
-              />
-              <span className="absolute top-10 right-10 lg:right-6 w-1.5 h-1.5 rounded-full bg-blue-300/70" />
-              <span className="absolute bottom-16 left-4 lg:left-0 w-1 h-1 rounded-full bg-indigo-300/60 animate-pulse" />
-              <span className="absolute top-24 left-10 lg:left-8 w-1 h-1 rounded-full bg-white/40" />
-            </div>
-
-            {/* Crescent moon (foreground layer, racks focus on scroll) */}
-            <div ref={moonLayerRef} className="relative" style={{ willChange: "transform, opacity, filter" }}>
-              <svg
-                width="200"
-                height="200"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="relative w-[160px] h-[160px] lg:w-[210px] lg:h-[210px] drop-shadow-[0_0_60px_rgba(96,165,250,0.35)]"
-              >
-                <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="url(#heroMoonGrad)" />
-                <defs>
-                  <linearGradient id="heroMoonGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#60A5FA" />
-                    <stop offset="100%" stopColor="#818CF8" />
-                  </linearGradient>
-                </defs>
-              </svg>
+            {/* Live feed card (foreground layer, racks focus on scroll) */}
+            <div
+              ref={cardLayerRef}
+              className="relative rotate-[-1.5deg]"
+              style={{ willChange: "transform, opacity, filter" }}
+            >
+              <LiveFeedCard />
             </div>
           </div>
         </div>
