@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 const SUITE_NAV = [
-  { id: "ar",   name: "AR Automation Suite",    status: "Production",     statusColor: "text-green-400 bg-green-500/10 border-green-500/20" },
-  { id: "ap",   name: "AP Automation Suite",    status: "In Development", statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20" },
-  { id: "full", name: "Full Accounting Suite",  status: "Coming Soon",    statusColor: "text-slate-400 bg-slate-700 border-slate-600" },
+  { id: "ar",   name: "AR Automation Suite" },
+  { id: "ap",   name: "AP Automation Suite" },
+  { id: "full", name: "Full Accounting Suite" },
 ];
 
 export default function UseCasesPage() {
@@ -41,12 +41,9 @@ export default function UseCasesPage() {
                 <a
                   key={suite.id}
                   href={`#${suite.id}`}
-                  className="group flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700 hover:border-slate-600 px-4 py-2 rounded-xl transition-colors"
+                  className="text-sm font-medium text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700 hover:border-slate-600 px-4 py-2 rounded-xl transition-colors"
                 >
-                  <span>{suite.name}</span>
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${suite.statusColor}`}>
-                    {suite.status}
-                  </span>
+                  {suite.name}
                 </a>
               ))}
             </div>
