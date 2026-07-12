@@ -6,7 +6,8 @@ interface FormData {
   name: string;
   email: string;
   company: string;
-  invoiceVolume: string;
+  automationFocus: string;
+  currentSoftware: string;
   message: string;
 }
 
@@ -15,7 +16,8 @@ export default function ContactForm() {
     name: "",
     email: "",
     company: "",
-    invoiceVolume: "",
+    automationFocus: "",
+    currentSoftware: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -119,24 +121,45 @@ export default function ContactForm() {
         />
       </div>
 
-      <div>
-        <label className="block text-xs font-medium text-slate-400 mb-1.5" htmlFor="invoiceVolume">
-          Monthly Invoice Volume
-        </label>
-        <select
-          id="invoiceVolume"
-          name="invoiceVolume"
-          value={formData.invoiceVolume}
-          onChange={handleChange}
-          className={inputClass}
-        >
-          <option value="" disabled>Select approximate volume</option>
-          <option value="under-50">Under 50 invoices/month</option>
-          <option value="50-150">50–150 invoices/month</option>
-          <option value="150-250">150–250 invoices/month</option>
-          <option value="250-400">250–400 invoices/month</option>
-          <option value="400+">400+ invoices/month</option>
-        </select>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label className="block text-xs font-medium text-slate-400 mb-1.5" htmlFor="automationFocus">
+            What are you looking to automate?
+          </label>
+          <select
+            id="automationFocus"
+            name="automationFocus"
+            value={formData.automationFocus}
+            onChange={handleChange}
+            className={inputClass}
+          >
+            <option value="" disabled>Select an area</option>
+            <option value="ar">Accounts receivable (invoicing, collections)</option>
+            <option value="ap">Accounts payable (bills, approvals)</option>
+            <option value="full">Full accounting suite (close, reporting, forecasting)</option>
+            <option value="unsure">Not sure yet / multiple areas</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-slate-400 mb-1.5" htmlFor="currentSoftware">
+            Current accounting software
+          </label>
+          <select
+            id="currentSoftware"
+            name="currentSoftware"
+            value={formData.currentSoftware}
+            onChange={handleChange}
+            className={inputClass}
+          >
+            <option value="" disabled>Select a platform</option>
+            <option value="quickbooks-online">QuickBooks Online</option>
+            <option value="quickbooks-desktop">QuickBooks Desktop</option>
+            <option value="sage-intacct">Sage Intacct</option>
+            <option value="netsuite">NetSuite</option>
+            <option value="xero">Xero</option>
+            <option value="other">Other / not sure</option>
+          </select>
+        </div>
       </div>
 
       <div>
@@ -149,7 +172,7 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Tell us what you're looking to automate, current pain points, or what you're hoping to solve..."
+          placeholder="Tell us about your current process, what's not working, or what prompted you to look into this..."
           className={inputClass + " resize-none"}
         />
       </div>

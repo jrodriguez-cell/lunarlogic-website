@@ -144,10 +144,10 @@ export default function HowItWorksPage() {
       </section>
 
       <CTASection
-        heading="See exactly what LunarLogic would do for your numbers"
-        subheading="Answer 4 quick questions and get a personalized AR dashboard built around your invoice volume, payment terms, and DSO, generated instantly."
-        ctaText="Calculate My DSO →"
-        ctaHref="/calculate"
+        heading="See exactly what LunarLogic would build for your business"
+        subheading="Book a short call and we will walk through your current workflow, where the manual work is, and what a custom automation would look like for it."
+        ctaText="Get a Demo"
+        ctaHref="/contact"
       />
     </>
   );

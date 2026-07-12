@@ -79,10 +79,10 @@ export default function UseCasesPage() {
       </section>
 
       <CTASection
-        heading="See your numbers in a live dashboard."
-        subheading="Answer 4 questions about your invoice volume and payment terms. Get a personalized AR dashboard showing your DSO, your cash gap, and what changes when LunarLogic runs."
-        ctaText="Calculate My DSO →"
-        ctaHref="/calculate"
+        heading="Which of these looks like your business?"
+        subheading="Book a short call and we will walk through your current workflow, where the manual work is, and what a custom automation would look like for it."
+        ctaText="Get a Demo"
+        ctaHref="/contact"
       />
     </>
   );

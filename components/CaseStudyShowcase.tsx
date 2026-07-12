@@ -107,7 +107,7 @@ function KaptainCleanMockup() {
           </div>
         </div>
 
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">DSO Trend</p>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Days to Get Paid</p>
         <DSOChart before={52} after={33} color="kc" goLiveAt={0.4} variant={0} />
         <div className="flex justify-between text-xs mt-2">
           <span className="text-slate-500">Before: 52 days</span>
@@ -151,7 +151,7 @@ function MeridianMockup() {
           </div>
         </div>
 
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">DSO Trend</p>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Days to Get Paid</p>
         <DSOChart before={61} after={37} color="mf" goLiveAt={0.45} variant={1} />
         <div className="flex justify-between text-xs mt-2">
           <span className="text-slate-500">Before: 61 days</span>
@@ -161,7 +161,7 @@ function MeridianMockup() {
 
       <div className="grid grid-cols-2 gap-3">
         {[
-          { value: "24", label: "day DSO reduction" },
+          { value: "24 days", label: "faster to get paid" },
           { value: "$112K", label: "working capital freed" },
         ].map((m) => (
           <div key={m.label} className="bg-slate-800/60 border border-slate-700 rounded-xl p-4 text-center">
@@ -195,7 +195,7 @@ function HalloranMockup() {
           </div>
         </div>
 
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">DSO Trend</p>
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Days to Get Paid</p>
         <DSOChart before={48} after={32} color="hc" goLiveAt={0.5} variant={2} />
         <div className="flex justify-between text-xs mt-2">
           <span className="text-slate-500">Before: 48 days</span>
@@ -232,9 +232,9 @@ const chapters = [
     index: "01",
     label: "Kaptain Clean LLC",
     industry: "Commercial Cleaning",
-    title: "19 days of DSO. Gone in 60 days.",
-    body: "Manual invoicing, no systematic follow-up, growing client base. DSO crept to 52 days. LunarLogic deployed the full AR suite and within two billing cycles, $65,000 in cash was permanently freed from outstanding receivables, not from new revenue but from money already owed.",
-    stat: { value: "19 days", label: "DSO reduction" },
+    title: "19 days faster to get paid. In 60 days.",
+    body: "Manual invoicing, no systematic follow-up, growing client base. Payments were taking 52 days to arrive on average. LunarLogic deployed a custom AR automation and within two billing cycles, $65,000 in cash was permanently freed from outstanding receivables, not from new revenue but from money already owed.",
+    stat: { value: "19 days", label: "faster to get paid" },
     mockup: <KaptainCleanMockup />,
   },
   {
@@ -242,7 +242,7 @@ const chapters = [
     label: "Meridian Field Services",
     industry: "Environmental Consulting",
     title: "Project managers stopped chasing invoices.",
-    body: "Complex project billing, inconsistent follow-up, 90-day AR sitting unaddressed. LunarLogic integrated with NetSuite, standardized the reminder cadence across all projects, and automated cash application. DSO dropped 24 days in the first two billing cycles.",
+    body: "Complex project billing, inconsistent follow-up, 90-day receivables sitting unaddressed. LunarLogic integrated with NetSuite, standardized the reminder cadence across all projects, and automated cash application. Payments arrived 24 days faster within the first two billing cycles.",
     stat: { value: "$112K", label: "working capital freed" },
     mockup: <MeridianMockup />,
   },
