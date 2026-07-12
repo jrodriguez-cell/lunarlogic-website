@@ -192,8 +192,6 @@ function FullSuiteMockup() {
 const chapters = [
   {
     phase: "01",
-    status: "Production",
-    statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
     label: "AR Automation Suite",
     title: "The complete invoice-to-cash cycle. Running automatically.",
     body: "From sales order to collected cash: every step handled by the system. Invoices dispatched in seconds, reminders run every weekday, payments matched by AI. No AR clerk, no follow-up calls, no manual data entry.",
@@ -202,8 +200,6 @@ const chapters = [
   },
   {
     phase: "02",
-    status: "In Development",
-    statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
     label: "AP Automation Suite",
     title: "Your payables: organized, approved, and paid on schedule.",
     body: "Vendor bills captured automatically, routed for approval, scheduled for payment. Your outgoing cash becomes just as predictable as your incoming cash. Nothing paid early. Nothing paid late. Nothing paid without the right sign-off.",
@@ -212,8 +208,6 @@ const chapters = [
   },
   {
     phase: "03",
-    status: "Coming Soon",
-    statusColor: "text-slate-400 bg-slate-700 border-slate-600",
     label: "Full Accounting Suite",
     title: "The entire financial operating layer. Running without you.",
     body: "With AR and AP automated, the full suite closes the loop: cash flow forecasting, accelerated month-end close, payroll sync, and real-time financial reporting. The entire financial backbone of your business, running on its own.",
@@ -229,9 +223,6 @@ function MobileChapterCard({ chapter }: { chapter: typeof chapters[number] }) {
     <div className="bg-slate-800/40 border border-slate-700 rounded-2xl px-4 py-5">
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {chapter.phase}</span>
-        <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${chapter.statusColor}`}>
-          {chapter.status}
-        </span>
       </div>
       <p className="text-sm font-semibold text-blue-400 mb-2">{chapter.label}</p>
       <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{chapter.title}</h3>
@@ -292,9 +283,6 @@ function DesktopShowcase() {
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {chapter.phase}</span>
-                <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${chapter.statusColor}`}>
-                  {chapter.status}
-                </span>
               </div>
               <p className="text-sm font-semibold text-blue-400 mb-2">{chapter.label}</p>
               <h2 className="text-4xl xl:text-5xl font-extrabold text-white leading-tight mb-5">{chapter.title}</h2>

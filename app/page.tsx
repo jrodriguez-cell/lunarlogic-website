@@ -14,8 +14,6 @@ const EXAMPLE_SUITES = [
   {
     id: "ar",
     name: "AR Automation",
-    status: "Production",
-    statusColor: "text-green-400 bg-green-500/10 border-green-500/20",
     description:
       "Invoicing, payment follow-up, and cash application, running without anyone chasing a client.",
     icon: (
@@ -27,8 +25,6 @@ const EXAMPLE_SUITES = [
   {
     id: "ap",
     name: "AP Automation",
-    status: "In Development",
-    statusColor: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
     description:
       "Vendor bills captured, routed for approval, and paid on schedule, no more surprise due dates.",
     icon: (
@@ -40,8 +36,6 @@ const EXAMPLE_SUITES = [
   {
     id: "full",
     name: "Full Accounting Suite",
-    status: "Coming Soon",
-    statusColor: "text-slate-400 bg-slate-700 border-slate-600",
     description:
       "Cash flow forecasting, faster month-end close, and real-time reporting, the whole back office on autopilot.",
     icon: (
@@ -120,13 +114,8 @@ export default function HomePage() {
                   href={`/use-cases#${suite.id}`}
                   className="group block h-full bg-slate-800/50 border border-slate-700 hover:border-blue-500/50 rounded-2xl p-6 transition-all hover:-translate-y-0.5"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
-                      {suite.icon}
-                    </div>
-                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${suite.statusColor}`}>
-                      {suite.status}
-                    </span>
+                  <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-4">
+                    {suite.icon}
                   </div>
                   <h3 className="text-base font-semibold text-white mb-2">{suite.name}</h3>
                   <p className="text-sm text-slate-400 leading-relaxed mb-4">{suite.description}</p>
