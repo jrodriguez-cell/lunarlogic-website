@@ -65,10 +65,11 @@ export default function HomePage() {
             </p>
           </div>
           <div className="relative">
-            {/* Glow */}
+            {/* Glow — intensity ramps up as the hero scrolls away, handing off from the moon graphic above */}
             <div
               aria-hidden="true"
               className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-3xl rounded-[2rem] pointer-events-none"
+              style={{ opacity: "calc(0.55 + var(--hero-exit, 0) * 0.45)" }}
             />
             <div className="relative rounded-2xl overflow-hidden border border-blue-500/25 shadow-2xl shadow-blue-500/20">
               <video
