@@ -53,6 +53,15 @@ h1, h2 {
 .uc-slide-up   { animation: ucSlideUpIn   0.32s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .uc-slide-down { animation: ucSlideDownIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
+/* ── Slow orbit spin for the hero moon graphic ── */
+@keyframes spinSlow {
+  from { transform: rotate(10deg) scaleY(0.78); }
+  to   { transform: rotate(370deg) scaleY(0.78); }
+}
+.animate-spin-slow {
+  animation: spinSlow 50s linear infinite;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
