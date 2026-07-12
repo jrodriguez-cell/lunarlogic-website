@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: "LunarLogic Website <onboarding@resend.dev>",
+        from: "LunarLogic <hello@lunarlogic.ai>",
         to: ["support@lunarlogic.ai"],
         reply_to: email,
         subject: `DSO Lead: ${company} — ${currentDSO}→${projectedDSO} day DSO, $${cashUnlocked.toLocaleString()}/mo opportunity`,
@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: "LunarLogic Website <onboarding@resend.dev>",
+        from: "LunarLogic <hello@lunarlogic.ai>",
         to: [email],
         reply_to: "support@lunarlogic.ai",
         subject: `Your DSO results: ${currentDSO}→${projectedDSO} days, $${cashUnlocked.toLocaleString()}/mo opportunity`,
