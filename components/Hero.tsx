@@ -3,28 +3,74 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const FEED_LINES = [
-  { text: "Invoice #1042 created for Acme Corp", meta: "Slack → QuickBooks" },
-  { text: "Reminder sent, Day 7 follow-up", meta: "Delivered" },
-  { text: "Payment matched, $4,200.00", meta: "97% confidence" },
-  { text: "QuickBooks updated automatically", meta: "0 manual entry" },
+const STEPS = [
+  {
+    text: "Invoice #1042 created for Acme Corp",
+    meta: "Slack → QuickBooks",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    ),
+  },
+  {
+    text: "Reminder sent, Day 7 follow-up",
+    meta: "Delivered",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+    ),
+  },
+  {
+    text: "Payment matched, $4,200.00",
+    meta: "97% confidence",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+    ),
+  },
+  {
+    text: "QuickBooks updated automatically",
+    meta: "0 manual entry",
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    ),
+  },
 ];
 
-function CheckIcon() {
+function CheckBadge() {
   return (
-    <svg className="w-3 h-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+    <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={4}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   );
 }
 
-function Spinner() {
+function StepIcon({ path, state }: { path: React.ReactNode; state: "pending" | "active" | "done" }) {
   return (
-    <span className="block w-2.5 h-2.5 rounded-full border-2 border-blue-400/30 border-t-blue-400 animate-spin" />
+    <div className="relative flex-shrink-0">
+      <div
+        className={`w-9 h-9 rounded-full flex items-center justify-center border transition-colors duration-300 ${
+          state === "done"
+            ? "bg-green-500/15 border-green-500/40 text-green-400"
+            : state === "active"
+            ? "bg-blue-500/15 border-blue-400/50 text-blue-400"
+            : "bg-slate-800 border-slate-700 text-slate-600"
+        }`}
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+          {path}
+        </svg>
+      </div>
+      {state === "active" && (
+        <span className="absolute inset-0 rounded-full border-2 border-blue-400/40 animate-ping" />
+      )}
+      {state === "done" && (
+        <span className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 flex items-center justify-center border-2 border-slate-900">
+          <CheckBadge />
+        </span>
+      )}
+    </div>
   );
 }
 
-function LiveFeedCard() {
+function AutomationPipelineCard() {
   const [doneCount, setDoneCount] = useState(0);
   const [typedText, setTypedText] = useState("");
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -33,7 +79,7 @@ function LiveFeedCard() {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setReducedMotion(prefersReduced);
     if (prefersReduced) {
-      setDoneCount(FEED_LINES.length);
+      setDoneCount(STEPS.length);
       return;
     }
 
@@ -46,17 +92,17 @@ function LiveFeedCard() {
       timeouts.push(t);
     };
 
-    function typeLine(lineIdx: number) {
+    function typeStep(idx: number) {
       if (cancelled) return;
-      if (lineIdx >= FEED_LINES.length) {
+      if (idx >= STEPS.length) {
         wait(() => {
           setDoneCount(0);
           setTypedText("");
-          typeLine(0);
+          typeStep(0);
         }, 2600);
         return;
       }
-      const text = FEED_LINES[lineIdx].text;
+      const text = STEPS[idx].text;
       let i = 0;
       const typeChar = () => {
         if (cancelled) return;
@@ -66,16 +112,16 @@ function LiveFeedCard() {
           wait(typeChar, 16 + Math.random() * 18);
         } else {
           wait(() => {
-            setDoneCount(lineIdx + 1);
+            setDoneCount(idx + 1);
             setTypedText("");
-            typeLine(lineIdx + 1);
+            typeStep(idx + 1);
           }, 600);
         }
       };
       typeChar();
     }
 
-    typeLine(0);
+    typeStep(0);
     return () => {
       cancelled = true;
       timeouts.forEach(clearTimeout);
@@ -96,7 +142,7 @@ function LiveFeedCard() {
               </linearGradient>
             </defs>
           </svg>
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Automation Activity</span>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Automation Pipeline</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -104,33 +150,40 @@ function LiveFeedCard() {
         </div>
       </div>
 
-      {/* Feed */}
-      <div className="space-y-4 min-h-[172px]">
-        {FEED_LINES.map((line, i) => {
+      {/* Pipeline */}
+      <div>
+        {STEPS.map((step, i) => {
           const isDone = i < doneCount;
           const isActive = !reducedMotion && i === doneCount;
-          const isPending = !isDone && !isActive;
+          const state = isDone ? "done" : isActive ? "active" : "pending";
+          const isLast = i === STEPS.length - 1;
           return (
-            <div
-              key={i}
-              className={`flex items-start gap-3 transition-opacity duration-300 ${isPending ? "opacity-0" : "opacity-100"}`}
-            >
-              <div
-                className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  isDone ? "bg-green-500/15" : "bg-blue-500/10"
-                }`}
-              >
-                {isDone ? <CheckIcon /> : isActive ? <Spinner /> : null}
+            <div key={i} className="flex gap-3">
+              <div className="flex flex-col items-center">
+                <StepIcon path={step.icon} state={state} />
+                {!isLast && (
+                  <div className="w-px flex-1 my-1 bg-slate-700 relative overflow-hidden" style={{ minHeight: "22px" }}>
+                    <div
+                      className={`absolute inset-x-0 top-0 bg-green-500/60 transition-[height] duration-500 ease-out ${
+                        isDone ? "h-full" : "h-0"
+                      }`}
+                    />
+                  </div>
+                )}
               </div>
-              <div className="min-w-0">
-                <p className="text-sm text-slate-200 font-medium leading-snug">
-                  {isDone ? line.text : isActive ? typedText : " "}
-                  {isActive && (
+              <div className={`min-w-0 pt-1.5 ${isLast ? "pb-0" : "pb-4"}`}>
+                <p className={`text-sm font-medium leading-snug transition-colors duration-300 ${state === "pending" ? "text-slate-600" : "text-slate-200"}`}>
+                  {state === "done" ? step.text : state === "active" ? typedText : step.text}
+                  {state === "active" && (
                     <span className="inline-block w-[2px] h-[13px] bg-blue-400 ml-0.5 align-middle animate-pulse" />
                   )}
                 </p>
-                <p className={`text-xs text-slate-500 mt-0.5 transition-opacity duration-300 ${isDone ? "opacity-100" : "opacity-0"}`}>
-                  {line.meta}
+                <p
+                  className={`text-xs text-slate-500 mt-0.5 transition-opacity duration-300 ${
+                    state === "done" ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  {step.meta}
                 </p>
               </div>
             </div>
@@ -139,7 +192,7 @@ function LiveFeedCard() {
       </div>
 
       {/* Footer stat */}
-      <div className="mt-5 pt-4 border-t border-slate-700/50 flex items-center justify-between text-xs">
+      <div className="mt-1 pt-4 border-t border-slate-700/50 flex items-center justify-between text-xs">
         <span className="text-slate-500">13 actions today</span>
         <span className="text-blue-400 font-semibold">0 manual</span>
       </div>
@@ -151,9 +204,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const glowLayerRef = useRef<HTMLDivElement>(null);
   const cardLayerRef = useRef<HTMLDivElement>(null);
-  const spotlightRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
-  const [spotlightOn, setSpotlightOn] = useState(false);
 
   // Scroll-driven handoff: the card racks focus and recedes as the hero
   // scrolls past, while a shared CSS variable ramps up the demo video
@@ -197,9 +248,7 @@ export default function Hero() {
     };
   }, []);
 
-  // Cursor-reactive spotlight + card tilt + magnetic pull on the primary
-  // CTA, all scoped to the hero section so they only engage while
-  // hovering here.
+  // Magnetic pull on the primary CTA, scoped to the hero section.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const section = sectionRef.current;
@@ -210,9 +259,6 @@ export default function Hero() {
     let y = 0;
 
     const apply = () => {
-      if (spotlightRef.current) {
-        spotlightRef.current.style.transform = `translate(${(x - 280).toFixed(1)}px, ${(y - 280).toFixed(1)}px)`;
-      }
       if (ctaRef.current) {
         const btnRect = ctaRef.current.getBoundingClientRect();
         const sectionRect = section.getBoundingClientRect();
@@ -249,8 +295,6 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      onMouseEnter={() => setSpotlightOn(true)}
-      onMouseLeave={() => setSpotlightOn(false)}
       className="relative overflow-hidden bg-slate-950 pt-20 pb-20 sm:pt-28 sm:pb-28"
     >
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -303,34 +347,20 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Live automation feed visual */}
+          {/* Automation pipeline visual */}
           <div className="relative flex items-center justify-center min-h-[320px] sm:min-h-[360px] lg:min-h-[440px]">
-            {/* Cursor spotlight */}
-            <div
-              ref={spotlightRef}
-              aria-hidden="true"
-              className={`absolute left-0 top-0 w-[560px] h-[560px] rounded-full pointer-events-none transition-opacity duration-500 ${
-                spotlightOn ? "opacity-100" : "opacity-0"
-              }`}
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(148,180,250,0.14) 0%, rgba(96,165,250,0.05) 40%, transparent 70%)",
-                willChange: "transform",
-              }}
-            />
-
             {/* Glow (background layer) */}
             <div ref={glowLayerRef} aria-hidden="true" className="absolute" style={{ willChange: "transform, opacity" }}>
               <div className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] bg-blue-500/20 rounded-full blur-3xl" />
             </div>
 
-            {/* Live feed card (foreground layer, racks focus on scroll) */}
+            {/* Pipeline card (foreground layer, racks focus on scroll) */}
             <div
               ref={cardLayerRef}
               className="relative rotate-[-1.5deg]"
               style={{ willChange: "transform, opacity, filter" }}
             >
-              <LiveFeedCard />
+              <AutomationPipelineCard />
             </div>
           </div>
         </div>
