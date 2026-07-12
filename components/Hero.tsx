@@ -301,8 +301,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-12 lg:gap-8 items-center">
           {/* Copy */}
           <div className="text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-              <span className="w-6 h-px bg-blue-400/50" />
+            <div className="flex items-center justify-center lg:justify-start mb-6">
               <span className="text-sm font-semibold text-blue-400 uppercase tracking-[0.14em]">
                 Custom Accounting Automation
               </span>
