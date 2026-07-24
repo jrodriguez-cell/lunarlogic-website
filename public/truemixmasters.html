@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon: LunarLogic crescent moon, matching app/icon.svg on the main site. Inline data-URI keeps this demo self-contained. -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%230F172A'/%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='4'%20y1='4'%20x2='28'%20y2='28'%20gradientUnits='userSpaceOnUse'%3E%3Cstop%20stop-color='%2360A5FA'/%3E%3Cstop%20offset='1'%20stop-color='%23818CF8'/%3E%3C/linearGradient%3E%3Cmask%20id='crescent'%3E%3Crect%20width='32'%20height='32'%20fill='black'/%3E%3Ccircle%20cx='16'%20cy='17'%20r='11'%20fill='white'/%3E%3Ccircle%20cx='21'%20cy='13'%20r='9'%20fill='black'/%3E%3C/mask%3E%3C/defs%3E%3Crect%20width='32'%20height='32'%20fill='url(%23g)'%20mask='url(%23crescent)'/%3E%3C/svg%3E">
-<title>LunarLogic | Event-to-Cash Walkthrough · True Mix Masters</title>
+<title>LunarLogic | Payment Collection Walkthrough · True Mix Masters</title>
 <!--
   ============================================================================
-  TRUE MIX MASTERS · EVENT-TO-CASH DEMO
+  TRUE MIX MASTERS · PAYMENT COLLECTION DEMO
   Self-contained interactive walkthrough. No external dependencies.
   Brand fonts (Nunito + Fraunces) are embedded as base64 below.
   ----------------------------------------------------------------------------
@@ -578,13 +578,13 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
       </svg>
       <div>
         <div class="wordmark"><span class="ll">lunarlogic</span><span class="ai">.ai</span></div>
-        <div class="brand-sub">Event-to-Cash</div>
+        <div class="brand-sub">Payment Collection</div>
       </div>
     </div>
     <nav class="progress" aria-label="Walkthrough progress">
       <span class="dot active" data-go="0" title="Overview"></span>
       <span class="dot" data-go="1" title="The Manual Grind"></span>
-      <span class="dot" data-go="2" title="Booking to Paid"></span>
+      <span class="dot" data-go="2" title="Collections"></span>
       <span class="dot" data-go="3" title="Full Scope"></span>
       <span class="dot" data-go="4" title="The Result"></span>
       <span class="dot" data-go="5" title="What It's Worth"></span>
@@ -608,13 +608,13 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
         <div class="eyebrow">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-5"/></svg>
-          Event-to-Cash Automation
+          Automated Payment Collection
         </div>
-        <h1>Booked, Paid, and Reviewed,<br>Automatically</h1>
-        <p class="lead" style="margin-left:auto;margin-right:auto">From the first inquiry to the final balance and the five-star review, the follow-up runs itself. You stay on the events; the system keeps every booking moving and every dollar collected on time.</p>
+        <h1>Every Deposit and Balance,<br>Paid on Time</h1>
+        <p class="lead" style="margin-left:auto;margin-right:auto">Once an event is booked, the deposit and final balance collect themselves: on-time reminders, a one-tap payment link, and a clear view of who still owes. No more chasing money the week of the event.</p>
 
         <div class="manual-visual" aria-hidden="true">
-          <div class="mv-icon tired" title="Quotes">
+          <div class="mv-icon tired" title="Spreadsheet">
             <svg class="icon" style="width:46px;height:46px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
           </div>
           <div class="mv-arrow">
@@ -624,25 +624,25 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
             <svg class="icon" style="width:46px;height:46px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
           </div>
         </div>
-        <p class="mv-caption">Today: inquiries, deposits, and balances tracked by hand, chased whenever there's a free minute.</p>
+        <p class="mv-caption">Today: deposits and balances tracked by hand, chased whenever there's a free minute.</p>
       </div>
     </section>
 
     <!-- ===================== SECTION 2: CURRENT STATE ===================== -->
     <section class="section" id="s1">
       <div class="eyebrow">Section 1 · The manual grind</div>
-      <h2>Where Bookings and Cash Slip</h2>
-      <p class="lead">Every inquiry, deposit, and final balance is tracked and chased by hand today. Even when you stay on top of it, a quote goes quiet or a balance goes unpaid until the week of the event, right when you should be focused on the bar.</p>
+      <h2>Where the Cash Slips</h2>
+      <p class="lead">Every deposit and final balance is tracked and chased by hand today. Even when you stay on top of it, a balance goes unpaid until the week of the event, right when you should be focused on the bar.</p>
 
       <div class="two-col">
         <!-- LEFT: process -->
         <div class="card">
           <h3 style="margin-bottom:.5rem">Today's process</h3>
           <ul class="process-list">
-            <li><span class="x">›</span><span>Every new inquiry has to be quoted and followed up by hand</span></li>
-            <li><span class="x">›</span><span>Deposits and final balances are chased one message at a time</span></li>
-            <li><span class="x">›</span><span>Follow-up competes with actually running the events</span></li>
-            <li><span class="x">›</span><span>A quote that goes quiet usually just goes cold</span></li>
+            <li><span class="x">›</span><span>Every deposit and balance has to be tracked by hand</span></li>
+            <li><span class="x">›</span><span>Each reminder is written and sent one message at a time</span></li>
+            <li><span class="x">›</span><span>Chasing payments competes with actually running the events</span></li>
+            <li><span class="x">›</span><span>A balance that isn't chased is still unpaid on event day</span></li>
             <li><span class="x">›</span><span>There's no single view of who has paid and who still owes</span></li>
           </ul>
 
@@ -654,7 +654,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
               </div>
               <div class="xls-row h"><div>Event</div><div>Owed</div><div>Stage</div></div>
               <div class="xls-row late"><div>Miller Wedding</div><div>$1,750</div><div>Balance</div></div>
-              <div class="xls-row late"><div>Corporate Gala</div><div>$2,100</div><div>Quote</div></div>
+              <div class="xls-row late"><div>Corporate Gala</div><div>$2,100</div><div>Balance</div></div>
               <div class="xls-row late"><div>Reyes Party</div><div>$450</div><div>Deposit</div></div>
               <div class="xls-row late"><div>City Fundraiser</div><div>$1,600</div><div>Balance</div></div>
             </div>
@@ -664,7 +664,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
                 Sent · Text &amp; Email
               </div>
               <div class="out-item"><b>Balance due Friday?</b>Miller Wedding <span class="cc">sent by hand</span></div>
-              <div class="out-item"><b>Still interested? Quote attached</b>Corporate Gala <span class="cc">sent by hand</span></div>
+              <div class="out-item"><b>Final balance reminder</b>Corporate Gala <span class="cc">sent by hand</span></div>
               <div class="out-item"><b>Deposit to hold your date</b>Reyes Party <span class="cc">still to send</span></div>
             </div>
           </div>
@@ -673,20 +673,21 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
         <!-- RIGHT: metric callouts · EDIT: swap for Quentin's real numbers -->
         <div class="callouts">
           <div class="callout">
-            <div class="num">35%</div>
-            <div class="lbl">Of inquiries that turn into <em style="color:var(--slate-300);font-style:italic">booked</em> events today</div>
+            <div class="num">$9,000</div>
+            <div class="lbl">Owed on <em style="color:var(--slate-300);font-style:italic">booked</em> events right now, not yet collected</div>
           </div>
           <div class="callout">
             <div class="num">~6 hrs<span class="u"> /wk</span></div>
-            <div class="lbl">Spent quoting and chasing deposits &amp; balances by hand</div>
+            <div class="lbl">Spent chasing deposits and balances by hand instead of running events</div>
           </div>
           <div class="callout">
-            <div class="num">$3,500</div>
-            <div class="lbl">Average event, so every quote that goes cold is real revenue lost</div>
+            <div class="num">1 in 3</div>
+            <div class="lbl">Balances still unpaid heading into the event week</div>
           </div>
           <div class="card card-accent" style="border-radius:12px;padding:.85rem 1.1rem">
             <div style="font-size:.88rem;line-height:1.5;color:var(--slate-300)">
-              That's roughly <b class="grad" style="font-weight:800">$14,000 a month</b> in events that were one follow-up away from booking, plus the balances you're chasing the week you should be pouring drinks.            </div>
+              That's cash you've already earned on <b class="grad" style="font-weight:800">booked events</b>, just sitting uncollected. The reminders that bring it in on time are exactly the work the system takes off your plate.
+            </div>
           </div>
         </div>
       </div>
@@ -694,9 +695,9 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
     <!-- ===================== SECTION 3: THE SOLUTION ===================== -->
     <section class="section" id="s2">
-      <div class="eyebrow">Section 2 · Booking to paid, on autopilot</div>
+      <div class="eyebrow">Section 2 · Collections on autopilot</div>
       <h2>The Flow That Runs Itself</h2>
-      <p class="lead">Every inquiry moves through the same steps automatically: follow up the quote, collect the deposit to lock the date, remind on the balance before the event, then ask for the review after. Nothing gets skipped, and no one has to remember.</p>
+      <p class="lead">Every booked event runs through the same steps automatically: collect the deposit to lock the date, remind on the balance before the event, and confirm it's paid in full. Nothing gets skipped, and no one has to remember.</p>
 
       <div class="dash" role="region" aria-label="Event pipeline dashboard demo">
         <div class="dash-appbar">
@@ -711,14 +712,14 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
         <div class="dash-auto">
           <span class="pulse" aria-hidden="true"></span>
           <div class="txt">
-            <b>Event Automations</b>
-            <span>8 events in flight · quotes, deposits &amp; balances following up automatically</span>
+            <b>Payment Collection</b>
+            <span>8 events in flight · deposits &amp; balances following up automatically</span>
           </div>
           <span class="on">ACTIVE</span>
         </div>
 
         <div class="dash-stats">
-          <div class="stat"><div class="k">Booked this month</div><div class="v">12 events</div></div>
+          <div class="stat"><div class="k">Events this month</div><div class="v">12 events</div></div>
           <div class="stat"><div class="k">Collected</div><div class="v">$21,000</div></div>
           <div class="stat"><div class="k">Awaiting balance</div><div class="v amber">$9,000</div></div>
         </div>
@@ -742,10 +743,10 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
             </div>
           </div>
 
-          <div class="inv-row"><div class="id">Aug 16</div><div class="col-cust">Corporate Gala</div><div class="col-due"><span class="age-pill age-warn">Quote sent</span></div><div class="amt">$2,100</div><div class="col-act muted">Auto follow-up · next in 2d</div></div>
+          <div class="inv-row"><div class="id">Aug 16</div><div class="col-cust">Corporate Gala</div><div class="col-due"><span class="age-pill age-warn">Balance due</span></div><div class="amt">$2,100</div><div class="col-act muted">Auto-sent · next in 2d</div></div>
           <div class="inv-row"><div class="id">Aug 23</div><div class="col-cust">Reyes Party</div><div class="col-due"><span class="age-pill age-warn">Deposit due</span></div><div class="amt">$450</div><div class="col-act muted">Auto-sent · reminder in 1d</div></div>
           <div class="inv-row"><div class="id">Sep 6</div><div class="col-cust">Thompson Wedding</div><div class="col-due"><span class="age-pill age-cur">Deposit paid</span></div><div class="amt">$1,600</div><div class="col-act muted">Balance reminder in 5d</div></div>
-          <div class="inv-row"><div class="id">Aug 2</div><div class="col-cust">City Fundraiser</div><div class="col-due"><span class="age-pill age-cur">Paid ★</span></div><div class="amt">Settled</div><div class="col-act muted">Review request sent</div></div>
+          <div class="inv-row"><div class="id">Aug 2</div><div class="col-cust">City Fundraiser</div><div class="col-due"><span class="age-pill age-cur">Paid in full</span></div><div class="amt">Settled</div><div class="col-act muted">Complete ✓</div></div>
         </div>
 
         <div class="feature-spot">
@@ -785,14 +786,14 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
     <section class="section" id="s3">
       <div class="eyebrow">Section 3 · The full picture</div>
       <h2>What Runs in the Background</h2>
-      <p class="lead">Reminders are one piece. The same system moves every event from inquiry to review and surfaces only what needs you. Click any feature.</p>
+      <p class="lead">The reminder is one piece. The same system tracks every deposit and balance, times each nudge to the event, and surfaces only what needs you. Click any feature.</p>
 
       <div class="explorer">
         <!-- LEFT RAIL -->
         <div class="exp-rail" role="tablist" aria-label="Features">
           <button class="exp-btn active" data-feat="0" onclick="selectFeat(0)">
             <span class="ic"><svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.7 2.7L3 8"/><path d="M3 3v5h5"/></svg></span>
-            <span class="tt">Quote &amp; Payment Follow-Up</span>
+            <span class="tt">Payment Follow-Up</span>
           </button>
           <button class="exp-btn" data-feat="1" onclick="selectFeat(1)">
             <span class="ic"><svg class="icon" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span>
@@ -821,23 +822,23 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
           <!-- FEAT 0: Reminder Sequence -->
           <div class="feat-panel active" id="feat-0">
-            <h3>Quote &amp; Payment Follow-Up</h3>
-            <p class="feat-intro">Every quote and event goes on a set schedule: a friendly nudge if a quote goes quiet, a deposit reminder to lock the date, then balance reminders as the event nears. All automatic. Tap a step:</p>
+            <h3>Payment Follow-Up</h3>
+            <p class="feat-intro">Every booked event goes on a set schedule: a deposit reminder to lock the date, then friendly balance reminders as the event nears. All automatic. Tap a step:</p>
             <div class="cad-track" id="cadTrack">
-              <div class="cad-node active" data-cad="0" onclick="cadStep(0)"><div class="cd">Quote</div><div class="cl">Sent</div></div>
-              <div class="cad-node" data-cad="1" onclick="cadStep(1)"><div class="cd">+2d</div><div class="cl">Nudge</div></div>
-              <div class="cad-node" data-cad="2" onclick="cadStep(2)"><div class="cd">+5d</div><div class="cl">Follow-up</div></div>
-              <div class="cad-node" data-cad="3" onclick="cadStep(3)"><div class="cd">Deposit</div><div class="cl">Book it</div></div>
-              <div class="cad-node" data-cad="4" onclick="cadStep(4)"><div class="cd">−7d</div><div class="cl">Balance</div></div>
-              <div class="cad-node" data-cad="5" onclick="cadStep(5)"><div class="cd">−2d</div><div class="cl">Reminder</div></div>
-              <div class="cad-node" data-cad="6" onclick="cadStep(6)"><div class="cd">After</div><div class="cl">Review</div></div>
+              <div class="cad-node active" data-cad="0" onclick="cadStep(0)"><div class="cd">Deposit</div><div class="cl">Due</div></div>
+              <div class="cad-node" data-cad="1" onclick="cadStep(1)"><div class="cd">+2d</div><div class="cl">Reminder</div></div>
+              <div class="cad-node" data-cad="2" onclick="cadStep(2)"><div class="cd">Paid</div><div class="cl">Booked</div></div>
+              <div class="cad-node" data-cad="3" onclick="cadStep(3)"><div class="cd">−14d</div><div class="cl">Balance</div></div>
+              <div class="cad-node" data-cad="4" onclick="cadStep(4)"><div class="cd">−7d</div><div class="cl">Reminder</div></div>
+              <div class="cad-node" data-cad="5" onclick="cadStep(5)"><div class="cd">−2d</div><div class="cl">Final</div></div>
+              <div class="cad-node" data-cad="6" onclick="cadStep(6)"><div class="cd">Done</div><div class="cl">Paid</div></div>
             </div>
             <div class="cad-preview">
               <span class="tone" id="cadTone"></span>
               <div class="msg" id="cadMsg"></div>
               <div class="meta" id="cadMeta"></div>
             </div>
-            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> No quote goes cold and no balance is forgotten. A steady, friendly cadence books more events and gets you paid <b>before</b> the event, not chasing after it.</span></div>
+            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> No deposit or balance is ever forgotten. A steady, friendly cadence gets every event paid in full <b>before</b> the day, so you're never chasing money after.</span></div>
           </div>
 
           <!-- FEAT 1: Risk-Based Timing -->
@@ -869,8 +870,8 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
             </div>
             <button class="disp-toggle" style="margin-top:1rem;color:#FBBF24;background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35)" onclick="toggleNeeds()" id="needsBtn">Show what needs me →</button>
             <div class="needs-list" id="needsList">
-              <div class="needs-item"><span>Corporate Gala · Aug 16 · quote viewed, no reply in 5 days</span><span class="nf">Personal note</span></div>
-              <div class="needs-item"><span>Nguyen Wedding · Sep 20 · asked for a custom cocktail menu</span><span class="nf">Custom quote</span></div>
+              <div class="needs-item"><span>Corporate Gala · Aug 16 · balance reminder opened, still unpaid</span><span class="nf">Personal note</span></div>
+              <div class="needs-item"><span>Nguyen Wedding · Sep 20 · asked to split the balance into two payments</span><span class="nf">Payment plan</span></div>
             </div>
             <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> No one re-reads the whole pipeline every day. The system runs the routine and points to the two events that actually need you.</span></div>
           </div>
@@ -878,12 +879,12 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
           <!-- FEAT 3: Exceptions only -->
           <div class="feat-panel" id="feat-3">
             <h3>When You Step In</h3>
-            <p class="feat-intro">The routine follow-up is automated. These are the few moments that need you: a custom menu, holding a date, a VIP client. Tap one:</p>
+            <p class="feat-intro">The routine follow-up is automated. These are the few moments that need you: a payment plan, a quick call, a VIP client. Tap one:</p>
             <div class="act-grid">
-              <button class="act-btn primary active" data-act="log" onclick="actSel('log')"><div class="al">Custom Quote</div><div class="as">For a special request</div></button>
-              <button class="act-btn" data-act="snooze" onclick="actSel('snooze')"><div class="al">Hold a Date</div><div class="as">Pencil them in</div></button>
+              <button class="act-btn primary active" data-act="log" onclick="actSel('log')"><div class="al">Payment Plan</div><div class="as">Split a balance</div></button>
+              <button class="act-btn" data-act="snooze" onclick="actSel('snooze')"><div class="al">Log a Call</div><div class="as">Record a payment note</div></button>
               <button class="act-btn" data-act="task" onclick="actSel('task')"><div class="al">VIP Client</div><div class="as">A personal touch</div></button>
-              <button class="act-btn" data-act="reminder" onclick="actSel('reminder')"><div class="al">One-off Note</div><div class="as">Rarely needed</div></button>
+              <button class="act-btn" data-act="reminder" onclick="actSel('reminder')"><div class="al">One-off Reminder</div><div class="as">Send a nudge now</div></button>
             </div>
             <div class="act-detail" id="actDetail"></div>
             <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> The system does the repetitive sending. You step in only for the moments that actually need your touch. Nothing else takes your time.</span></div>
@@ -892,23 +893,23 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
           <!-- FEAT 4: Dispute & Aging Radar -->
           <div class="feat-panel" id="feat-4">
             <h3>At-Risk Radar</h3>
-            <p class="feat-intro">The system flags events drifting off track: a quote going cold, or a balance still unpaid with the event days away. It surfaces them while there's still time to save the booking.</p>
+            <p class="feat-intro">The system flags a balance that's still unpaid with the event days away, so it never sneaks up on you. It surfaces while there's still time for a friendly nudge instead of an awkward day-of conversation.</p>
             <div class="disp-card">
               <div class="disp-top">
                 <div>
                   <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.3rem">
                     <span class="disp-cust">Corporate Gala</span>
                     <span style="color:var(--slate-500);font-size:.82rem">Aug 16</span>
-                    <span class="disp-flag">Going cold</span>
+                    <span class="disp-flag">Balance at risk</span>
                   </div>
-                  <div style="color:var(--slate-400);font-size:.86rem">Opened the quote twice, no reply in 6 days</div>
+                  <div style="color:var(--slate-400);font-size:.86rem">Opened the last two reminders, still unpaid</div>
                 </div>
                 <div style="text-align:right"><div class="disp-amt">$2,100</div><div style="color:#C4B5FD;font-size:.78rem">event in 12 days</div></div>
               </div>
               <button class="disp-toggle" onclick="toggleDispute()" id="dispBtn">Why was this flagged? →</button>
-              <div class="disp-why" id="dispWhy">This inquiry <b style="color:#F1F5F9">viewed the quote twice</b> but hasn't replied in 6 days, and the event is only <b style="color:#F1F5F9">12 days out</b>. That usually means they're comparing options or waiting for a reason to say yes. A quick personal note now, before it goes cold, is what turns it into a booked event.</div>
+              <div class="disp-why" id="dispWhy">This client <b style="color:#F1F5F9">opened the last two balance reminders</b> but hasn't paid, and the event is only <b style="color:#F1F5F9">12 days out</b>. That usually means it slipped their mind, not that anything's wrong. A quick personal note now keeps it from becoming a scramble the week of the event.</div>
             </div>
-            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> A quote that goes cold is a booked weekend lost. Catching the one that's drifting, early, is often the difference between a full calendar and an open date.</span></div>
+            <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> A balance unpaid on event day is an awkward conversation at the bar. Catching the one that's lagging, early, means you're paid in full before you ever load the van.</span></div>
           </div>
 
           <!-- FEAT 5: Daily Recap -->
@@ -922,10 +923,10 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
                 <span class="dh-time">Today · 8:00 AM</span>
               </div>
               <div class="digest-body">
-                <div class="digest-row"><span class="dr-ic" style="background:rgba(96,165,250,.15);color:var(--blue-light)">✉</span><span><b>9 messages sent</b> · quotes, deposits &amp; balances followed up, hands-free</span></div>
-                <div class="digest-row"><span class="dr-ic" style="background:rgba(74,222,128,.15);color:var(--green)">✓</span><span><b>2 deposits paid</b> · Reyes Party and Thompson Wedding booked</span></div>
-                <div class="digest-row"><span class="dr-ic" style="background:rgba(251,191,36,.15);color:#FBBF24">!</span><span><b>1 quote needs a personal note</b> · Corporate Gala, going cold</span></div>
-                <div class="digest-row"><span class="dr-ic" style="background:rgba(129,140,248,.15);color:var(--indigo)">★</span><span><b>3 new 5-star reviews</b> · from last weekend's events</span></div>
+                <div class="digest-row"><span class="dr-ic" style="background:rgba(96,165,250,.15);color:var(--blue-light)">✉</span><span><b>9 reminders sent</b> · deposits &amp; balances followed up, hands-free</span></div>
+                <div class="digest-row"><span class="dr-ic" style="background:rgba(74,222,128,.15);color:var(--green)">✓</span><span><b>2 deposits paid</b> · Reyes Party and Thompson Wedding, dates locked</span></div>
+                <div class="digest-row"><span class="dr-ic" style="background:rgba(251,191,36,.15);color:#FBBF24">!</span><span><b>1 balance needs a nudge</b> · Corporate Gala, event in 12 days</span></div>
+                <div class="digest-row"><span class="dr-ic" style="background:rgba(129,140,248,.15);color:var(--indigo)">↓</span><span><b>Getting paid sooner</b> · balances now settled ~8 days before the event</span></div>
               </div>
             </div>
             <div class="feat-help"><span class="hi">✓</span><span><b>How it helps:</b> You <b>monitor without managing</b>. The follow-up still happens, while your time goes to the events and the clients who need you.</span></div>
@@ -936,7 +937,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
       <div class="voiceover">
         <span class="vo-label">The full scope</span>
-        Reminders are the start. The same system follows up every quote, collects every deposit and balance, asks for the review,
+        The reminder is the start. The same system collects every deposit and balance, times each nudge to the event, flags anything at risk,
         and recaps it each morning, automatically. It doesn't replace you; it takes the repetitive chasing off your plate so you can focus on the events.
       </div>
     </section>
@@ -945,13 +946,13 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
     <section class="section" id="s4">
       <div class="eyebrow">Section 4 · What the first 90 days show</div>
       <h2>The Result</h2>
-      <p class="lead">Same calendar, same clients. More quotes turn into booked events, and balances are paid before the event, not chased after. Here's what automated follow-up typically moves in the first quarter, and it compounds from there.</p>
+      <p class="lead">Same events, same clients. Deposits and balances are simply collected on time, before the event, instead of chased after. Here's what automated follow-up typically moves in the first quarter, and it compounds from there.</p>
 
       <div class="compare">
         <div class="panel before">
           <h3><span class="badge">Today</span></h3>
-          <div class="metric"><div class="ml">Quotes booked</div><div class="mv">35%</div></div>
           <div class="metric"><div class="ml">Paid before the event</div><div class="mv">65%</div></div>
+          <div class="metric"><div class="ml">Collected without chasing</div><div class="mv">40%</div></div>
           <div class="metric"><div class="ml">Follow-up / week</div><div class="mv">~6 hours</div></div>
         </div>
 
@@ -961,19 +962,20 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
         <div class="panel after">
           <h3><span class="badge">After 90 days</span></h3>
-          <div class="metric"><div class="ml">Quotes booked</div><div class="mv hl">50%</div></div>
           <div class="metric"><div class="ml">Paid before the event</div><div class="mv hl">98%</div></div>
+          <div class="metric"><div class="ml">Collected without chasing</div><div class="mv hl">95%</div></div>
           <div class="metric"><div class="ml">Follow-up / week</div><div class="mv">&lt; 1 hour</div></div>
         </div>
       </div>
 
       <div class="result-box">
-        <div class="big">More Events Booked: <span>$12K to $16K / mo</span></div>
+        <div class="big">Paid In Full, On Time: <span>98% of events</span></div>
         <p class="proof">
-          A conservative projection for your volume. Booking even 3 to 4 more of the same inquiries each month, and collecting every balance on time, without adding a single staff member.        </p>
+          A conservative projection for your volume. Deposits and balances collected before each event instead of chased after, with far fewer late or written-off payments, and no staff added.
+        </p>
         <div class="adv">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-3 7h6l-3 13"/></svg>
-          Your advantage: <b>every 5-star review</b>&nbsp;the system collects brings the next inquiry in the door
+          Your advantage: <b>a payment link in every reminder</b>&nbsp;means most balances are paid the moment the nudge lands
         </div>
       </div>
 
@@ -981,33 +983,34 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
 
     <!-- ===================== SECTION 6: FREED CASH / ROI ===================== -->
     <section class="section" id="s5">
-      <div class="eyebrow">Section 5 · Beyond the booking</div>
+      <div class="eyebrow">Section 5 · What it's worth</div>
       <h2>What It Adds Up To</h2>
-      <p class="lead">Booking more events is the start. Here's what the extra bookings, on-time payments, and time back are worth over a year. (Illustrative figures for your business, easy to refine.)</p>
+      <p class="lead">Reliable, on-time payments and the hours back add up. Here's what consistent collection is worth over a year. (Illustrative figures for your business, easy to refine.)</p>
 
       <div class="impact-row">
-        <div class="impact-tile"><div class="it-num">+4<span> /mo</span></div><div class="it-lbl">More events booked from the same inquiries</div></div>
-        <div class="impact-tile"><div class="it-num grad2">~$150K<span> /yr</span></div><div class="it-lbl">Added revenue from a higher booking rate</div></div>
-        <div class="impact-tile"><div class="it-num">~5 hrs<span> /wk</span></div><div class="it-lbl">Of your time, back every week</div></div>
+        <div class="impact-tile"><div class="it-num">98%</div><div class="it-lbl">Of balances paid in full before the event</div></div>
+        <div class="impact-tile"><div class="it-num grad2">~$8K<span> /mo</span></div><div class="it-lbl">In deposits &amp; balances collected on time, not chased</div></div>
+        <div class="impact-tile"><div class="it-num">~5 hrs<span> /wk</span></div><div class="it-lbl">Of chasing, off your plate every week</div></div>
       </div>
 
       <div class="oppcost">
-        <b>The cost of leaving it manual:</b> every quote that goes cold is a <span class="amt">$3,500 event</span> someone else books, and a balance chased the week of the event is time you don't have. The follow-up is what turns interest into a booking.      </div>
+        <b>The cost of leaving it manual:</b> a balance you forget to chase is one you're collecting <span class="amt">at the event</span>, or writing off after. Every late or missed payment is cash you already earned on a booked event, gone.
+      </div>
 
       <div class="invest">
-        <div class="invest-label">Where the extra bookings and time can go</div>
+        <div class="invest-label">Where the reliable cash and time can go</div>
         <div class="invest-opts">
           <button class="invest-opt active" data-inv="0" onclick="investSel(0)">Add a second bar team</button>
           <button class="invest-opt" data-inv="1" onclick="investSel(1)">Take on more weekends</button>
           <button class="invest-opt" data-inv="2" onclick="investSel(2)">Upgrade the bar &amp; kit</button>
-          <button class="invest-opt" data-inv="3" onclick="investSel(3)">Invest in marketing</button>
+          <button class="invest-opt" data-inv="3" onclick="investSel(3)">Smooth out cash flow</button>
         </div>
         <div class="invest-detail" id="investDetail"></div>
       </div>
 
       <div class="feat-help" style="text-align:left;margin-top:.8rem">
         <span class="hi">✓</span>
-        <span><b>Plus the time back:</b> about 5 hours a week off quoting and chasing, roughly <b>250 hours a year</b>. That's time back <span style="color:#86EFAC;font-weight:800">on the bar, on new business, and on your weekends</span>, instead of typing the same follow-up for the hundredth time.</span>
+        <span><b>Plus the time back:</b> about 5 hours a week off chasing payments, roughly <b>250 hours a year</b>. That's time back <span style="color:#86EFAC;font-weight:800">on the bar, on new business, and on your weekends</span>, instead of typing the same reminder for the hundredth time.</span>
       </div>
     </section>
 
@@ -1123,7 +1126,7 @@ h3{font-size:1.02rem;color:#F1F5F9;font-weight:800}
    ===================================================================== */
 const sections = Array.from(document.querySelectorAll('.section'));
 const dots      = Array.from(document.querySelectorAll('.dot'));
-const names     = ['Overview','The Manual Grind','Booking to Paid','Full Scope','The Result','What It\'s Worth','Next Step'];
+const names     = ['Overview','The Manual Grind','Collections','Full Scope','The Result','What It\'s Worth','Next Step'];
 let current = 0;
 
 function go(i){
@@ -1247,13 +1250,13 @@ function selectFeat(i){
 
 /* Reminder cadence steps */
 const CAD = [
-  { tone:'Quote sent',     bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Thanks so much for your interest! Here\'s your custom quote for the Miller Wedding. Happy to adjust anything, just let me know."', meta:'Auto-sent the moment your quote goes out' },
-  { tone:'Friendly nudge', bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Just checking in on the quote I sent over. We\'d love to be part of your day. Any questions I can answer?"', meta:'Auto-sent · 2 days after the quote' },
-  { tone:'Follow-up',      bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Still holding your date open! Whenever you\'re ready to lock it in, a deposit is all it takes. Here to help either way."', meta:'Auto-sent · 5 days after the quote' },
-  { tone:'Deposit',        bg:'rgba(74,222,128,.16)', fg:'#86EFAC', msg:'"You\'re all set to book! Here\'s a secure link for your deposit, and your date is officially yours the moment it\'s in."', meta:'Auto-sent with a one-tap payment link · <b style="color:#86EFAC">locks the date</b>' },
-  { tone:'Balance',        bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Your event is a week away and we can\'t wait! A friendly reminder of your remaining balance, due before the big day."', meta:'Auto-sent · 7 days before the event' },
-  { tone:'Final reminder', bg:'rgba(251,191,36,.16)', fg:'#FBBF24', msg:'"Almost there! Just a quick note that your balance is due in 2 days, so everything is squared away before we arrive."', meta:'Auto-sent · 2 days before · <b style="color:#FBBF24">paid before we pour</b>' },
-  { tone:'Review',         bg:'rgba(129,140,248,.16)', fg:'#C4B5FD', msg:'"It was a pleasure serving your event! If you had a great time, a quick review means the world to a small business like ours."', meta:'Auto-sent · the day after · <b style="color:#86EFAC">brings the next booking in</b>' },
+  { tone:'Deposit due',    bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Thanks for booking with us, we can\'t wait! Here\'s your deposit invoice to lock in your date. A secure payment link is right below."', meta:'Auto-sent the moment the event is booked' },
+  { tone:'Reminder',       bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Just a friendly reminder to submit your deposit so we can hold your date. One tap on the link below takes care of it."', meta:'Auto-sent · 2 days later' },
+  { tone:'Booked',         bg:'rgba(74,222,128,.16)', fg:'#86EFAC', msg:'"You\'re officially booked, thank you! Your date is locked in. We\'ll send a balance reminder as the event gets closer, nothing to do until then."', meta:'Deposit received · <b style="color:#86EFAC">date secured</b>' },
+  { tone:'Balance',        bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"Your event is coming up and we can\'t wait! A heads-up that your remaining balance is due before the big day. No rush yet, just flagging it early."', meta:'Auto-sent · 14 days before the event' },
+  { tone:'Reminder',       bg:'rgba(96,165,250,.16)', fg:'#93C5FD', msg:'"One week to go! A friendly reminder that your balance is due before the event. The payment link is right here whenever you\'re ready."', meta:'Auto-sent · 7 days before the event' },
+  { tone:'Final',          bg:'rgba(251,191,36,.16)', fg:'#FBBF24', msg:'"Almost there! Just making sure everything is squared away, your balance is due in 2 days so we\'re all set before we arrive."', meta:'Auto-sent · 2 days before · <b style="color:#FBBF24">paid before we pour</b>' },
+  { tone:'Paid in full',   bg:'rgba(74,222,128,.16)', fg:'#86EFAC', msg:'"Payment received in full, thank you so much! You\'re all set for your event. See you soon!"', meta:'Balance settled · <b style="color:#86EFAC">nothing left to chase</b>' },
 ];
 function cadStep(i){
   document.querySelectorAll('#cadTrack .cad-node').forEach((n,idx)=>n.classList.toggle('active', idx===i));
@@ -1266,7 +1269,7 @@ function cadStep(i){
 
 /* Risk-based timing */
 const RISK = {
-  lo:{ name:'Months out (plenty of lead time)',  avg:'Relaxed pace', body:'A light touch. A thank-you with the quote, a friendly nudge or two, and a deposit link to lock the date. No pressure, since there is plenty of time. We never pester a client who just started planning.' },
+  lo:{ name:'Months out (plenty of lead time)',  avg:'Relaxed pace', body:'A light touch. A deposit reminder to lock the date, then plenty of breathing room. No pressure, since the event is still months away. We never pester a client who just booked.' },
   me:{ name:'Weeks out (getting close)', avg:'Steady cadence', body:'The full rhythm: confirm the details, collect the deposit if it is still open, and begin the balance reminders. Steady and friendly, so nothing is left to the last minute.' },
   hi:{ name:'Event week (days away)', avg:'Prompt & friendly', body:'Timely, upbeat reminders so the balance is paid before you arrive. If anything is still open two days out, it is flagged for you, so you are never collecting money at the bar.' },
 };
@@ -1285,8 +1288,8 @@ function toggleNeeds(){
 
 /* Per-invoice actions */
 const ACT = {
-  log:'Build a one-off quote for a special request, like a signature cocktail menu or a second bar. It saves to the event, and the automatic follow-ups pick up from there.',
-  snooze:'A client wants to think it over? Pencil in their date and pause the deposit reminders until they are ready. It comes back on its own if the hold is about to expire.',
+  log:'Split a large balance into two or three scheduled payments. The system sends each reminder on its own, so an installment plan runs itself just like a single balance.',
+  snooze:'Record what happened on a call, like "spoke with the client, paying Friday," so the note lives with the event. The automatic reminders keep running underneath.',
   task:'Flag a VIP or repeat client for a personal touch, so their messages come from you directly instead of the automatic sequence.',
   reminder:'Sends one extra message right now, on top of the automatic schedule. You\'ll rarely reach for this, since the routine follow-ups already go out on their own. <span style="color:var(--slate-500)">(Preview opening…)</span>',
 };
@@ -1303,10 +1306,10 @@ function toggleDispute(){
 
 /* Section 5 · reinvestment options for the freed cash (illustrative figures) */
 const INVEST = [
-  'The extra bookings and time back can fund a second bartender or bar team, so you can run two events on the same day instead of turning one down. Each added weekend event is roughly <span class="amt">$3,500</span>.',
-  'With follow-up handled, your calendar fills itself. Booking even <b>one more event per weekend</b> is about <span class="amt">$14K a month</span> in added revenue, from inquiries you are already getting.',
-  'Reinvest in premium bars, glassware, and signage that let you charge more per event and win the higher-end weddings and corporate work.',
-  'The 5-star reviews the system collects feed straight into more inquiries. Add paid ads or a referral program on top, and the flywheel spins faster.',
+  'Reliable, on-time cash makes it easier to staff up. A second bartender or bar team lets you run two events on the same day instead of turning one down.',
+  'With chasing off your plate, the time goes back into the work that grows the business, taking on more weekends without the admin piling up.',
+  'Steady cash flow funds premium bars, glassware, and signage that let you charge more per event and win the higher-end weddings and corporate work.',
+  'Deposits and balances landing on time means fewer surprises. Predictable cash in makes payroll, rentals, and restocking far easier to plan around.',
 ];
 function investSel(i){
   document.querySelectorAll('.invest-opt').forEach((b,idx)=>b.classList.toggle('active', idx===i));
