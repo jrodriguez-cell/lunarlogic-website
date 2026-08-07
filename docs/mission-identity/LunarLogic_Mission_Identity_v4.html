@@ -177,10 +177,13 @@
   .cover .kicker .dim{ color:var(--muted); }
   .cover-center{ display:flex; flex-direction:column; align-items:center; text-align:center;
     margin-top:-.3in; }
-  .cover-wm{ font-family:'Nunito',sans-serif; font-weight:800; font-size:82px;
-    letter-spacing:-.02em; line-height:1; }
-  .cover-wm .g{ background:linear-gradient(100deg,var(--blue-l) 8%,var(--indigo-d) 55%,var(--indigo) 92%);
+  /* Scaled-up version of the website header lockup: Nunito bold, tracking-wide,
+     blue-400 -> indigo-400 gradient on "lunarlogic", ".ai" in muted white. */
+  .cover-wm{ font-family:'Nunito',sans-serif; font-weight:700; font-size:80px;
+    letter-spacing:.025em; line-height:1; }
+  .cover-wm .g{ background:linear-gradient(90deg,var(--blue-l),var(--indigo));
     -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .cover-wm .ai{ color:rgba(248,250,252,.72); font-weight:600; }
   .cover-moon{ margin-bottom:26px; }
   .cover-sub{ font-family:'Fraunces',Georgia,serif; font-weight:400; font-style:italic;
     font-size:20px; color:var(--ink-2); margin-top:26px; }
@@ -208,7 +211,7 @@
         <stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#818CF8"/>
       </linearGradient></defs>
     </svg>
-    <div class="cover-wm"><span class="g">lunarlogic</span></div>
+    <div class="cover-wm"><span class="g">lunarlogic</span><span class="ai">.ai</span></div>
     <div class="cover-sub">Company Mission &amp; Identity Document — v4</div>
     <div class="cover-rule"></div>
     <div class="cover-tag"><strong style="color:var(--ink-2);font-weight:700">The Lighthouse</strong> — our singular purpose, how we actually build, the clients we build for, and every boundary we operate within.</div>
@@ -547,7 +550,7 @@
     </div>
   </div>
   <div class="pg-foot">
-    <span>LunarLogic LLC · Charlotte, NC · lunarlogic.ai · support@lunarlogic.ai</span>
+    <span>LunarLogic Solutions LLC · Charlotte, NC · lunarlogic.ai · support@lunarlogic.ai</span>
     <span class="pg-num">14</span>
   </div>
 </section>
