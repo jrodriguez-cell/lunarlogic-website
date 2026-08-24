@@ -22,7 +22,7 @@ function ARMockup() {
           { label: "Sales order received", sub: "via Slack or email", done: step >= 0 },
           { label: "Invoice created & sent", sub: "90-second processing", done: step >= 1 },
           { label: "Reminders dispatched", sub: "systematic follow-up", done: step >= 1 },
-          { label: "Payment matched & applied", sub: "AI cash application", done: step >= 2 },
+          { label: "Payment matched, ready to post", sub: "you approve the entry", done: step >= 2 },
         ].map((s, i) => (
           <div key={i} className="flex items-start gap-3 mb-3 last:mb-0">
             <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${s.done ? "bg-blue-500" : "bg-slate-700"}`}>
@@ -186,7 +186,7 @@ function FullSuiteMockup() {
 const chapters = [
   {
     phase: "01",
-    label: "AR Automation Suite",
+    label: "AR Automation",
     title: "The complete invoice-to-cash cycle. Running automatically.",
     body: "From sales order to collected cash: every step handled by the system. Invoices dispatched in seconds, reminders run every weekday, payments matched by AI. No AR clerk, no follow-up calls, no manual data entry.",
     stat: { value: "40%", label: "average DSO reduction" },
@@ -194,7 +194,7 @@ const chapters = [
   },
   {
     phase: "02",
-    label: "AP Automation Suite",
+    label: "AP Automation",
     title: "Your payables: organized, approved, and paid on schedule.",
     body: "Vendor bills captured automatically, routed for approval, scheduled for payment. Your outgoing cash becomes just as predictable as your incoming cash. Nothing paid early. Nothing paid late. Nothing paid without the right sign-off.",
     stat: { value: "0", label: "manual bill entry required" },
@@ -202,9 +202,9 @@ const chapters = [
   },
   {
     phase: "03",
-    label: "Full Accounting Suite",
-    title: "The entire financial operating layer. Running without you.",
-    body: "With AR and AP automated, the full suite closes the loop: cash flow forecasting, accelerated month-end close, payroll sync, and real-time financial reporting. The entire financial backbone of your business, running on its own.",
+    label: "Full Accounting Automation",
+    title: "The whole back office, running on its own.",
+    body: "When discovery points to the broader back office, a build can cover cash flow forecasting, accelerated month-end close, payroll sync, and real-time reporting. What's included is scoped to what discovery finds, not a fixed bundle you buy up front.",
     stat: { value: "3 days", label: "to close vs. 14-day manual" },
     mockup: <FullSuiteMockup />,
   },
@@ -216,7 +216,7 @@ function MobileChapterCard({ chapter }: { chapter: typeof chapters[number] }) {
   return (
     <div className="bg-slate-800/40 border border-slate-700 rounded-2xl px-4 py-5">
       <div className="flex items-center gap-3 mb-4">
-        <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {chapter.phase}</span>
+        <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Example {chapter.phase}</span>
       </div>
       <p className="text-sm font-semibold text-blue-400 mb-2">{chapter.label}</p>
       <h3 className="text-xl font-extrabold text-white leading-tight mb-3">{chapter.title}</h3>
@@ -266,7 +266,7 @@ function DesktopShowcase() {
     <div ref={containerRef} style={{ height: `${chapters.length * 70}vh` }}>
       <div className="relative sticky top-0 h-screen overflow-hidden bg-slate-950 flex flex-col">
         <div className="flex-shrink-0 pt-10 pb-4 text-center">
-          <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">The Platform</p>
+          <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">Example Builds</p>
         </div>
 
         <div className="flex-1 max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-2 gap-12 items-center min-h-0">
@@ -276,7 +276,7 @@ function DesktopShowcase() {
               style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? "translateY(16px)" : "translateY(0)" }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {chapter.phase}</span>
+                <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Example {chapter.phase}</span>
               </div>
               <p className="text-sm font-semibold text-blue-400 mb-2">{chapter.label}</p>
               <h2 className="text-4xl xl:text-5xl font-extrabold text-white leading-tight mb-5">{chapter.title}</h2>
@@ -334,7 +334,7 @@ export default function SuiteShowcase() {
       {/* Mobile: stacked cards with reveal animations */}
       <div className="lg:hidden bg-slate-950 py-16 space-y-6">
         <div className="text-center mb-8">
-          <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">The Platform</p>
+          <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">Example Builds</p>
         </div>
         {chapters.map((chapter) => (
           <MobileChapterCard key={chapter.phase} chapter={chapter} />

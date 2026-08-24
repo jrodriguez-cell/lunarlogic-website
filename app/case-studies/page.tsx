@@ -55,9 +55,9 @@ export default function CaseStudiesPage() {
           <ScrollReveal animation="fade-up">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Your business could be next</h2>
             <p className="text-slate-400 mb-8">
-              Owner-operated service businesses with 8 to 20 employees are the right fit, regardless of which
-              accounting platform you run or which part of the books is costing you the most time. We can walk
-              through what a custom build would look like before you ever spend a dollar.
+              Owner-operated service businesses on QuickBooks, and the bookkeepers and fractional CFOs who manage their
+              books, are the right fit, whichever part of the books is costing the most time. We can walk through what a
+              custom build would look like before you ever spend a dollar.
             </p>
             <Link
               href="/contact"

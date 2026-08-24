@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 };
 
 const SUITE_NAV = [
-  { id: "ar",   name: "AR Automation Suite" },
-  { id: "ap",   name: "AP Automation Suite" },
-  { id: "full", name: "Full Accounting Suite" },
+  { id: "ar",   name: "AR Automation" },
+  { id: "ap",   name: "AP Automation" },
+  { id: "full", name: "Full Accounting Automation" },
 ];
 
 export default function UseCasesPage() {

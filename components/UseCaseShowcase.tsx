@@ -45,7 +45,7 @@ const SUITES: Suite[] = [
   {
     id: "ar",
     phase: "01",
-    name: "AR Automation Suite",
+    name: "AR Automation",
     tagline: "Invoice-to-cash. Running without you.",
     description:
       "Accounts receivable is where most service businesses leak cash without realizing it. Money is legally owed, but it sits uncollected because no one has a reliable system for getting it in. The AR suite closes that gap end to end.",
@@ -204,7 +204,7 @@ const SUITES: Suite[] = [
   {
     id: "ap",
     phase: "02",
-    name: "AP Automation Suite",
+    name: "AP Automation",
     tagline: "Outgoing cash: organized, approved, and on schedule.",
     description:
       "Once AR is running automatically, the same principle applies to the other side of the ledger. The AP suite brings the same discipline to outgoing cash: bills captured, routed, approved, and paid on a schedule that matches cash position. Nothing paid twice. Nothing paid late. Nothing paid without the right sign-off.",
@@ -337,8 +337,8 @@ const SUITES: Suite[] = [
   {
     id: "full",
     phase: "03",
-    name: "Full Accounting Suite",
-    tagline: "The entire financial operating layer, running without you.",
+    name: "Full Accounting Automation",
+    tagline: "The whole back office, running without you.",
     description:
       "With AR and AP automated, the remaining friction is in the connective tissue: month-end close, cash flow forecasting, and financial reporting. The full suite completes the loop: the entire financial backbone runs automatically, and the owner gets accurate, real-time financial intelligence without the manual work that usually produces it.",
     useCases: [
@@ -606,7 +606,7 @@ function DesktopSuite({
 
         {/* Suite header strip */}
         <div className="flex-shrink-0 border-b border-slate-800 px-6 lg:px-10 py-3 flex items-center gap-3">
-          <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {suite.phase}</span>
+          <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Example {suite.phase}</span>
           <span className="text-sm font-semibold text-white">{suite.name}</span>
           <span className="ml-auto text-xs text-slate-500">
             {activeIdx + 1} / {suite.useCases.length}
@@ -732,7 +732,7 @@ function MobileSuite({
       {/* Suite header */}
       <div className="px-4 pt-8 pb-4">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Phase {suite.phase}</span>
+          <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Example {suite.phase}</span>
         </div>
         <h2 className="text-lg font-extrabold text-white">{suite.name}</h2>
         <p className="text-xs text-slate-400 mt-1 leading-relaxed">{suite.tagline}</p>

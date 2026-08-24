@@ -9,8 +9,8 @@ export const metadata: Metadata = {
     template: "%s | LunarLogic",
   },
   description:
-    "LunarLogic builds custom accounting automation for owner-operated service businesses, tailored to your workflow. Accounts receivable, accounts payable, and full back-office automation are common examples of what we build.",
-  keywords: ["accounting automation", "custom automation", "accounts receivable automation", "accounts payable automation", "QuickBooks automation", "business process automation"],
+    "LunarLogic builds custom accounting automation on QuickBooks for owner-operated service businesses and the bookkeepers and fractional CFOs who manage their books. Discovered through direct process analysis, built around the actual bottleneck.",
+  keywords: ["accounting automation", "custom automation", "accounts receivable automation", "accounts payable automation", "QuickBooks automation", "bookkeeper automation", "fractional CFO", "business process automation"],
   openGraph: {
     type: "website",
     locale: "en_US",

@@ -35,7 +35,7 @@ const EXAMPLE_SUITES = [
   },
   {
     id: "full",
-    name: "Full Accounting Suite",
+    name: "Full Accounting Automation",
     description:
       "Cash flow forecasting, faster month-end close, and real-time reporting, the whole back office on autopilot.",
     icon: (
@@ -203,6 +203,97 @@ export default function HomePage() {
                 </ScrollReveal>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Build For — two buyer types */}
+      <section className="py-24 bg-slate-900 border-y border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Who We Build For</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                Two kinds of buyer. One kind of problem.
+              </h2>
+              <p className="text-lg text-slate-400">
+                Whether you run the business or run the books for a roster of them, the pattern is the same: hours lost
+                every month to a manual process that shouldn&apos;t need a person doing it by hand.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                tag: "The owner-operated business",
+                title: "You run the company, and the books run on whoever has time.",
+                body: "Owner-operated service businesses on QuickBooks with no dedicated accounting staff. Collections, close, and reconciliation land on the owner, an office manager, or an outside bookkeeper, in whatever time is left over.",
+              },
+              {
+                tag: "The bookkeeper or fractional CFO",
+                title: "You manage the books for several clients, and rebuild the same manual work for each one.",
+                body: "The practice sees the same bottleneck across every client it manages. When LunarLogic builds something for the practice, the practice owns it and can run it across its whole client base, without the underlying client ever needing to know the tool exists.",
+              },
+            ].map((b, i) => (
+              <ScrollReveal key={b.tag} animation="fade-up" delay={i * 100}>
+                <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 h-full">
+                  <span className="inline-block text-xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full mb-4">
+                    {b.tag}
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-3 leading-snug">{b.title}</h3>
+                  <p className="text-slate-400 leading-relaxed">{b.body}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* You Stay In Control — trust boundary */}
+      <section className="py-24 bg-slate-950">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+            <ScrollReveal animation="slide-left">
+              <div>
+                <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">You Stay In Control</p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 leading-tight">
+                  The automation does the work. You make the calls.
+                </h2>
+                <p className="text-lg text-slate-400">
+                  Automation eliminates the manual, repetitive, error-prone work. It never takes control away from the
+                  person responsible for the books.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="slide-right" delay={100}>
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Never write access to your QuickBooks",
+                    body: "Every journal entry, reconciliation, and adjustment is prepared for your review and posted by you. That's a trust boundary, not a technical limitation.",
+                  },
+                  {
+                    title: "Shadow-tested before it's trusted",
+                    body: "Every build runs in parallel with your existing manual process first, so you see it work before it works on its own.",
+                  },
+                  {
+                    title: "You own the system",
+                    body: "The system runs the repetitive work; you stay the decision-maker on every entry that touches the ledger.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-4 bg-slate-800/50 border border-slate-700 rounded-xl p-5">
+                    <svg className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                      <p className="text-white font-semibold text-sm">{item.title}</p>
+                      <p className="text-slate-400 text-sm mt-1 leading-relaxed">{item.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

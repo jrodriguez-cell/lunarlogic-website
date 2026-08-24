@@ -27,10 +27,10 @@ const AR_STEPS: PipelineStep[] = [
     ),
   },
   {
-    text: "QuickBooks updated automatically",
-    meta: "0 manual entry",
+    text: "Entry prepared for your review",
+    meta: "you approve & post",
     icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
     ),
   },
 ];
@@ -205,7 +205,7 @@ export default function Hero() {
                 label="Automation Pipeline"
                 steps={AR_STEPS}
                 footerLeft="13 actions today"
-                footerRight="0 manual"
+                footerRight="you stay in control"
               />
             </div>
           </div>
