@@ -1,0 +1,62 @@
+# LunarLogic
+
+> LunarLogic builds custom accounting automation on top of QuickBooks for owner-operated service businesses and the bookkeepers and fractional CFOs who manage their books. We don't sell a fixed product or a menu of modules — every engagement starts with discovery, and we build the specific system that fixes the client's actual bottleneck, inside the QuickBooks they already run.
+
+## What we do
+
+We find what's actually broken in a business's accounting workflow, then build the system that fixes it — inside the QuickBooks the client already runs. Common examples of what discovery produces: accounts receivable automation, accounts payable automation, month-end close workbooks, automated bank reconciliation, EBITDA adjustment and consolidation layers, debt schedule management, review-and-approval workflows, and cash flow forecasting. These are examples, not a fixed catalog.
+
+We never take write access to a client's QuickBooks. Every journal entry, reconciliation, and adjustment is prepared for the client's review and manual approval. The automation does the repetitive work; the person who owns the books stays the decision-maker.
+
+## Who we serve (ideal customer profile)
+
+LunarLogic has two connected buyer types:
+
+1. **Owner-operated service businesses**
+   - Annual revenue: $750K–$10M+
+   - Accounting platform: QuickBooks Online (preferred) or QuickBooks Desktop — required
+   - Staffing: no dedicated in-house accounting team; the books run on the owner, an office manager, or an outside bookkeeper
+   - Structure: owner-operated, roughly 8–20 employees
+
+2. **Bookkeepers, fractional CFOs, and QuickBooks ProAdvisors**
+   - Run their own practice and manage the books for one or more QuickBooks-based client businesses
+   - This is our primary go-to-market channel and highest-leverage buyer: a single practice relationship surfaces multiple direct-client opportunities, and the practice is frequently a direct buyer for its own internal workflow
+
+## Target industries / verticals
+
+- Commercial cleaning and janitorial
+- Landscaping and lawn care
+- HVAC, plumbing, and electrical
+- Staffing and temporary labor
+- Marketing and creative agencies
+- IT managed service providers (MSPs)
+- Commercial property maintenance
+
+## Geography
+
+Charlotte, NC metro is our primary market. We serve owner-operated service businesses and bookkeeping/fractional-CFO practices nationwide for the right fit.
+
+## Why LunarLogic
+
+- **Discovered, not sold.** We lead with a discovery conversation, not a product. The build comes out of what that conversation finds.
+- **Built around QuickBooks, not competing with it.** No migration, no new platform, no retraining. We build what QuickBooks should be able to do but isn't.
+- **Custom to the client, not generic.** A close workbook or consolidation layer built around one practice's actual process, not a one-size tool they have to bend around.
+- **Never takes control.** No QuickBooks write access, ever. The client stays the decision-maker on every entry. Trust is structural, not promised.
+
+## Who is NOT a good fit
+
+To keep outreach and prospecting accurate, these are explicit disqualifiers:
+
+- Point-of-sale businesses with no invoice aging or manual accounting cycle
+- Enterprise ERP users (NetSuite, SAP, Oracle) — not a fit
+- Businesses not running on QuickBooks
+- Requests from someone who manages the books but can't approve a build
+- Businesses with >30% insurance or government payer concentration
+- Businesses in active financial distress
+- Companies whose core problem is a broken sales pipeline (we fix accounting workflow, not revenue generation)
+
+## Contact
+
+- Website: https://lunarlogic.ai
+- Email: support@lunarlogic.ai
+- Key pages: /how-it-works, /use-cases, /case-studies, /contact

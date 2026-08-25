@@ -247,6 +247,40 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
           </div>
+
+          {/* Industries + firmographic profile — explicit for readers and crawlers */}
+          <ScrollReveal animation="fade-up" delay={150}>
+            <div className="mt-12 bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-5 text-center">
+                Industries We Serve
+              </p>
+              <div className="flex flex-wrap justify-center gap-2.5 mb-8">
+                {[
+                  "Commercial cleaning & janitorial",
+                  "Landscaping & lawn care",
+                  "HVAC, plumbing & electrical",
+                  "Staffing & temporary labor",
+                  "Marketing & creative agencies",
+                  "IT managed service providers",
+                  "Commercial property maintenance",
+                ].map((v) => (
+                  <span
+                    key={v}
+                    className="text-sm font-medium text-slate-300 bg-slate-900/60 border border-slate-700 px-3.5 py-1.5 rounded-lg"
+                  >
+                    {v}
+                  </span>
+                ))}
+              </div>
+              <p className="text-center text-slate-400 text-sm max-w-3xl mx-auto leading-relaxed">
+                Our best-fit clients are <span className="text-slate-200 font-semibold">owner-operated service
+                businesses doing $750K–$10M in revenue</span>, running on QuickBooks Online or Desktop with no dedicated
+                in-house accounting team — and the <span className="text-slate-200 font-semibold">bookkeepers,
+                fractional CFOs, and QuickBooks ProAdvisors</span> who manage their books. Based in the Charlotte metro,
+                serving service businesses nationwide.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
