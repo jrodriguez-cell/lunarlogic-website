@@ -1,5 +1,21 @@
 /** @type {import('next').NextConfig} */
+
+// Client-specific demo walkthroughs. They're intentionally reachable as shared
+// links, but must stay out of search/AI-crawler indexes so prospecting tools
+// don't infer the ICP from a single client (e.g. a large multinational).
+const NOINDEX = { key: 'X-Robots-Tag', value: 'noindex, nofollow' };
+
 const nextConfig = {
+  async headers() {
+    return [
+      { source: '/gualapack', headers: [NOINDEX] },
+      { source: '/gualapack.html', headers: [NOINDEX] },
+      { source: '/truemixmasters', headers: [NOINDEX] },
+      { source: '/truemixmasters.html', headers: [NOINDEX] },
+      { source: '/amy', headers: [NOINDEX] },
+      { source: '/amy/:path*', headers: [NOINDEX] },
+    ];
+  },
   async rewrites() {
     return [
       {
