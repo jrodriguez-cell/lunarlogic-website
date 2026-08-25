@@ -189,7 +189,7 @@ const chapters = [
     label: "AR Automation",
     title: "The complete invoice-to-cash cycle. Running automatically.",
     body: "From sales order to collected cash: every step handled by the system. Invoices dispatched in seconds, reminders run every weekday, payments matched by AI. No AR clerk, no follow-up calls, no manual data entry.",
-    stat: { value: "40%", label: "average DSO reduction" },
+    stat: { value: "40%", label: "DSO cut on one AR build (example outcome)" },
     mockup: <ARMockup />,
   },
   {

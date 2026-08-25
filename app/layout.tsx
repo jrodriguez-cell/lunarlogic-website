@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://lunarlogic.ai",
     siteName: "LunarLogic",
-    title: "LunarLogic: Custom Accounting Automation, Built Around Your Business",
+    title: "LunarLogic: Discovery-First Custom Accounting Automation on QuickBooks",
     description:
-      "Tailored automation for the accounting work eating your week, accounts receivable, accounts payable, and beyond. Proven with real service businesses.",
+      "Not a fixed product or an AR tool. LunarLogic runs a discovery-first process and builds the custom accounting system each business needs on QuickBooks. Proven with real service businesses.",
   },
 };
 

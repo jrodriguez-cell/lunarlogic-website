@@ -5,9 +5,9 @@ import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "LunarLogic: Custom Accounting Automation, Built Around Your Business",
+  title: "LunarLogic: Discovery-First Custom Accounting Automation on QuickBooks",
   description:
-    "LunarLogic builds custom accounting automation for owner-operated service businesses. Accounts receivable, accounts payable, and full back-office automation are common examples of what we build.",
+    "LunarLogic isn't a fixed product or an AR tool. We run a discovery-first process and build the custom accounting system each business needs on QuickBooks. AR, AP, and month-end close are common examples, not a menu.",
 };
 
 const EXAMPLE_SUITES = [
@@ -153,14 +153,14 @@ export default function HomePage() {
                   Every business has a bottleneck in its books.
                 </h2>
                 <p className="text-lg text-slate-400 mb-6">
-                  For some businesses it&apos;s getting invoices out the door. For others it&apos;s chasing late
-                  payments, approving vendor bills, or closing the books each month. Off-the-shelf software handles
-                  the easy 80%. The last 20%, the part that actually costs you hours every week, gets left to whoever
-                  has time.
+                  For one business it&apos;s a month-end close that eats two weeks. For another it&apos;s
+                  reconciliation done by hand, a debt schedule drifting out of sync, or invoices that go out late.
+                  Off-the-shelf software handles the easy 80%. The last 20%, the part that actually costs you hours
+                  every week, gets left to whoever has time.
                 </p>
                 <p className="text-lg text-slate-400 mb-8">
-                  LunarLogic builds the automation for that last 20%: tailored to your workflow, your accounting
-                  system, and the specific way your business runs.
+                  We don&apos;t start with an answer. Discovery finds the bottleneck that&apos;s actually costing you,
+                  and LunarLogic builds the custom system that fixes it, tailored to how your business really runs.
                 </p>
                 <Link
                   href="/how-it-works"
@@ -176,16 +176,16 @@ export default function HomePage() {
             <div className="space-y-4">
               {[
                 {
-                  title: "Invoices go out late, or not at all",
-                  body: "A common AR bottleneck: billing competes with everything else on the owner's plate, so it slips.",
+                  title: "The close depends on one person's spreadsheet",
+                  body: "Month-end close, EBITDA adjustments, and consolidation held together by a file only one person fully understands.",
                 },
                 {
-                  title: "No consistent follow-up on what's owed",
-                  body: "Whether it's client payments or vendor bills, work without a system to track it ages in silence.",
+                  title: "Reconciliation is manual and reactive",
+                  body: "Bank statements matched to the ledger by hand, after the fact, so discrepancies surface weeks late.",
                 },
                 {
-                  title: "Manual work is invisible until it isn't",
-                  body: "The cost of a missing automation doesn't show up until a deadline is missed or cash runs short.",
+                  title: "AR runs on memory, not a system",
+                  body: "Where collections are the bottleneck, invoices slip and follow-up depends on someone remembering.",
                 },
                 {
                   title: "The fix has to fit how you already work",
@@ -338,7 +338,7 @@ export default function HomePage() {
           <ScrollReveal animation="fade-up">
             <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Case Study</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6">
-              How a custom AR build freed $65,000 for Kaptain Clean
+              How a custom build gave Kaptain Clean its business back
             </h2>
           </ScrollReveal>
           <ScrollReveal animation="zoom-in" delay={100}>
@@ -347,8 +347,8 @@ export default function HomePage() {
                 &ldquo;I don&apos;t know how to explain this, but I feel like I finally own my business again.&rdquo;
               </p>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                Payments started arriving 19 days faster on average. Invoice processing time fell 84%. Over $65,000 in
-                cash freed up, not from new revenue, but from money that was already earned and sitting uncollected.
+                Discovery pointed to collections as the bottleneck. The build that followed freed over $65,000 in
+                cash, not from new revenue, but from money already earned and sitting uncollected.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">

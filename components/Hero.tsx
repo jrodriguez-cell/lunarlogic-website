@@ -4,30 +4,30 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import AutomationPipeline, { PipelineStep } from "@/components/AutomationPipeline";
 
-const AR_STEPS: PipelineStep[] = [
+const BUILD_STEPS: PipelineStep[] = [
   {
-    text: "Invoice #1042 created for Acme Corp",
-    meta: "Slack → QuickBooks",
+    text: "Discovery call — found the real bottleneck",
+    meta: "process walkthrough",
     icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.2-5.2m2.2-5.3a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
     ),
   },
   {
-    text: "Reminder sent, Day 7 follow-up",
-    meta: "Delivered",
+    text: "Custom build scoped to your workflow",
+    meta: "not a template",
     icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.88-5.88m-3.7 3.8a4.5 4.5 0 01-5.98-5.98l3.28 3.28a3 3 0 002.25-2.25L7.94 6.94a4.5 4.5 0 016.34 4.49" />
     ),
   },
   {
-    text: "Payment matched, $4,200.00",
-    meta: "97% confidence",
+    text: "Shadow-tested against your process",
+    meta: "runs in parallel first",
     icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
     ),
   },
   {
-    text: "Entry prepared for your review",
+    text: "Entries prepared for your review",
     meta: "you approve & post",
     icon: (
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -142,7 +142,7 @@ export default function Hero() {
           <div className="text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start mb-6">
               <span className="text-sm font-semibold text-blue-400 uppercase tracking-[0.14em]">
-                Custom Accounting Automation
+                Custom, Discovery-First Automation
               </span>
             </div>
 
@@ -155,9 +155,9 @@ export default function Hero() {
             </h1>
 
             <p className="mt-6 text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Every business loses hours somewhere to accounting busywork: chasing payments, entering bills, closing
-              the books. LunarLogic builds a custom automation for wherever yours does. Accounts receivable and
-              accounts payable are just two common places we start.
+              LunarLogic isn&apos;t a fixed product or an AR tool. We start with a conversation, find the bottleneck
+              that&apos;s actually costing you time, and build the custom accounting system that fixes it, inside the
+              QuickBooks you already run. AR, AP, and month-end close are just common places that conversation leads.
             </p>
 
             <p className="mt-4 text-base text-slate-500 italic max-w-xl mx-auto lg:mx-0">
@@ -202,9 +202,9 @@ export default function Hero() {
               style={{ willChange: "transform, opacity, filter" }}
             >
               <AutomationPipeline
-                label="Automation Pipeline"
-                steps={AR_STEPS}
-                footerLeft="13 actions today"
+                label="How a build comes together"
+                steps={BUILD_STEPS}
+                footerLeft="Discovery-first"
                 footerRight="you stay in control"
               />
             </div>
