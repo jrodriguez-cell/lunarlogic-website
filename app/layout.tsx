@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SiteChrome from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   title: {
@@ -86,14 +87,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth overflow-x-clip">
-      <body className="antialiased bg-slate-950 text-white min-h-screen flex flex-col overflow-x-clip">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="antialiased bg-slate-950 min-h-screen overflow-x-clip">
+        <SiteChrome
+          nav={<Navigation />}
+          footer={<Footer />}
+          schema={
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(organizationSchema),
+              }}
+            />
+          }
+        >
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );
