@@ -3,7 +3,7 @@
  * cardio and mobility. The LLM only chooses exercises from the candidate
  * lists built here and writes notes; every number comes from this module.
  */
-import { DELOAD, PHASES, type Phase } from "@/config/training-variables";
+import { DELOAD, PHASES, WARMUP_MIN, type Phase } from "@/config/training-variables";
 import { GOAL_TEMPLATES, HR_ZONES, hrMax, type GoalCategory } from "@/config/goal-templates";
 import { METS } from "@/config/energy";
 import { EQUIPMENT_ACCESS, type EquipmentAccess, type Pattern } from "@/data/exercises";
@@ -167,7 +167,7 @@ export function isDeloadWeek(week: number): boolean {
 }
 
 /** Deterministic prescription for a slot role in a given week. */
-export function prescribe(phase: Phase, role: SlotRole, week: number, opts: { shortRest?: boolean } = {}): Prescription {
+export function prescribe(phase: Phase, role: SlotRole, week: number, opts: { shortRest?: boolean; minRest?: boolean } = {}): Prescription {
   const v = PHASES[phase];
   const deload = isDeloadWeek(week);
   const b = ((week - 1) % DELOAD.everyNWeeks) + 1; // 1..3 build, 4 = deload
@@ -202,6 +202,8 @@ export function prescribe(phase: Phase, role: SlotRole, week: number, opts: { sh
     rpe = [h.rpe[0], h.rpe[1]];
   }
   if (opts.shortRest && role !== "main" && role !== "power") rest = Math.max(30, Math.round(rest * 0.75));
+  // Time-limited sessions: use the low end of the phase's rest range.
+  if (opts.minRest) rest = Math.min(rest, role === "main" || role === "power" ? v.restSecMin : rest);
   if (deload) {
     sets = Math.max(1, Math.round(sets * (1 - DELOAD.setReduction)));
     rpe = [DELOAD.rpe[0], DELOAD.rpe[1]];
@@ -280,6 +282,29 @@ export function nearestInChain(ex: LibExercise, dir: "regression" | "progression
     if (cur && isUsable(cur, f)) return cur;
   }
   return null;
+}
+
+/**
+ * Regression/progression for a chosen exercise: nearest usable link in its
+ * chain, else the nearest easier/harder usable exercise of the same pattern
+ * (by chain depth), else — for main and secondary lifts — a method-based
+ * option on the same exercise so every main lift has both.
+ */
+export function resolveVariation(ex: LibExercise, dir: "regression" | "progression", lib: LibExercise[], f: CandidateFilter, methodFallback: boolean): ExerciseRef | null {
+  const byId = new Map(lib.map((e) => [e.id, e]));
+  const chain = nearestInChain(ex, dir, byId, f);
+  if (chain) return { id: chain.id, name: chain.name };
+  const depth = chainDepth(ex, byId);
+  const same = lib
+    .filter((e) => e.id !== ex.id && e.pattern === ex.pattern && e.is_compound === ex.is_compound && isUsable(e, f))
+    .map((e) => ({ e, d: chainDepth(e, byId) }))
+    .filter((x) => (dir === "regression" ? x.d < depth : x.d > depth))
+    .sort((a, b) => (dir === "regression" ? b.d - a.d : a.d - b.d) || a.e.name.localeCompare(b.e.name));
+  if (same[0]) return { id: same[0].e.id, name: same[0].e.name };
+  if (!methodFallback) return null;
+  return dir === "regression"
+    ? { id: "", name: `${ex.name} — lighter load, shorter range of motion or slower tempo` }
+    : { id: "", name: `${ex.name} — add load once the top of the rep range is reached (double progression), or slow the tempo` };
 }
 
 const TARGET_DEPTH: Record<TrainingLevel, number> = { none: 1, beginner: 2, intermediate: 3, advanced: 4 };
@@ -467,14 +492,48 @@ export function defaultSelection(sk: Skeleton): Record<string, string> {
   return out;
 }
 
-export function buildWeeks(sessions: SessionPlan[], weeks: number, sequence: Phase[], shortRest: boolean): WeekPlan[] {
+/**
+ * Week-by-week prescriptions. Within each 4-week block, if the heaviest week
+ * doesn't fit the client's session length (plus warm-up), the lowest-priority
+ * slots are left out for that block (no prescription = not performed).
+ */
+export function buildWeeks(sessions: SessionPlan[], weeks: number, sequence: Phase[], shortRest: boolean, sessionLengthMin = 999): WeekPlan[] {
+  const blockLen = DELOAD.everyNWeeks;
+  const dropped = new Map<number, Set<string>>(); // block index → slot ids left out
+  const minRest = new Map<number, boolean>(); // block index → rest at the low end of the range
+  const blocks = Math.ceil(weeks / blockLen);
+  for (let b = 0; b < blocks; b++) {
+    const phase = sequence[Math.min(b, sequence.length - 1)];
+    const heaviest = Math.min(b * blockLen + 3, weeks); // week 3 of the block
+    const drop = new Set<string>();
+    let shortenRest = false;
+    for (const s of sessions) {
+      const active = [...s.slots];
+      const over = () => {
+        const rx = Object.fromEntries(active.map((x) => [x.id, prescribe(phase, x.role, heaviest, { shortRest, minRest: shortenRest })]));
+        return estimateSessionMinutes(active, rx, phase) + WARMUP_MIN > sessionLengthMin;
+      };
+      const dropOne = () => {
+        const worst = [...active].sort((x, y) => y.priority - x.priority)[0];
+        active.splice(active.indexOf(worst), 1);
+        drop.add(worst.id);
+      };
+      while (active.length > 4 && over()) dropOne();
+      if (over()) shortenRest = true;
+      while (active.length > 3 && over()) dropOne();
+    }
+    dropped.set(b, drop);
+    minRest.set(b, shortenRest);
+  }
   const out: WeekPlan[] = [];
   for (let w = 1; w <= weeks; w++) {
     const phase = phaseForWeek(sequence, w);
+    const block = Math.floor((w - 1) / blockLen);
+    const drop = dropped.get(block) ?? new Set<string>();
     const prescriptions: Record<string, Prescription> = {};
     const minutes: Record<string, number> = {};
     for (const s of sessions) {
-      for (const slot of s.slots) prescriptions[slot.id] = prescribe(phase, slot.role, w, { shortRest });
+      for (const slot of s.slots) if (!drop.has(slot.id)) prescriptions[slot.id] = prescribe(phase, slot.role, w, { shortRest, minRest: minRest.get(block) });
       minutes[s.key] = estimateSessionMinutes(s.slots, prescriptions, phase);
     }
     out.push({ week: w, phase, deload: isDeloadWeek(w), retest: isDeloadWeek(w), prescriptions, session_minutes: minutes });
@@ -501,8 +560,7 @@ export function assembleTraining(
   p: { weeks: number; phaseSequence: Phase[]; sessionLengthMin: number; filter: CandidateFilter; shortRest: boolean; guidelines: string[]; clearanceNotes: string | null; coachingNotes: string[]; summary: string; source: "llm" | "library_default" },
 ): TrainingPlan {
   const byId = new Map(lib.map((e) => [e.id, e]));
-  const ref = (e: LibExercise | null): ExerciseRef | null => (e ? { id: e.id, name: e.name } : null);
-  let sessions: SessionPlan[] = sk.sessions.map((s) => ({
+  const sessions: SessionPlan[] = sk.sessions.map((s) => ({
     key: s.key,
     name: s.name,
     slots: s.slots.map((slot): SlotChoice => {
@@ -512,28 +570,13 @@ export function assembleTraining(
       return {
         ...def,
         exercise: { id: chosen.id, name: chosen.name },
-        regression: ref(nearestInChain(chosen, "regression", byId, p.filter)),
-        progression: ref(nearestInChain(chosen, "progression", byId, p.filter)),
+        regression: resolveVariation(chosen, "regression", lib, p.filter, slot.role === "main" || slot.role === "secondary"),
+        progression: resolveVariation(chosen, "progression", lib, p.filter, slot.role === "main" || slot.role === "secondary"),
         note: choices[slot.id]?.note ?? "",
         unit: unitFor(chosen.name),
       };
     }),
   }));
-
-  // Trim to session length.
-  for (let guard = 0; guard < 40; guard++) {
-    const weeks = buildWeeks(sessions, p.weeks, p.phaseSequence, p.shortRest);
-    let worst: { key: string; min: number } | null = null;
-    for (const w of weeks) {
-      if (w.deload) continue;
-      for (const [k, m] of Object.entries(w.session_minutes)) if (!worst || m > worst.min) worst = { key: k, min: m };
-    }
-    if (!worst || worst.min <= p.sessionLengthMin) break;
-    const s = sessions.find((x) => x.key === worst!.key)!;
-    if (s.slots.length <= 3) break;
-    const drop = [...s.slots].sort((a, b) => b.priority - a.priority)[0];
-    sessions = sessions.map((x) => (x.key === s.key ? { ...x, slots: x.slots.filter((sl) => sl.id !== drop.id) } : x));
-  }
 
   return {
     split: sk.split,
@@ -541,7 +584,7 @@ export function assembleTraining(
     lifting_days: sk.lifting_days,
     sessions,
     rotation: sk.rotation,
-    weeks: buildWeeks(sessions, p.weeks, p.phaseSequence, p.shortRest),
+    weeks: buildWeeks(sessions, p.weeks, p.phaseSequence, p.shortRest, p.sessionLengthMin),
     cardio: sk.cardio,
     mobility: sk.mobility,
     coaching_notes: p.coachingNotes,

@@ -32,7 +32,11 @@ export const PHASE_ORDER: Phase[] = ["endurance", "hypertrophy", "strength", "po
 /** Deload every Nth week: ~40% fewer sets, stop at RPE 5–6. */
 export const DELOAD = { everyNWeeks: 4, setReduction: 0.4, rpe: [5, 6] as [number, number] };
 
-/** Warm-up minutes added to every strength session estimate (not counted as exercise energy). */
-export const WARMUP_MIN = 0;
+/**
+ * Warm-up/transition minutes reserved when fitting a session to the client's
+ * available time. Not counted as exercise energy (session minutes for the
+ * energy model are Σ sets × (time under load + rest), per spec).
+ */
+export const WARMUP_MIN = 8;
 
 export const DEFAULT_PLAN_WEEKS = 12;
