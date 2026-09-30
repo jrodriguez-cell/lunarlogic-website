@@ -35,6 +35,8 @@ export interface GeneratorContext {
   foods: LibFood[];
   limits?: Partial<GuardrailLimits>;
   defaultDeficits?: Partial<Record<GoalCategory, number>>;
+  /** default TDEE uncertainty by mode (Settings); plan parameter overrides */
+  uncertainty?: { formula: number; measured: number } | null;
 }
 
 export function defaultParameters(ctx: Pick<GeneratorContext, "goal" | "intake" | "defaultDeficits">, overrides: Partial<PlanParameters> = {}, today: string): PlanParameters {
@@ -189,7 +191,7 @@ export function deriveNutrition(ctx: GeneratorContext, params: PlanParameters, t
     measured: measured
       ? { tdee: a.measured_tdee!, days: a.measured_tdee_days ?? 0, baselineLoads: baselineLoads(a), baselineActiveKcalPerDay: a.wearable_active_kcal_per_day }
       : null,
-    uncertaintyPct: params.uncertainty_pct,
+    uncertaintyPct: params.uncertainty_pct ?? (ctx.uncertainty ? ctx.uncertainty[measured ? "measured" : "formula"] : null),
   });
   if (!training) energy.notes.push("Training is on hold, so the model uses the client's current exercise.");
 

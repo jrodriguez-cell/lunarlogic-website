@@ -147,6 +147,11 @@ export interface PlanParameters {
   energy_week: number;
   /** body weight (lb) used for the energy model; current weight at each recompute */
   weight_lb: number;
+  /** weight at approval — anchors the planned trajectory */
+  start_weight_lb?: number;
+  /** planned lb/week at approval — anchors the planned trajectory */
+  start_rate_lb_per_week?: number;
+  start_band_half_width?: number;
 }
 
 export interface FoodPortion {
@@ -193,6 +198,8 @@ export interface NutritionPlan {
   energy: EnergyOutputs | null;
   prediction_text: string;
   notes: string[];
+  /** set when training was not generated because of a refer-out flag */
+  training_blocked_reason?: string | null;
 }
 
 export interface GeneratedPlan {
