@@ -7,8 +7,8 @@ describe("macro targets", () => {
     const t = computeMacroTargets({ goal: "weight_loss", calories: 2721.1, referenceWeightLb: 270, sex: "male" });
     expect(t.calories).toBe(2721);
     expect(t.protein_g).toBe(230); // 229.5 → 230
-    expect(t.fat_g).toBe(60); // 20% of 2721 / 9 = 60.5 → 60
-    expect(t.carbs_g).toBe(Math.round((2721 - 920 - 540) / 4));
+    expect(t.fat_g).toBe(61); // 20% of 2721 / 9 = 60.47; rounded up so fat stays ≥ 20%
+    expect(t.carbs_g).toBe(Math.round((2721 - 920 - 549) / 4));
     expect(Math.abs(kcalFromMacros(t.protein_g, t.carbs_g, t.fat_g) - t.calories)).toBeLessThanOrEqual(2);
     expect(t.tolerance).toEqual({ calories: 136, protein_g: 10, carbs_g: 15, fat_g: 5 });
   });
@@ -18,6 +18,17 @@ describe("macro targets", () => {
     const rs = evaluateGuardrails({ goal: "general_health", targetKcal: t.calories, tdee: 2200, proteinG: t.protein_g, carbG: t.carbs_g, fatG: t.fat_g, referenceWeightLb: 165, predictedLbPerWeek: 0, predictedLow: -0.4, predictedHigh: 0.4, energyMode: "formula" });
     for (const k of ["protein_per_lb", "protein_pct", "carb_pct", "fat_pct", "macro_reconcile"]) {
       expect(rs.find((r) => r.rule_key === k)?.status, k).toBe("ok");
+    }
+  });
+
+  it("rounding never pushes fat below 20% or protein outside its band", () => {
+    for (let kcal = 1200; kcal <= 4000; kcal += 13) {
+      const t = computeMacroTargets({ goal: "weight_loss", calories: kcal, referenceWeightLb: 200, sex: "male" });
+      expect(t.fat_pct).toBeGreaterThanOrEqual(20);
+      if (!t.protein_conflict) {
+        expect(t.protein_pct).toBeLessThanOrEqual(35);
+        expect(t.protein_pct).toBeGreaterThanOrEqual(10);
+      }
     }
   });
 

@@ -1,25 +1,8 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { DEFAULT_DISCLAIMER, TASK_THRESHOLDS, type TaskThresholds } from "@/config/tasks";
-import { GUARDRAIL_DEFAULTS, type GuardrailLimits } from "@/config/guardrails";
-import { DEFAULT_DEFICIT, UNCERTAINTY } from "@/config/energy";
-import type { GoalCategory } from "@/config/goal-templates";
+import { SETTINGS_DEFAULTS, type AppSettings } from "./settings-defaults";
 
-export interface AppSettings {
-  disclaimer: string;
-  task_thresholds: TaskThresholds;
-  guardrail_limits: GuardrailLimits;
-  default_deficits: Record<GoalCategory, number>;
-  uncertainty: { formula: number; measured: number; calibrated: number };
-}
-
-export const SETTINGS_DEFAULTS: AppSettings = {
-  disclaimer: DEFAULT_DISCLAIMER,
-  task_thresholds: TASK_THRESHOLDS,
-  guardrail_limits: GUARDRAIL_DEFAULTS,
-  default_deficits: { ...DEFAULT_DEFICIT },
-  uncertainty: { ...UNCERTAINTY },
-};
+export { SETTINGS_DEFAULTS, type AppSettings };
 
 export async function getSettings(db: SupabaseClient): Promise<AppSettings> {
   const { data } = await db.from("settings").select("key, value");

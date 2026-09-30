@@ -97,7 +97,7 @@ export function generateTasks(s: ClientSnapshot, today: string, hourNow: number,
 
   // --- Day 1 -----------------------------------------------------------------
   const start = plan?.start_date ?? c.start_date;
-  if (start && inWindow(start, today, 30)) {
+  if (start && inWindow(start, today, 14)) {
     add("day1_baseline", start, `Day 1: baseline weigh-in and measurements for ${c.name}`, "baseline");
     add("day1_confirm", start, `Day 1: confirm intake, PAR-Q and clearance status for ${c.name}`, "baseline");
   }
@@ -160,7 +160,14 @@ export function generateTasks(s: ClientSnapshot, today: string, hourNow: number,
       for (const d of s.strengthDrops) if (inWindow(d.date, today)) add(`strength_drop:${d.exercise}`, d.date, `${c.name}: ${d.exercise} below ${T.strengthRetentionPct}% of baseline — check protein, sleep, calories`, "progress");
     }
     if (s.energyLowDate && inWindow(s.energyLowDate, today)) add("energy_low", s.energyLowDate, `Energy follow-up with ${c.name} (below ${T.energyLow}/10 twice)`, "progress");
-    for (const cel of s.celebrations) if (inWindow(cel.date, today)) add(`celebrate:${cel.label}`, cel.date, `Celebrate with ${c.name}: ${cel.label}`, "celebrate");
+    // One celebration task per week listing the wins (PRs, benchmarks reached).
+    const wins = s.celebrations.filter((cel) => inWindow(cel.date, today, 7));
+    if (wins.length) {
+      const latest = wins.reduce((a, w) => (w.date > a ? w.date : a), wins[0].date);
+      const labels = Array.from(new Set(wins.map((w) => w.label)));
+      const shown = labels.slice(0, 3).join("; ");
+      add("celebrate", mondayOnOrBefore(latest), `Celebrate with ${c.name}: ${shown}${labels.length > 3 ? ` (+${labels.length - 3} more)` : ""}`, "celebrate");
+    }
     const lastSession = s.lastSession ?? plan.start_date;
     const gapDue = addDays(lastSession, T.trainingGapDays);
     if (gapDue <= today) add("training_gap", gapDue, `Training check-in with ${c.name} (no sessions logged ${T.trainingGapDays}+ days)`, "progress");

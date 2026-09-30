@@ -117,9 +117,16 @@ export function computeMacroTargets(input: MacroInput): MacroTargets {
   const calories = Math.round(input.calories);
   const gPerLb = input.proteinGPerLb ?? DEFAULT_PROTEIN_G_PER_LB[input.goal];
   const { grams: proteinRaw, conflict } = chooseProtein({ calories, referenceWeightLb: input.referenceWeightLb, gPerLb, limits: L });
-  const protein = Math.round(proteinRaw);
+  // Round toward the inside of the guardrail band so rounding never creates a warning.
+  const pLo = Math.max(L.proteinGPerLbMin * input.referenceWeightLb, ((L.proteinPctMin / 100) * calories) / 4);
+  const pHi = Math.min(L.proteinGPerLbMax * input.referenceWeightLb, ((L.proteinPctMax / 100) * calories) / 4);
+  let protein = Math.round(proteinRaw);
+  if (!conflict && protein > pHi) protein = Math.floor(pHi);
+  if (!conflict && protein < pLo) protein = Math.ceil(pLo);
   const fatPct = Math.max(input.fatPct ?? DEFAULT_FAT_PCT[input.goal], 0);
-  const fat = Math.round(((fatPct / 100) * calories) / 9);
+  const fatExact = ((fatPct / 100) * calories) / 9;
+  let fat = Math.round(fatExact);
+  if (fatPct >= L.fatPctMin && (fat * 9 * 100) / calories < L.fatPctMin) fat = Math.ceil(fatExact);
   const carbs = Math.max(0, Math.round((calories - 4 * protein - 9 * fat) / 4));
   return {
     calories,

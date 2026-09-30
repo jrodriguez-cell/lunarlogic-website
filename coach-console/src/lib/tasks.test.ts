@@ -53,9 +53,11 @@ describe("task engine", () => {
     const r = generateTasks(snap({
       weighIns: ["2026-09-14"], adherence14: 60, offTrajectory: { count: 2, latestDate: "2026-09-27" },
       strengthDrops: [{ exercise: "Squat", date: "2026-09-25" }], energyLowDate: "2026-09-26",
-      celebrations: [{ label: "PR on Squat", date: "2026-09-26" }], lastSession: "2026-09-18",
+      celebrations: [{ label: "PR on Squat", date: "2026-09-26" }, { label: "PR on Row", date: "2026-09-27" }], lastSession: "2026-09-18",
     }), "2026-09-28", 9);
-    for (const k of ["weigh_in_missing", "adherence_low", "review_plan", "strength_drop:Squat", "energy_low", "celebrate:PR on Squat", "training_gap"]) expect(keys(r), k).toContain(k);
+    for (const k of ["weigh_in_missing", "adherence_low", "review_plan", "strength_drop:Squat", "energy_low", "celebrate", "training_gap"]) expect(keys(r), k).toContain(k);
+    expect(r.create.filter((t) => t.rule_key === "celebrate")).toHaveLength(1);
+    expect(r.create.find((t) => t.rule_key === "celebrate")?.title).toContain("PR on Squat; PR on Row");
   });
   it("strength-drop rule only for weight-loss plans", () => {
     const s = snap({ strengthDrops: [{ exercise: "Squat", date: "2026-09-25" }] });

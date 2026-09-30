@@ -30,6 +30,8 @@ export interface ClientProgressData {
   plan: PlanRow | null;
   intake: IntakeRow | null;
   metrics: Record<string, Point[]>;
+  /** metric key → metric id */
+  metricIds?: Record<string, string>;
   notes: { date: string; text: string }[];
   sessions: (SessionLog & { id: string; planned_session_key: string | null; duration_min: number | null; avg_rpe: number | null; notes: string | null })[];
   sets: (SetLog & { session_id: string })[];
@@ -93,6 +95,7 @@ export async function loadProgressData(db: SupabaseClient, clients: ClientRow[])
       plan: plansFor.find((p) => p.status === "approved") ?? plansFor[0] ?? null,
       intake: ((intakes.data ?? []) as IntakeRow[]).find((i) => i.client_id === c.id) ?? null,
       metrics,
+      metricIds: Object.fromEntries(defs.map((m) => [m.key, m.id])),
       notes,
       sessions: sessionRows.filter((s) => s.client_id === c.id),
       sets: setRows.filter((s) => sessionClient.get(s.session_id) === c.id),
@@ -179,8 +182,24 @@ export function summarize(d: ClientProgressData, today: string, T: TaskThreshold
   const lifts = liftSummary(d.sets, { flagBelowPct: isWL ? T.strengthRetentionPct : null });
   const checkinKeys = ["energy_1_10", "adherence_pct", "sleep_hrs", "stress_1_10"];
   const lastCheckin = checkinKeys.flatMap((k) => d.metrics[k] ?? []).reduce<string | null>((a, p) => (!a || p.date > a ? p.date : a), null);
+  // Current value: latest test result, else the tracked data the benchmark describes.
+  const tracked = (b: BenchmarkWithResults): number | null => {
+    const last = (pts: Point[] | undefined) => (pts && pts.length ? pts[pts.length - 1].value : null);
+    if (b.metric_id) {
+      const e = Object.entries(d.metricIds ?? {}).find(([, id]) => id === b.metric_id);
+      if (e) return last(d.metrics[e[0]]);
+    }
+    const n = b.name.toLowerCase();
+    if (n === "body weight") return last(d.metrics.weight_lb);
+    if (n === "weekly adherence") return last(d.metrics.adherence_pct);
+    if (n === "average sleep") return last(d.metrics.sleep_hrs);
+    if (n === "average energy") return last(d.metrics.energy_1_10);
+    const site = ["waist", "chest", "hips", "arm", "thigh", "calf", "neck"].find((x) => n === x || n === `${x} circumference`);
+    if (site) return last(d.measurements.filter((m) => m.site === site));
+    return null;
+  };
   const benchmarks = d.benchmarks.map((b) => {
-    const current = b.results.length ? b.results[b.results.length - 1].value : null;
+    const current = b.results.length ? b.results[b.results.length - 1].value : tracked(b);
     const bp = benchmarkProgress({ direction: b.direction, baseline: b.baseline, target: b.target, target_date: b.target_date, created_at: b.created_at.slice(0, 10) }, current, today);
     return { ...b, current, ...bp };
   });

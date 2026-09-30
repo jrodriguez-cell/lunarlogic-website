@@ -316,8 +316,15 @@ export function candidatesForSlot(slot: SlotDef, lib: LibExercise[], f: Candidat
     (e) => e.pattern === slot.pattern && (!slot.muscle || e.primary_muscles.some((m) => m.includes(slot.muscle!))) && isUsable(e, f),
   );
   const target = TARGET_DEPTH[level];
+  // Prefer the client's "best" equipment: bands are a fallback when free weights/machines exist.
+  const equipFit = (e: LibExercise) => {
+    if (f.equipment === "bodyweight") return 0;
+    const usesLoad = e.equipment.some((q) => ["barbell", "dumbbell", "kettlebell", "cable", "machine"].includes(q));
+    const bandOnly = e.equipment.includes("band") && !usesLoad;
+    return (bandOnly ? 1.5 : 0) + (usesLoad ? -0.5 : 0);
+  };
   const score = (e: LibExercise) => {
-    let s = Math.abs(chainDepth(e, byId) - target);
+    let s = Math.abs(chainDepth(e, byId) - target) + equipFit(e);
     if (wantCompound && !e.is_compound) s += 5;
     if (slot.role === "main") {
       if (!nearestInChain(e, "regression", byId, f)) s += 3;

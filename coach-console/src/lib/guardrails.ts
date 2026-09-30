@@ -54,7 +54,8 @@ export function evaluateGuardrails(input: GuardrailInput): GuardrailResult[] {
   );
 
   // --- Energy balance vs goal ----------------------------------------------
-  const deficit = input.tdee - cal;
+  // Whole kcal: targets are rounded to integers, so compare rounded balances.
+  const deficit = Math.round(input.tdee - cal);
   if (input.goal === "weight_loss") {
     const ok = deficit >= L.deficitMin && deficit <= L.deficitMax;
     add({ rule_key: "calorie_deficit", label: "Calorie deficit", status: ok ? "ok" : "warn", value: `${fmt(deficit)} kcal/day`, message: ok ? `Deficit within ${L.deficitMin}–${L.deficitMax} kcal/day.` : `Deficit of ${fmt(deficit)} kcal/day vs. estimated TDEE is outside ${L.deficitMin}–${L.deficitMax} kcal/day.` });
