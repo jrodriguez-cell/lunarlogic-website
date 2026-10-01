@@ -1,6 +1,20 @@
 -- Coach Console seed data. Safe to re-run.
 begin;
 
+-- First sign-in claims the trainer account (no-op if it already exists)
+-- The first account to sign in becomes the trainer (only if no trainer exists yet).
+create or replace function claim_trainer() returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  if auth.uid() is null then return false; end if;
+  if exists (select 1 from app_owner where user_id = auth.uid()) then return true; end if;
+  if exists (select 1 from app_owner) then return false; end if;
+  insert into app_owner (user_id) values (auth.uid());
+  return true;
+end $$;
+revoke all on function claim_trainer() from public;
+grant execute on function claim_trainer() to authenticated;
+
 -- Exercise library
 insert into exercises (slug, name, pattern, primary_muscles, equipment, contraindications, is_compound) values
 ('wall_sit', 'Wall Sit', 'squat', array['quads']::text[], array['bodyweight']::text[], array[]::text[], false),

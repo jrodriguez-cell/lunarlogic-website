@@ -16,6 +16,7 @@ const arr = (a: string[]) => `array[${a.map(q).join(",")}]::text[]`;
 const j = (v: unknown) => `${q(JSON.stringify(v))}::jsonb`;
 
 const out: string[] = ["-- Coach Console seed data. Safe to re-run.", "begin;", ""];
+out.push(`-- First sign-in claims the trainer account (no-op if it already exists)${`\n-- The first account to sign in becomes the trainer (only if no trainer exists yet).\ncreate or replace function claim_trainer() returns boolean\nlanguage plpgsql security definer set search_path = public as $$\nbegin\n  if auth.uid() is null then return false; end if;\n  if exists (select 1 from app_owner where user_id = auth.uid()) then return true; end if;\n  if exists (select 1 from app_owner) then return false; end if;\n  insert into app_owner (user_id) values (auth.uid());\n  return true;\nend $$;\nrevoke all on function claim_trainer() from public;\ngrant execute on function claim_trainer() to authenticated;\n`}`);
 out.push("-- Exercise library");
 out.push(`insert into exercises (slug, name, pattern, primary_muscles, equipment, contraindications, is_compound) values\n${EXERCISES.map((e) => `(${q(e.slug)}, ${q(e.name)}, ${q(e.pattern)}, ${arr(e.primary_muscles)}, ${arr(e.equipment)}, ${arr(e.contraindications)}, ${e.is_compound})`).join(",\n")}\non conflict (slug) do update set name = excluded.name, pattern = excluded.pattern, primary_muscles = excluded.primary_muscles, equipment = excluded.equipment, contraindications = excluded.contraindications, is_compound = excluded.is_compound;`);
 out.push("", "-- Regression / progression links");

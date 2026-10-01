@@ -15,7 +15,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const db = createClient();
   const { data: user } = await db.auth.getUser();
   if (!user.user) redirect("/login");
-  const { data: isTrainer } = await db.rpc("is_trainer");
+  const { data: isTrainer } = await db.rpc("claim_trainer");
   if (!isTrainer) {
     await db.auth.signOut();
     redirect("/login");

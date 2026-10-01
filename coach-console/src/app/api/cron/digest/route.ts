@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 
 /**
  * Vercel Cron → GET /api/cron/digest?kind=weekly|daily
- * Protected by CRON_SECRET (Authorization: Bearer <secret>). Cron runs in UTC,
- * so the schedule fires twice and this route sends only at 7 AM trainer time.
+ * Protected by CRON_SECRET (Authorization: Bearer <secret>). Scheduled at
+ * 11:00 UTC (7 AM Eastern in summer, 6 AM in winter); sends on the trainer's Monday.
  * Pass &force=1 (with the secret) to send immediately for testing.
  */
 export async function GET(req: Request) {
@@ -28,7 +28,6 @@ export async function GET(req: Request) {
   const db = createAdminClient();
   const settings = await getSettings(db);
   if (!force) {
-    if (hourIn() !== 7) return NextResponse.json({ skipped: "not 7 AM trainer time" });
     if (kind === "weekly" && dayOfWeek(today) !== 1) return NextResponse.json({ skipped: "not Monday" });
     if (kind === "daily" && !settings.task_thresholds.dailyDigest) return NextResponse.json({ skipped: "daily digest off" });
   }

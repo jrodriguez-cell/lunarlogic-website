@@ -6,7 +6,8 @@ export async function signIn(_prev: { error: string | null }, form: FormData): P
   const db = createClient();
   const { error } = await db.auth.signInWithPassword({ email: String(form.get("email") ?? ""), password: String(form.get("password") ?? "") });
   if (error) return { error: "Sign-in failed. Check your email and password." };
-  const { data: owner } = await db.rpc("is_trainer");
+  // First sign-in on a fresh install claims the trainer account.
+  const { data: owner } = await db.rpc("claim_trainer");
   if (!owner) {
     await db.auth.signOut();
     return { error: "This account is not the trainer account." };
