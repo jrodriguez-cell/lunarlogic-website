@@ -354,5 +354,11 @@ alter table app_owner enable row level security;
 alter table app_owner force row level security;
 create policy owner_read_self on app_owner for select to authenticated using (user_id = auth.uid());
 
+-- Explicit grants (works whether or not "Automatically expose new tables" is
+-- enabled). RLS above still limits every row to the trainer.
+grant usage on schema public to authenticated, service_role;
+grant select, insert, update, delete on all tables in schema public to authenticated, service_role;
+grant execute on function is_trainer() to authenticated, service_role;
+
 -- No anonymous access to anything.
 revoke all on all tables in schema public from anon;
